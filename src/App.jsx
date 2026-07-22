@@ -113,7 +113,7 @@ export function AppRoutes() {
 
 export default function App() {
   return (
-    <BrowserRouter basename="/ChildernforLife.com">
+    <BrowserRouter basename={window.location.hostname.includes('github.io') ? '/ChildernforLife.com' : '/'}>
       <AppRoutes />
     </BrowserRouter>
   );

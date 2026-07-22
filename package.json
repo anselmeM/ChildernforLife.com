@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "predeploy": "vite build",
+    "predeploy": "cross-env GITHUB_PAGES=true vite build",
     "deploy": "gh-pages -d dist",
     "lint": "oxlint",
     "preview": "vite preview",
@@ -29,6 +29,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.3",
     "autoprefixer": "^10.5.2",
+    "cross-env": "^10.1.0",
     "gh-pages": "^6.3.0",
     "jsdom": "^29.1.1",
     "oxlint": "^1.71.0",
