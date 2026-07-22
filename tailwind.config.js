@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        cause: ['Cause', 'sans-serif'],
+        lora: ['Lora', 'serif'],
+      },
       colors: {
         brandBlue: {
           50: '#f0f7fa',
