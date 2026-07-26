@@ -2,13 +2,15 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import sallyStory from '../../assets/sally_story.png';
+import PageSEO from '../../components/PageSEO';
 
 export default function Careers() {
   const navigate = useNavigate();
 
   return (
     <div className="bg-white min-h-screen">
-      <div className="relative h-[380px] bg-cover bg-center bg-fixed flex items-center" style={{ backgroundImage: `url(${sallyStory})` }}>
+      <PageSEO title="Careers" description="Join our team and make a difference in children's lives across Africa." path="/about/careers" />
+      <div className="relative h-[260px] sm:h-[320px] lg:h-[380px] bg-cover bg-center bg-local md:bg-fixed flex items-center" style={{ backgroundImage: `url(${sallyStory})` }}>
         <div className="absolute inset-0 bg-black/60 z-0"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-white">
           <button onClick={() => navigate('/')} className="inline-flex items-center text-[#ffc72c] hover:text-[#eebb22] font-black text-xs uppercase tracking-widest mb-6 transition-colors">
@@ -19,7 +21,7 @@ export default function Careers() {
           <p className="text-base md:text-lg text-gray-200 font-bold max-w-2xl leading-relaxed">Build your career while building better futures</p>
         </div>
       </div>
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-12">
           <p className="text-gray-600 text-lg font-medium leading-relaxed">Looking for a career with purpose? Join our global team of project managers, logisticians, educators, and engineers working together to support children and families.</p>
           <div className="bg-gray-50 border border-gray-150 rounded-3xl p-8 space-y-6">
@@ -30,7 +32,7 @@ export default function Careers() {
                 { title: "Monitoring & Evaluation (M&E) Specialist", loc: "Addis Ababa, Ethiopia", type: "Full-Time" },
                 { title: "Communications & Media Relations Officer", loc: "Remote", type: "Contract" }
               ].map((job, i) => (
-                <div key={i} className="py-4 flex justify-between items-center first:pt-0 last:pb-0">
+                <div key={i} className="py-4 flex flex-wrap justify-between items-center gap-2 first:pt-0 last:pb-0">
                   <div>
                     <h4 className="font-bold text-gray-900 text-base">{job.title}</h4>
                     <p className="text-gray-500 font-semibold text-xs mt-1">{job.loc} • {job.type}</p>

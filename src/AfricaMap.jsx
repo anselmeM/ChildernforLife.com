@@ -7,7 +7,6 @@ import React from 'react';
 const AfricaMap = ({ activeCountry = 'benin' }) => {
   const activeColor = '#f37021';
   const defaultColor = '#b8d8e8';
-  const hoverColor = '#89c4db';
   const borderColor = '#ffffff';
   const bgColor = '#d8eef6';
 

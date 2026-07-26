@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Heart } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
+import PageSEO from '../components/PageSEO';
 
 const Donate = () => {
   const [selectedTier, setSelectedTier] = useState('core');
@@ -97,6 +98,7 @@ const Donate = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-20 px-4 sm:px-6 lg:px-8">
+      <PageSEO title="Donate" description="Support vulnerable children across Africa. Choose a donation tier and make a difference today." path="/donate" />
       <div className="max-w-7xl mx-auto space-y-12">
 
         {wasCancelled && (
@@ -145,7 +147,7 @@ const Donate = () => {
                     setSelectedTier(tier.id);
                     setCustomAmount('');
                   }}
-                  className={`bg-white border rounded-3xl p-6 shadow-sm hover:shadow-md transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between h-[210px] ${
+                  className={`bg-white border rounded-3xl p-6 shadow-sm hover:shadow-md transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between min-h-[210px] h-auto ${
                     selectedTier === tier.id && !customAmount
                       ? 'border-2 border-[#f37021] ring-4 ring-[#f37021]/10 bg-orange-50/5'
                       : 'border-gray-200 hover:border-[#005c7a]'
@@ -191,13 +193,15 @@ const Donate = () => {
               </div>
 
               {/* Frequency selector */}
-              <div className="space-y-2">
-                <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest">Sponsorship Type</label>
+              <fieldset className="space-y-2">
+                <legend className="block text-[10px] font-black text-gray-400 uppercase tracking-widest">Sponsorship Type</legend>
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     type="button"
+                    role="radio"
+                    aria-checked={frequency === 'monthly'}
                     onClick={() => setFrequency('monthly')}
-                    className={`py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all ${
+                    className={`py-3 rounded-xl text-xs font-black uppercase tracking-wider transition-all ${
                       frequency === 'monthly'
                         ? 'bg-[#005c7a] text-white shadow-sm'
                         : 'bg-gray-50 text-gray-500 hover:bg-gray-100'
@@ -207,8 +211,10 @@ const Donate = () => {
                   </button>
                   <button
                     type="button"
+                    role="radio"
+                    aria-checked={frequency === 'one-off'}
                     onClick={() => setFrequency('one-off')}
-                    className={`py-2 rounded-xl text-xs font-black uppercase tracking-wider transition-all ${
+                    className={`py-3 rounded-xl text-xs font-black uppercase tracking-wider transition-all ${
                       frequency === 'one-off'
                         ? 'bg-[#005c7a] text-white shadow-sm'
                         : 'bg-gray-50 text-gray-500 hover:bg-gray-100'
@@ -217,7 +223,7 @@ const Donate = () => {
                     One-off
                   </button>
                 </div>
-              </div>
+              </fieldset>
 
               {/* Selected tier / custom amount display */}
               <div className="space-y-3.5 bg-gray-50 rounded-2xl p-4 border border-gray-100">
@@ -228,38 +234,17 @@ const Donate = () => {
 
                 {/* Custom Amount input */}
                 <div>
-                  <label className="block text-[9.5px] font-black text-gray-400 uppercase tracking-widest mb-1.5">Or enter custom TZS amount</label>
+                  <label htmlFor="custom-tzs-amount" className="block text-[11px] font-black text-gray-400 uppercase tracking-widest mb-1.5">Or enter custom TZS amount</label>
                   <div className="relative">
                     <span className="absolute left-3.5 top-2.5 text-gray-400 font-bold text-xs">TZS</span>
                     <input
+                      id="custom-tzs-amount"
                       type="number"
                       placeholder="e.g. 150000"
                       value={customAmount}
                       onChange={(e) => setCustomAmount(e.target.value)}
-                      className="w-full border border-gray-200 rounded-xl pl-11 pr-2 py-2 text-xs font-bold focus:outline-none focus:border-[#005c7a]"
+                      className="w-full border border-gray-200 rounded-xl pl-11 pr-2 py-3 text-xs font-bold focus:outline-none focus:border-[#005c7a]"
                     />
-                  </div>
-                </div>
-              </div>
-
-              {/* Card Fields */}
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Name on Card</label>
-                  <input required type="text" placeholder="e.g. Jane Doe" className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-xs font-semibold focus:outline-none focus:border-[#005c7a]" />
-                </div>
-                <div>
-                  <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Card Number</label>
-                  <input required type="text" placeholder="XXXX XXXX XXXX XXXX" className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-xs font-semibold focus:outline-none focus:border-[#005c7a]" />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">MM/YY</label>
-                    <input required type="text" placeholder="12/28" className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-xs font-semibold focus:outline-none focus:border-[#005c7a]" />
-                  </div>
-                  <div>
-                    <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">CVC</label>
-                    <input required type="text" placeholder="123" className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-xs font-semibold focus:outline-none focus:border-[#005c7a]" />
                   </div>
                 </div>
               </div>

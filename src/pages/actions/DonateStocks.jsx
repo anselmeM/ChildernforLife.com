@@ -2,13 +2,15 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import sallyStory from '../../assets/sally_story.png';
+import PageSEO from '../../components/PageSEO';
 
 export default function DonateStocks() {
   const navigate = useNavigate();
 
   return (
     <div className="bg-white min-h-screen">
-      <div className="relative h-[380px] bg-cover bg-center bg-fixed flex items-center" style={{ backgroundImage: `url(${sallyStory})` }}>
+      <PageSEO title="Donate Stocks" description="Make a tax-efficient gift of stocks and securities to support our mission." path="/donate/stocks" />
+      <div className="relative h-[260px] sm:h-[320px] lg:h-[380px] bg-cover bg-center bg-local md:bg-fixed flex items-center" style={{ backgroundImage: `url(${sallyStory})` }}>
         <div className="absolute inset-0 bg-black/60 z-0"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-white">
           <button onClick={() => navigate('/')} className="inline-flex items-center text-[#ffc72c] hover:text-[#eebb22] font-black text-xs uppercase tracking-widest mb-6 transition-colors">
@@ -19,7 +21,7 @@ export default function DonateStocks() {
           <p className="text-base md:text-lg text-gray-200 font-bold max-w-2xl leading-relaxed">Maximize your charitable tax benefit</p>
         </div>
       </div>
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto space-y-8">
           <p className="text-gray-600 text-lg font-medium leading-relaxed">Donating appreciated securities (stocks, bonds, mutual funds) is one of the most tax-efficient ways to support Children for Life. You pay no capital gains tax on the transfer and receive a tax-deductible receipt for the full market value.</p>
           <div className="bg-gray-50 rounded-3xl p-8 border border-gray-150 space-y-4">

@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Heart, Leaf, ShieldCheck } from 'lucide-react';
 import AfricaMap from '../../AfricaMap';
 import { getCountry } from '../../data/countries';
+import cusoEffectSoap from '../../assets/cuso_effect_soap.png';
+import ugirlsGraduation from '../../assets/ugirls_graduation.png';
 
 export default function CountryPage() {
   const navigate = useNavigate();
@@ -15,7 +17,7 @@ export default function CountryPage() {
   return (
     <div className="bg-white min-h-screen relative overflow-hidden">
       {/* Parallax Hero */}
-      <div className="relative h-[300px] sm:h-[400px] lg:h-[550px] bg-cover bg-center bg-fixed flex items-end pb-12 sm:pb-16 lg:pb-24" style={{ backgroundImage: `url(${data.bg})` }}>
+      <div className="relative h-[300px] sm:h-[400px] lg:h-[550px] bg-cover bg-center bg-local md:bg-fixed flex items-end pb-12 sm:pb-16 lg:pb-24" style={{ backgroundImage: `url(${data.bg})` }}>
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-0"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-white flex justify-between items-end">
           <div className="max-w-xl">
@@ -99,7 +101,7 @@ export default function CountryPage() {
       </div>
 
       {/* Locally-Led Solutions */}
-      <div className="bg-[#f0f9fc] py-24 relative z-20 border-t border-b border-gray-150">
+      <div className="bg-[#f0f9fc] py-12 sm:py-20 lg:py-24 relative z-20 border-t border-b border-gray-150">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900 mb-4">Locally-Led Solutions</h2>
@@ -133,6 +135,7 @@ export default function CountryPage() {
             <div className="lg:col-span-7 flex flex-col">
               <div className="rounded-3xl overflow-hidden shadow-lg mb-8">
                 <img
+                  loading="lazy"
                   src={activeSolution.img || data.bg}
                   className="w-full h-[360px] object-cover"
                   alt="Solution"
@@ -151,7 +154,7 @@ export default function CountryPage() {
       </div>
 
       {/* Partnership Grid */}
-      <section className="bg-white py-24">
+      <section className="bg-white py-12 sm:py-20 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h3 className="text-2xl font-black text-gray-900 mb-2">Partnership for a Sustainable and<br/>Inclusive World</h3>
           <p className="text-gray-500 font-semibold text-xs mb-12">Together we share skills, build resilience and foster long-term positive change.</p>
@@ -169,7 +172,7 @@ export default function CountryPage() {
       </section>
 
       {/* Voices of Change */}
-      <section className="py-24 bg-gray-50 relative overflow-hidden">
+      <section className="py-12 sm:py-20 lg:py-24 bg-gray-50 relative overflow-hidden">
         <div className="absolute right-0 top-10 w-4 h-12 bg-gray-200 rounded-l-md"></div>
         <div className="absolute right-0 top-1/2 w-4 h-12 bg-gray-200 rounded-l-md"></div>
 
@@ -179,10 +182,10 @@ export default function CountryPage() {
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900 leading-tight mb-4">{data.name}'s Voices of<br/>Change</h2>
               <p className="text-gray-400 font-bold text-[10px] uppercase tracking-widest mb-8">Stories from the field</p>
               <div className="flex space-x-3">
-                <button className="w-10 h-10 rounded-full bg-[#f37021] text-white flex items-center justify-center hover:bg-[#da621a] transition-colors shadow-md">
+                <button className="w-10 h-10 rounded-full bg-[#f37021] text-white flex items-center justify-center hover:bg-[#da621a] transition-colors shadow-md" aria-label="Previous story">
                   <ChevronLeft size={16} className="stroke-[3]" />
                 </button>
-                <button className="w-10 h-10 rounded-full bg-[#f37021] text-white flex items-center justify-center hover:bg-[#da621a] transition-colors shadow-md">
+                <button className="w-10 h-10 rounded-full bg-[#f37021] text-white flex items-center justify-center hover:bg-[#da621a] transition-colors shadow-md" aria-label="Next story">
                   <ChevronRight size={16} className="stroke-[3]" />
                 </button>
               </div>
@@ -192,29 +195,19 @@ export default function CountryPage() {
             </div>
 
             <div className="lg:col-span-9 grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-[#e1f3f8] rounded-3xl p-10 relative">
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-sm">
-                     <img loading="lazy" src={data.bg} className="w-full h-full object-cover" />
+              {data.voices.map((voice, idx) => (
+                <div key={idx} className={`${idx === 0 ? 'bg-[#e1f3f8]' : 'bg-[#ffc72c]'} rounded-3xl p-10 relative`}>
+                  <div className="flex items-center space-x-4 mb-6">
+                    <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-sm">
+                      <img loading="lazy" src={data.bg} className="w-full h-full object-cover" alt="" />
+                    </div>
                   </div>
+                  <p className="font-bold text-gray-900 text-xs leading-relaxed mb-8">
+                    "{voice.text}"
+                  </p>
+                  <p className="font-black text-[9px] text-[#005c7a] uppercase tracking-widest">{voice.name}</p>
                 </div>
-                <p className="font-bold text-gray-900 text-xs leading-relaxed mb-8">
-                  "This project provided me with the tools I needed to launch my own agricultural business. Now I can support my family and hire two people from my village. The training completely changed my life."
-                </p>
-                <p className="font-black text-[9px] text-[#005c7a] uppercase tracking-widest">Amina, Participant</p>
-              </div>
-
-              <div className="bg-[#ffc72c] rounded-3xl p-10 relative">
-                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-sm">
-                     <img loading="lazy" src={heroStudents} className="w-full h-full object-cover" />
-                  </div>
-                </div>
-                <p className="font-bold text-gray-900 text-[11px] leading-relaxed mb-8">
-                  "As a volunteer, I came here thinking I was going to teach, but I ended up learning so much more. The resilience of the women here is incredible. It has been a deeply humbling and rewarding experience that I'll carry with me forever."
-                </p>
-                <p className="font-black text-[9px] text-gray-900 uppercase tracking-widest">David, Technical Advisor</p>
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -241,7 +234,7 @@ export default function CountryPage() {
       </section>
 
       {/* Take The Next Step */}
-      <section className="py-24 bg-white">
+      <section className="py-12 sm:py-20 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h3 className="text-2xl font-black text-gray-900 mb-12">Take The Next Step</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

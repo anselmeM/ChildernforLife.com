@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Heart, BookOpen, Users, ShieldAlert, Sparkles } from 'lucide-react';
 import cleanWater from '../../assets/clean_water.png';
+import PageSEO from '../../components/PageSEO';
 
 export default function Competencies() {
   const navigate = useNavigate();
@@ -16,7 +17,8 @@ export default function Competencies() {
 
   return (
     <div className="bg-white min-h-screen">
-      <div className="relative h-[380px] bg-cover bg-center bg-fixed flex items-center" style={{ backgroundImage: `url(${cleanWater})` }}>
+      <PageSEO title="Our Competencies" description="Our core expertise in child welfare, education, clean water, solar energy, and healthcare." path="/about/competencies" />
+      <div className="relative h-[260px] sm:h-[320px] lg:h-[380px] bg-cover bg-center bg-local md:bg-fixed flex items-center" style={{ backgroundImage: `url(${cleanWater})` }}>
         <div className="absolute inset-0 bg-black/60 z-0"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-white">
           <button onClick={() => navigate('/')} className="inline-flex items-center text-[#ffc72c] hover:text-[#eebb22] font-black text-xs uppercase tracking-widest mb-6 transition-colors">
@@ -27,7 +29,7 @@ export default function Competencies() {
           <p className="text-base md:text-lg text-gray-200 font-bold max-w-2xl leading-relaxed">Five strategic development areas where Children for Life makes a measurable impact.</p>
         </div>
       </div>
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-16">
           <p className="text-gray-600 font-bold text-lg leading-relaxed max-w-3xl">Children for Life is committed to ensuring every child has the support they need to thrive. Through our structured, child-focused interventions, we work towards five core development goals:</p>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

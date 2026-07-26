@@ -2,13 +2,15 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import cleanEnergy from '../../assets/clean_energy.png';
+import PageSEO from '../../components/PageSEO';
 
 export default function Board() {
   const navigate = useNavigate();
 
   return (
     <div className="bg-white min-h-screen">
-      <div className="relative h-[380px] bg-cover bg-center bg-fixed flex items-center" style={{ backgroundImage: `url(${cleanEnergy})` }}>
+      <PageSEO title="Board of Directors" description="Our board of directors guiding Children for Life's strategic vision." path="/about/board" />
+      <div className="relative h-[260px] sm:h-[320px] lg:h-[380px] bg-cover bg-center bg-local md:bg-fixed flex items-center" style={{ backgroundImage: `url(${cleanEnergy})` }}>
         <div className="absolute inset-0 bg-black/60 z-0"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-white">
           <button onClick={() => navigate('/')} className="inline-flex items-center text-[#ffc72c] hover:text-[#eebb22] font-black text-xs uppercase tracking-widest mb-6 transition-colors">
@@ -19,7 +21,7 @@ export default function Board() {
           <p className="text-base md:text-lg text-gray-200 font-bold max-w-2xl leading-relaxed">Governance, oversight, and strategic guidance</p>
         </div>
       </div>
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-12">
           <p className="text-gray-600 text-lg font-medium leading-relaxed">Our Board of Trustees provides governance, oversight, and strategic guidance to ensure that Children for Life remains dedicated to its mission, operates ethically, and maintains the highest standards of accountability.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

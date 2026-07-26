@@ -7,6 +7,7 @@ import sallyStory from '../../assets/sally_story.png';
 import monthlyGiving from '../../assets/monthly_giving.png';
 import ugirlsGraduation from '../../assets/ugirls_graduation.png';
 import cleanWater from '../../assets/clean_water.png';
+import PageSEO from '../../components/PageSEO';
 
 export default function News() {
   const navigate = useNavigate();
@@ -39,7 +40,8 @@ export default function News() {
 
   return (
     <div className="bg-[#f0f9fc] min-h-screen">
-      <div className="relative h-[320px] bg-cover bg-center bg-fixed flex items-center" style={{ backgroundImage: `url(${cleanEnergy})` }}>
+      <PageSEO title="News" description="Latest news and updates from Children for Life." path="/news" />
+      <div className="relative h-[320px] bg-cover bg-center bg-local md:bg-fixed flex items-center" style={{ backgroundImage: `url(${cleanEnergy})` }}>
         <div className="absolute inset-0 bg-[#005c7a]/60 z-0"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-white">
           <button onClick={() => navigate('/')} className="inline-flex items-center text-white/80 hover:text-white font-black text-xs uppercase tracking-widest mb-6 transition-colors">
@@ -65,16 +67,18 @@ export default function News() {
           <div className="bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-sm space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-end">
               <div className="lg:col-span-1">
-                <label className="block text-[10.5px] font-black text-gray-500 uppercase tracking-widest mb-2">Search Keywords</label>
-                <input type="text" placeholder="Type to filter articles..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-xs font-bold focus:outline-none focus:border-[#005c7a] bg-gray-50/50" />
+                <label htmlFor="news-search" className="block text-[10.5px] font-black text-gray-500 uppercase tracking-widest mb-2">Search Keywords</label>
+                <input id="news-search" type="text" placeholder="Type to filter articles..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="w-full border border-gray-200 rounded-xl px-4 py-2.5 text-xs font-bold focus:outline-none focus:border-[#005c7a] bg-gray-50/50" />
               </div>
               <div className="lg:col-span-2">
-                <label className="block text-[10.5px] font-black text-gray-500 uppercase tracking-widest mb-2">Filter by Category</label>
-                <div className="flex flex-wrap gap-2">
-                  {['All', 'Policy', 'Fundraising', 'Advocacy', 'Opinion', 'Profile', 'WASH', 'Partnership', 'Insight', 'Strategy'].map(tag => (
-                    <button key={tag} onClick={() => setSelectedTag(tag)} className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider transition-all border ${selectedTag === tag ? 'bg-[#005c7a] border-[#005c7a] text-white shadow-sm' : 'bg-white border-gray-200 text-gray-400 hover:border-[#005c7a] hover:text-[#005c7a]'}`}>{tag}</button>
-                  ))}
-                </div>
+                <fieldset>
+                  <legend className="block text-[10.5px] font-black text-gray-500 uppercase tracking-widest mb-2">Filter by Category</legend>
+                  <div role="group" className="flex flex-wrap gap-2">
+                    {['All', 'Policy', 'Fundraising', 'Advocacy', 'Opinion', 'Profile', 'WASH', 'Partnership', 'Insight', 'Strategy'].map(tag => (
+                      <button key={tag} onClick={() => setSelectedTag(tag)} className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider transition-all border ${selectedTag === tag ? 'bg-[#005c7a] border-[#005c7a] text-white shadow-sm' : 'bg-white border-gray-200 text-gray-400 hover:border-[#005c7a] hover:text-[#005c7a]'}`}>{tag}</button>
+                    ))}
+                  </div>
+                </fieldset>
               </div>
             </div>
           </div>
@@ -106,9 +110,9 @@ export default function News() {
           </div>
         )}
         <div className="flex items-center justify-center space-x-6 mt-12 text-sm font-black text-[#005c7a]">
-          <button className="bg-white border border-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-sm hover:bg-gray-50"><ChevronLeft size={16} /></button>
+          <button className="bg-white border border-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-sm hover:bg-gray-50" aria-label="Previous page"><ChevronLeft size={16} /></button>
           <span>1 of {Math.max(1, Math.ceil(filteredNews.length / 9))}</span>
-          <button className="bg-white border border-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-sm hover:bg-gray-50"><ChevronRight size={16} /></button>
+          <button className="bg-white border border-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-sm hover:bg-gray-50" aria-label="Next page"><ChevronRight size={16} /></button>
         </div>
       </section>
 

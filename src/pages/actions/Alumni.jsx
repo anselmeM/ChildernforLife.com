@@ -3,13 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import ugirlsGraduation from '../../assets/ugirls_graduation.png';
 import cleanEnergy from '../../assets/clean_energy.png';
+import PageSEO from '../../components/PageSEO';
 
 export default function Alumni() {
   const navigate = useNavigate();
 
   return (
     <div className="bg-white min-h-screen">
-      <div className="relative h-[380px] bg-cover bg-center bg-fixed flex items-center" style={{ backgroundImage: `url(${ugirlsGraduation})` }}>
+      <PageSEO title="Alumni" description="Connect with the Children for Life alumni network." path="/alumni" />
+      <div className="relative h-[260px] sm:h-[320px] lg:h-[380px] bg-cover bg-center bg-local md:bg-fixed flex items-center" style={{ backgroundImage: `url(${ugirlsGraduation})` }}>
         <div className="absolute inset-0 bg-black/60 z-0"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-white">
           <button onClick={() => navigate('/')} className="inline-flex items-center text-[#ffc72c] hover:text-[#eebb22] font-black text-xs uppercase tracking-widest mb-6 transition-colors">
@@ -20,7 +22,7 @@ export default function Alumni() {
           <p className="text-base md:text-lg text-gray-200 font-bold max-w-2xl leading-relaxed">Voices of experience from the field</p>
         </div>
       </div>
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-16">
           <p className="text-gray-600 text-lg font-medium leading-relaxed text-center max-w-2xl mx-auto">Our volunteers remain part of the Children for Life family long after returning home. Read how their placements shaped their lives and careers.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">

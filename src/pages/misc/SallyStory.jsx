@@ -5,13 +5,15 @@ import sallyStory from '../../assets/sally_story.png';
 import cleanWater from '../../assets/clean_water.png';
 import cleanEnergy from '../../assets/clean_energy.png';
 import monthlyGiving from '../../assets/monthly_giving.png';
+import PageSEO from '../../components/PageSEO';
 
 export default function SallyStory() {
   const navigate = useNavigate();
 
   return (
     <div className="bg-white min-h-screen">
-      <div className="relative h-[300px] sm:h-[400px] lg:h-[550px] bg-cover bg-center bg-fixed flex items-center" style={{ backgroundImage: `url(${sallyStory})` }}>
+      <PageSEO title="Sally's Story" description="Read Sally's inspiring story of transformation and hope." path="/stories/sally" />
+      <div className="relative h-[300px] sm:h-[400px] lg:h-[550px] bg-cover bg-center bg-local md:bg-fixed flex items-center" style={{ backgroundImage: `url(${sallyStory})` }}>
         <div className="absolute inset-0 bg-black/50 z-0"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-white">
           <button onClick={() => navigate('/')} className="inline-flex items-center text-[#ffc72c] hover:text-[#eebb22] font-black text-xs uppercase tracking-widest mb-6 transition-colors">
@@ -25,7 +27,7 @@ export default function SallyStory() {
         </div>
       </div>
 
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <div className="rounded-[24px] overflow-hidden shadow-md">
             <img loading="lazy" src={cleanWater} alt="Children in classroom" className="w-full h-auto object-cover aspect-[4/3]" />
@@ -69,7 +71,7 @@ export default function SallyStory() {
         </div>
       </section>
 
-      <section className="bg-[#eef8fc] py-24 border-t border-gray-100">
+      <section className="bg-[#eef8fc] py-12 sm:py-20 lg:py-24 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900 mb-8 lg:mb-16 tracking-tight uppercase">Sally's Story Updates</h2>
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center mb-16">

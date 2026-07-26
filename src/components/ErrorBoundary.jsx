@@ -12,6 +12,9 @@ export default class ErrorBoundary extends Component {
 
   componentDidCatch(error, errorInfo) {
     console.error('ErrorBoundary caught:', error, errorInfo);
+    if (window.Sentry) {
+      window.Sentry.captureException(error, { extra: errorInfo });
+    }
   }
 
   render() {

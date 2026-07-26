@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ShieldCheck } from 'lucide-react';
+import PageSEO from '../components/PageSEO';
 
 export default function DonateSuccess() {
   const navigate = useNavigate();
@@ -15,9 +16,10 @@ export default function DonateSuccess() {
 
   if (!sessionId) {
     return (
-      <div className="min-h-[80vh] flex items-center justify-center bg-gray-50 px-4">
-        <div className="max-w-md w-full bg-white p-10 rounded-3xl shadow-lg text-center border border-gray-100">
-          <div className="w-20 h-20 bg-yellow-50 rounded-full flex items-center justify-center mx-auto mb-6 border border-yellow-100">
+    <div className="min-h-[80vh] flex items-center justify-center bg-gray-50 px-4">
+      <PageSEO title="Donation Confirmation" description="" path="/donate/success" />
+      <div className="max-w-md w-full bg-white p-10 rounded-3xl shadow-lg text-center border border-gray-100">
+        <div className="w-20 h-20 bg-yellow-50 rounded-full flex items-center justify-center mx-auto mb-6 border border-yellow-100">
             <ShieldCheck className="text-yellow-600 w-10 h-10" />
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-4">No Session Found</h2>
@@ -32,6 +34,7 @@ export default function DonateSuccess() {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center bg-gray-50 px-4">
+      <PageSEO title="Donation Confirmation" description="" path="/donate/success" />
       <div className="max-w-md w-full bg-white p-10 rounded-3xl shadow-lg text-center border border-gray-100">
         <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6 border border-green-100">
           <ShieldCheck className="text-green-600 w-10 h-10" />

@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import sallyStory from '../../assets/sally_story.png';
+import PageSEO from '../../components/PageSEO';
 
 export default function StrategicPlan() {
   const navigate = useNavigate();
@@ -14,7 +15,8 @@ export default function StrategicPlan() {
 
   return (
     <div className="bg-white min-h-screen">
-      <div className="relative h-[380px] bg-cover bg-center bg-fixed flex items-center" style={{ backgroundImage: `url(${sallyStory})` }}>
+      <PageSEO title="Strategic Plan" description="Our strategic plan for sustainable impact across Africa." path="/programs/strategic" />
+      <div className="relative h-[260px] sm:h-[320px] lg:h-[380px] bg-cover bg-center bg-local md:bg-fixed flex items-center" style={{ backgroundImage: `url(${sallyStory})` }}>
         <div className="absolute inset-0 bg-black/60 z-0"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-white">
           <button onClick={() => navigate('/')} className="inline-flex items-center text-[#ffc72c] hover:text-[#eebb22] font-black text-xs uppercase tracking-widest mb-6 transition-colors">
@@ -25,7 +27,7 @@ export default function StrategicPlan() {
           <p className="text-base md:text-lg text-gray-200 font-bold max-w-2xl leading-relaxed">Pillars of impact for 2024-2028</p>
         </div>
       </div>
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto space-y-10">
           <p className="text-gray-600 text-lg font-medium leading-relaxed">Our 2024–2028 Strategic Plan lays out our vision for children and families. Over the next five years, Children for Life is focusing resources on three core pillars:</p>
           <div className="space-y-6">

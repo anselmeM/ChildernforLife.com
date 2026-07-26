@@ -5,6 +5,7 @@ import useScrollReveal from '../hooks/useScrollReveal';
 
 import heroStudents from '../assets/hero_students.png';
 import ugirlsGraduation from '../assets/ugirls_graduation.png';
+import PageSEO from '../components/PageSEO';
 import sallyStory from '../assets/sally_story.png';
 import monthlyGiving from '../assets/monthly_giving.png';
 import cleanWater from '../assets/clean_water.png';
@@ -97,11 +98,12 @@ export default function Home() {
 
   return (
     <div ref={pageRef} className="flex flex-col min-h-screen">
+      <PageSEO />
 
       {/* Primary Hero Section */}
       <section className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] flex items-center">
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-fixed z-0"
+          className="absolute inset-0 bg-cover bg-center bg-local md:bg-fixed z-0"
           style={{ backgroundImage: `url(${heroStudents})` }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
@@ -115,7 +117,7 @@ export default function Home() {
             
             <div className="space-y-4 hero-animate">
               <div className="flex items-center space-x-3">
-                <button className="bg-[#ffc72c] hover:bg-[#eebb22] text-black font-extrabold py-3 px-8 rounded flex items-center justify-center shadow-lg transition-colors text-xs uppercase tracking-wider">
+                <button className="bg-[#ffc72c] hover:bg-[#eebb22] text-black font-extrabold py-4 px-8 rounded flex items-center justify-center shadow-lg transition-colors text-xs uppercase tracking-wider">
                   <Mail className="w-4 h-4 mr-2" />
                   SUBSCRIBE TO OUR NEWSLETTER
                 </button>
@@ -125,7 +127,7 @@ export default function Home() {
               </div>
               <button 
                 onClick={() => navigate('/donate')}
-                className="w-full sm:w-auto bg-[#f37021] hover:bg-[#da621a] text-white font-extrabold py-3 px-8 rounded flex items-center justify-center sm:justify-start shadow-lg transition-colors text-xs uppercase tracking-wider"
+                className="w-full sm:w-auto bg-[#f37021] hover:bg-[#da621a] text-white font-extrabold py-4 px-8 rounded flex items-center justify-center sm:justify-start shadow-lg transition-colors text-xs uppercase tracking-wider"
               >
                 <ChevronRight className="w-4 h-4 mr-2" />
                 APPLY FOR THE INDIGENOUS CANADA MICRO-GRANT PROGRAM
@@ -180,7 +182,7 @@ export default function Home() {
       </section>
 
       {/* What's New Section with card slider matching screenshot */}
-      <section id="what-we-do" className="py-32 bg-[#eef8fc] overflow-hidden">
+      <section id="what-we-do" className="py-16 sm:py-24 lg:py-32 bg-[#eef8fc] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-animate">
           
           {/* Header Row */}
@@ -215,13 +217,13 @@ export default function Home() {
           {/* Cards Slider Track */}
           <div className="relative w-full overflow-hidden py-6 -my-6">
             <div 
-              className="flex transition-transform duration-500 ease-in-out gap-8"
-              style={{ transform: isMobile ? `translateX(-${activeStory * 88}%)` : `translateX(-${activeStory * 892}px)` }}
+              className="flex transition-transform duration-500 ease-in-out gap-0 md:gap-8"
+              style={{ transform: isMobile ? `translateX(-${activeStory * 100}%)` : `translateX(-${activeStory * 892}px)` }}
             >
               {stories.map((story, index) => (
                 <div 
                   key={index}
-                  className={`w-[85%] md:w-[860px] shrink-0 bg-white rounded-[32px] p-10 border border-gray-100 flex md:flex-row flex-col justify-between items-stretch gap-8 min-h-[420px] transition-all duration-500 ease-in-out ${
+                  className={`w-full md:w-[860px] shrink-0 bg-white rounded-[32px] p-10 border border-gray-100 flex md:flex-row flex-col justify-between items-stretch gap-8 min-h-[420px] transition-all duration-500 ease-in-out ${
                     index === activeStory ? 'opacity-100 scale-100 shadow-md' : 'opacity-40 scale-[0.97]'
                   }`}
                 >
@@ -268,7 +270,7 @@ export default function Home() {
       {/* Secondary Hero Image with text overlay matching second screenshot */}
       <section 
         id="regions"
-        className="w-full h-[350px] sm:h-[450px] lg:h-[550px] bg-cover bg-center bg-fixed relative flex items-center"
+        className="w-full h-[350px] sm:h-[450px] lg:h-[550px] bg-cover bg-center bg-local md:bg-fixed relative flex items-center"
         style={{ backgroundImage: `url(${sallyStory})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent z-0"></div>
@@ -283,7 +285,7 @@ export default function Home() {
             </p>
             <button 
               onClick={() => navigate('/stories/sally')}
-              className="bg-[#ffc72c] hover:bg-[#eebb22] text-black font-black px-8 py-3.5 rounded-full flex items-center space-x-2 transition-all duration-300 transform hover:-translate-y-0.5 shadow-md uppercase text-xs tracking-wider"
+              className="bg-[#ffc72c] hover:bg-[#eebb22] text-black font-black px-8 py-4 rounded-full flex items-center space-x-2 transition-all duration-300 transform hover:-translate-y-0.5 shadow-md uppercase text-xs tracking-wider"
             >
               <span>READ SALLY'S STORY</span>
               <ChevronRight className="w-4 h-4" />
@@ -329,22 +331,22 @@ export default function Home() {
             <form className="space-y-6" onSubmit={handleSubscribe}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">First Name (required)</label>
-                  <input type="text" required value={formFirstName} onChange={(e) => setFormFirstName(e.target.value)} className="w-full border-b border-gray-300 py-2.5 focus:outline-none focus:border-[#005c7a] bg-transparent text-gray-800 font-semibold" />
+                  <label htmlFor="newsletter-firstname" className="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">First Name (required)</label>
+                  <input id="newsletter-firstname" type="text" required value={formFirstName} onChange={(e) => setFormFirstName(e.target.value)} className="w-full border-b border-gray-300 py-2.5 focus:outline-none focus:border-[#005c7a] bg-transparent text-gray-800 font-semibold" />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Last Name (required)</label>
-                  <input type="text" required value={formLastName} onChange={(e) => setFormLastName(e.target.value)} className="w-full border-b border-gray-300 py-2.5 focus:outline-none focus:border-[#005c7a] bg-transparent text-gray-800 font-semibold" />
+                  <label htmlFor="newsletter-lastname" className="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Last Name (required)</label>
+                  <input id="newsletter-lastname" type="text" required value={formLastName} onChange={(e) => setFormLastName(e.target.value)} className="w-full border-b border-gray-300 py-2.5 focus:outline-none focus:border-[#005c7a] bg-transparent text-gray-800 font-semibold" />
                 </div>
               </div>
               <div className="pt-2">
-                <label className="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Email (required)</label>
-                <input type="email" required value={formEmail} onChange={(e) => setFormEmail(e.target.value)} className="w-full border-b border-gray-300 py-2.5 focus:outline-none focus:border-[#005c7a] bg-transparent text-gray-800 font-semibold" />
+                <label htmlFor="newsletter-email" className="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1">Email (required)</label>
+                <input id="newsletter-email" type="email" required value={formEmail} onChange={(e) => setFormEmail(e.target.value)} className="w-full border-b border-gray-300 py-2.5 focus:outline-none focus:border-[#005c7a] bg-transparent text-gray-800 font-semibold" />
               </div>
               {formStatus === 'sent' && <p className="text-green-600 font-bold text-sm">Thank you! You're subscribed.</p>}
               {formStatus === 'error' && <p className="text-red-600 font-bold text-sm">Something went wrong. Please try again.</p>}
               <div className="pt-6">
-                <button type="submit" disabled={formStatus === 'sending'} className="border-2 border-[#005c7a] text-[#005c7a] font-extrabold py-2.5 px-10 rounded hover:bg-[#005c7a] hover:text-white transition-colors text-xs tracking-wider uppercase disabled:opacity-50">
+                <button type="submit" disabled={formStatus === 'sending'} className="border-2 border-[#005c7a] text-[#005c7a] font-extrabold py-3.5 px-10 rounded hover:bg-[#005c7a] hover:text-white transition-colors text-xs tracking-wider uppercase disabled:opacity-50">
                   {formStatus === 'sending' ? 'SENDING...' : 'SUBMIT'}
                 </button>
               </div>

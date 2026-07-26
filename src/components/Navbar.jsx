@@ -1,12 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import gsap from 'gsap';
 import { Menu, X, Heart, ChevronDown, ChevronRight } from 'lucide-react';
 
 export default function Navbar() {
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [user, setUser] = useState(null);
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -21,28 +19,31 @@ export default function Navbar() {
   const regionsDropdownRef = useRef(null);
   const takeActionDropdownRef = useRef(null);
 
-  const handleMouseEnter = (ref, displayType = 'flex') => {
+  const hideTimer = useRef(null);
+
+  const handleMouseEnter = (ref) => {
+    if (hideTimer.current) {
+      clearTimeout(hideTimer.current);
+      hideTimer.current = null;
+    }
     if (ref.current) {
-      gsap.killTweensOf(ref.current);
-      gsap.fromTo(ref.current,
-        { opacity: 0, y: 15, display: displayType },
-        { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' }
-      );
+      ref.current.style.display = 'flex';
+      requestAnimationFrame(() => {
+        ref.current.style.opacity = '1';
+        ref.current.style.transform = 'translateY(0)';
+      });
     }
   };
 
   const handleMouseLeave = (ref) => {
     if (ref.current) {
-      gsap.killTweensOf(ref.current);
-      gsap.to(ref.current, {
-        opacity: 0,
-        y: 15,
-        duration: 0.25,
-        ease: 'power2.in',
-        onComplete: () => {
-          if (ref.current) gsap.set(ref.current, { display: 'none' });
+      ref.current.style.opacity = '0';
+      ref.current.style.transform = 'translateY(8px)';
+      hideTimer.current = setTimeout(() => {
+        if (ref.current) {
+          ref.current.style.display = 'none';
         }
-      });
+      }, 200);
     }
   };
 
@@ -79,7 +80,7 @@ export default function Navbar() {
         <span className="mr-1">🌐</span> English <span className="text-[11px] ml-1.5 text-[#005a74]">▼</span>
       </a>
       <span className="text-gray-300 px-3.5">|</span>
-      <button className="hover:text-[#008cb3] transition-colors flex items-center">
+      <button className="hover:text-[#008cb3] transition-colors flex items-center" aria-label="Search">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4.5 h-4.5">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -108,7 +109,7 @@ export default function Navbar() {
             {/* What We Do Dropdown */}
             <div 
               className="relative py-2"
-              onMouseEnter={() => handleMouseEnter(whatWeDoDropdownRef, 'flex')}
+              onMouseEnter={() => handleMouseEnter(whatWeDoDropdownRef)}
               onMouseLeave={() => handleMouseLeave(whatWeDoDropdownRef)}
             >
               <a href="#programmes" className="hover:text-[#005c7a] transition-colors flex items-center cursor-pointer">
@@ -117,8 +118,8 @@ export default function Navbar() {
               
               <div 
                 ref={whatWeDoDropdownRef}
-                style={{ display: 'none' }}
-                className="absolute left-0 mt-3 w-[300px] bg-white border-2 border-[#005c7a] rounded-2xl shadow-xl p-6 flex flex-col space-y-3.5 z-50 normal-case text-left text-[16.94px] text-[#005c7a] font-bold"
+                style={{ display: 'none', opacity: 0, transform: 'translateY(8px)' }}
+                className="absolute left-0 mt-3 w-[300px] bg-white border-2 border-[#005c7a] rounded-2xl shadow-xl p-6 flex flex-col space-y-3.5 z-50 normal-case text-left text-[16.94px] text-[#005c7a] font-bold transition-all duration-200"
               >
                 <div className="absolute top-[-16px] left-0 right-0 h-4 bg-transparent"></div>
                 <button onClick={() => navigate('/volunteer')} className="text-left hover:underline transition-all">Volunteering</button>
@@ -141,8 +142,8 @@ export default function Navbar() {
               
               <div 
                 ref={regionsDropdownRef}
-                style={{ display: 'none' }}
-                className="absolute left-0 mt-3 w-[280px] bg-white border-2 border-[#005c7a] rounded-2xl shadow-xl p-6 flex flex-col space-y-4 z-50 normal-case text-left"
+                style={{ display: 'none', opacity: 0, transform: 'translateY(8px)' }}
+                className="absolute left-0 mt-3 w-[280px] bg-white border-2 border-[#005c7a] rounded-2xl shadow-xl p-6 flex flex-col space-y-4 z-50 normal-case text-left transition-all duration-200"
               >
                 <div className="absolute top-[-16px] left-0 right-0 h-4 bg-transparent"></div>
                 <div className="flex flex-col space-y-2.5 text-[16.94px] text-[#005c7a] font-bold border-b border-[#005c7a]/25 pb-3">
@@ -176,8 +177,8 @@ export default function Navbar() {
               
               <div 
                 ref={takeActionDropdownRef}
-                style={{ display: 'none' }}
-                className="absolute left-0 mt-3 w-[460px] bg-white border-2 border-[#005c7a] rounded-2xl shadow-xl p-7 grid grid-cols-2 z-50 normal-case text-left"
+                style={{ display: 'none', opacity: 0, transform: 'translateY(8px)' }}
+                className="absolute left-0 mt-3 w-[460px] bg-white border-2 border-[#005c7a] rounded-2xl shadow-xl p-7 grid grid-cols-2 z-50 normal-case text-left transition-all duration-200"
               >
                 <div className="absolute top-[-16px] left-0 right-0 h-4 bg-transparent"></div>
                 <div className="border-r border-[#005c7a]/30 pr-6">
@@ -322,11 +323,6 @@ export default function Navbar() {
         </div>
 
         <div className="pt-4 border-t border-gray-100 flex flex-col space-y-3">
-          {user ? (
-            <button onClick={() => setUser(null)} className="w-full text-left py-2.5 text-base font-semibold text-[#005c7a]">Log out</button>
-          ) : (
-            <button onClick={() => navigate('/login')} className="w-full text-left py-2.5 text-base font-semibold text-[#005c7a]">Log in</button>
-          )}
           <button onClick={() => { navigate('/volunteer'); setIsMobileMenuOpen(false); }} className="w-full bg-[#9dc84a] hover:bg-[#8bb43d] text-gray-900 py-3 rounded-full font-extrabold text-sm uppercase tracking-wider">Become a Volunteer</button>
           <button onClick={() => { navigate('/donate'); setIsMobileMenuOpen(false); }} className="w-full bg-[#ffc72c] hover:bg-[#eebb22] text-gray-900 py-3 rounded-full font-extrabold text-sm uppercase tracking-wider">Donate</button>
         </div>

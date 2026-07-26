@@ -58,7 +58,7 @@ export default function Footer() {
           <div>
             <h4 className="font-extrabold mb-6 uppercase tracking-wider text-[13.5px] text-[#e0f2fe]">Connect</h4>
             <ul className="space-y-4 text-[14.5px] font-bold text-blue-50/90 mb-8">
-              <li><a href="mailto:info@Childrenforlife.com" className="hover:underline hover:text-white transition-all">Contact Us</a></li>
+              <li><button onClick={() => navigate('/contact')} className="hover:underline hover:text-white transition-all">Contact Us</button></li>
               <li><button onClick={() => navigate('/about/leadership')} className="hover:underline hover:text-white transition-all text-left">Meet our leadership</button></li>
               <li><a href="#" className="hover:underline hover:text-white transition-all">Media Room</a></li>
             </ul>
@@ -83,17 +83,17 @@ export default function Footer() {
             <div className="flex items-center space-x-4">
               <button 
                 onClick={() => navigate('/donate')}
-                className="bg-[#ffc72c] text-black font-extrabold px-8 py-3.5 rounded-full flex items-center hover:bg-[#eebb22] text-[13px] uppercase tracking-wider transition-all duration-300 transform hover:-translate-y-0.5 shadow-md"
+                className="bg-[#ffc72c] text-black font-extrabold px-8 py-4 rounded-full flex items-center hover:bg-[#eebb22] text-[13px] uppercase tracking-wider transition-all duration-300 transform hover:-translate-y-0.5 shadow-md"
               >
-                <Heart className="w-4.5 h-4.5 mr-2.5 fill-black stroke-black" /> DONATE NOW
+                <Heart className="w-5 h-5 mr-2.5 fill-black stroke-black" /> DONATE NOW
               </button>
               <div className="w-11 h-11 flex items-center justify-center bg-white/20 rounded-full border border-white/30 backdrop-blur-sm hover:scale-105 transition-transform duration-200">
-                <Leaf className="w-5.5 h-5.5 text-white" />
+                <Leaf className="w-5 h-5 text-white" />
               </div>
             </div>
             
             <div className="flex items-center space-x-3 mt-2">
-               <div className="px-4 py-2 bg-white/10 rounded-lg border border-white/20 flex items-center space-x-2 text.5-[11px] uppercase font-black tracking-widest text-blue-100 shadow-sm">
+               <div className="px-4 py-2 bg-white/10 rounded-lg border border-white/20 flex items-center space-x-2 text-[11px] uppercase font-black tracking-widest text-blue-100 shadow-sm">
                   <ShieldCheck className="w-5 h-5 text-white" />
                   <span>Accredited Partner</span>
                </div>

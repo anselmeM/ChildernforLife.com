@@ -2,13 +2,15 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import heroStudents from '../../assets/hero_students.png';
+import PageSEO from '../../components/PageSEO';
 
 export default function Volunteering() {
   const navigate = useNavigate();
 
   return (
     <div className="bg-white min-h-screen">
-      <div className="relative h-[380px] bg-cover bg-center bg-fixed flex items-center" style={{ backgroundImage: `url(${heroStudents})` }}>
+      <PageSEO title="Volunteering Programs" description="Our volunteering programs that connect skilled professionals with communities in need." path="/programs/volunteering" />
+      <div className="relative h-[260px] sm:h-[320px] lg:h-[380px] bg-cover bg-center bg-local md:bg-fixed flex items-center" style={{ backgroundImage: `url(${heroStudents})` }}>
         <div className="absolute inset-0 bg-black/60 z-0"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-white">
           <button onClick={() => navigate('/')} className="inline-flex items-center text-[#ffc72c] hover:text-[#eebb22] font-black text-xs uppercase tracking-widest mb-6 transition-colors">
@@ -19,7 +21,7 @@ export default function Volunteering() {
           <p className="text-base md:text-lg text-gray-200 font-bold max-w-2xl leading-relaxed">Sharing skills, elevating communities</p>
         </div>
       </div>
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-12">
           <p className="text-gray-600 text-lg font-medium leading-relaxed">Volunteering is at the core of Children for Life's development model. By matching highly skilled professionals with local partner organizations, we foster sustainable skills transfer that strengthens local leadership and institutions.</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

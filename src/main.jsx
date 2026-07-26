@@ -8,3 +8,16 @@ createRoot(document.getElementById('root')).render(
     <App />
   </StrictMode>,
 )
+
+if (import.meta.env.PROD && import.meta.env.VITE_SENTRY_DSN) {
+  import('@sentry/react')
+    .then((Sentry) => {
+      Sentry.init({
+        dsn: import.meta.env.VITE_SENTRY_DSN,
+        integrations: [Sentry.browserTracingIntegration()],
+        tracesSampleRate: 0.1,
+      });
+      window.Sentry = Sentry;
+    })
+    .catch(() => {});
+}

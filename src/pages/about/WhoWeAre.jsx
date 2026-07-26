@@ -4,13 +4,15 @@ import { ChevronLeft } from 'lucide-react';
 import aboutHero from '../../assets/about_hero.png';
 import aboutWomenHand from '../../assets/about_women_hand.png';
 import heroStudents from '../../assets/hero_students.png';
+import PageSEO from '../../components/PageSEO';
 
 export default function WhoWeAre() {
   const navigate = useNavigate();
 
   return (
     <div className="bg-white min-h-screen">
-      <div className="relative h-[480px] bg-cover bg-center bg-fixed flex items-center" style={{ backgroundImage: `url(${aboutHero})` }}>
+      <PageSEO title="About Us" description="Learn about Children for Life's mission, values, and commitment to protecting vulnerable children across Africa." path="/about/who" />
+      <div className="relative h-[280px] sm:h-[360px] lg:h-[480px] bg-cover bg-center bg-local md:bg-fixed flex items-center" style={{ backgroundImage: `url(${aboutHero})` }}>
         <div className="absolute inset-0 bg-black/50 z-0"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-white">
           <button onClick={() => navigate('/')} className="inline-flex items-center text-white/80 hover:text-white font-black text-xs uppercase tracking-widest mb-6 transition-colors">
@@ -21,7 +23,7 @@ export default function WhoWeAre() {
         </div>
       </div>
 
-      <section className="py-24 bg-white">
+      <section className="py-12 sm:py-20 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <img loading="lazy" src={aboutWomenHand} className="rounded-3xl shadow-lg w-full h-[400px] object-cover" alt="Who We Are" />
@@ -37,7 +39,7 @@ export default function WhoWeAre() {
         </div>
       </section>
 
-      <section className="py-24 bg-gray-50 border-t border-gray-150">
+      <section className="py-12 sm:py-20 lg:py-24 bg-gray-50 border-t border-gray-150">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-2xl sm:text-3xl font-black text-[#005c7a] mb-6">Our Mission, Vision & Values</h2>

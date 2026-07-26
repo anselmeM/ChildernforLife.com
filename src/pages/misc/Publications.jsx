@@ -7,13 +7,15 @@ import sallyStory from '../../assets/sally_story.png';
 import heroStudents from '../../assets/hero_students.png';
 import cleanWater from '../../assets/clean_water.png';
 import cleanEnergy from '../../assets/clean_energy.png';
+import PageSEO from '../../components/PageSEO';
 
 export default function Publications() {
   const navigate = useNavigate();
 
   return (
     <div className="bg-[#fcfcfa] min-h-screen">
-      <div className="relative h-[320px] bg-cover bg-center bg-fixed flex items-center" style={{ backgroundImage: `url(${monthlyGiving})` }}>
+      <PageSEO title="Publications" description="Annual reports, newsletters, magazines, and strategic evaluations." path="/publications" />
+      <div className="relative h-[320px] bg-cover bg-center bg-local md:bg-fixed flex items-center" style={{ backgroundImage: `url(${monthlyGiving})` }}>
         <div className="absolute inset-0 bg-[#8bb43d]/60 z-0"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-white">
           <button onClick={() => navigate('/')} className="inline-flex items-center text-[#ffc72c] hover:text-[#eebb22] font-black text-xs uppercase tracking-widest mb-6 transition-colors">
@@ -27,7 +29,7 @@ export default function Publications() {
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-gray-150">
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-950 mb-6 lg:mb-8 border-l-4 border-[#8bb43d] pl-4">Solstice Magazine</h2>
         <div className="bg-white border border-gray-150 rounded-3xl p-8 shadow-sm flex flex-col md:flex-row gap-8 items-center max-w-4xl">
-          <div className="w-48 h-64 bg-gray-200 rounded-xl overflow-hidden shrink-0 shadow-md border-4 border-[#8bb43d]">
+          <div className="w-full md:w-48 h-64 bg-gray-200 rounded-xl overflow-hidden shrink-0 shadow-md border-4 border-[#8bb43d]">
             <img loading="lazy" src={ugirlsGraduation} className="w-full h-full object-cover" alt="Magazine" />
           </div>
           <div className="space-y-4">

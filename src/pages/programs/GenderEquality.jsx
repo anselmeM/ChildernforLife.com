@@ -2,13 +2,15 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import ugirlsGraduation from '../../assets/ugirls_graduation.png';
+import PageSEO from '../../components/PageSEO';
 
 export default function GenderEquality() {
   const navigate = useNavigate();
 
   return (
     <div className="bg-white min-h-screen">
-      <div className="relative h-[380px] bg-cover bg-center bg-fixed flex items-center" style={{ backgroundImage: `url(${ugirlsGraduation})` }}>
+      <PageSEO title="Gender Equality" description="Advancing gender equality through education, health, and economic opportunity." path="/programs/gender" />
+      <div className="relative h-[260px] sm:h-[320px] lg:h-[380px] bg-cover bg-center bg-local md:bg-fixed flex items-center" style={{ backgroundImage: `url(${ugirlsGraduation})` }}>
         <div className="absolute inset-0 bg-black/60 z-0"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-white">
           <button onClick={() => navigate('/')} className="inline-flex items-center text-[#ffc72c] hover:text-[#eebb22] font-black text-xs uppercase tracking-widest mb-6 transition-colors">
@@ -19,7 +21,7 @@ export default function GenderEquality() {
           <p className="text-base md:text-lg text-gray-200 font-bold max-w-2xl leading-relaxed">Creating inclusive environments so everyone can thrive</p>
         </div>
       </div>
-      <section className="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-12">
           <p className="text-gray-600 text-lg font-medium leading-relaxed">Gender equality is not just a goal, it is a prerequisite for ending poverty. Children for Life works to remove social and economic barriers facing marginalized girls and women, ensuring equal access to education, health, and economic assets.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">

@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -7,7 +8,6 @@ import ErrorBoundary from './components/ErrorBoundary';
 const Home = lazy(() => import('./pages/Home'));
 const Donate = lazy(() => import('./pages/Donate'));
 const DonateSuccess = lazy(() => import('./pages/DonateSuccess'));
-const Login = lazy(() => import('./pages/Login'));
 const Placements = lazy(() => import('./pages/actions/Placements'));
 const Volunteer = lazy(() => import('./pages/actions/Volunteer'));
 const VolunteerFAQ = lazy(() => import('./pages/actions/VolunteerFAQ'));
@@ -18,6 +18,7 @@ const Fundraise = lazy(() => import('./pages/actions/Fundraise'));
 const LeaveLegacy = lazy(() => import('./pages/actions/LeaveLegacy'));
 const TributeGifts = lazy(() => import('./pages/actions/TributeGifts'));
 const BecomePartner = lazy(() => import('./pages/actions/BecomePartner'));
+const Contact = lazy(() => import('./pages/actions/Contact'));
 const Volunteering = lazy(() => import('./pages/programs/Volunteering'));
 const GenderEquality = lazy(() => import('./pages/programs/GenderEquality'));
 const EconomicResilience = lazy(() => import('./pages/programs/EconomicResilience'));
@@ -34,6 +35,7 @@ const ImpactStories = lazy(() => import('./pages/misc/ImpactStories'));
 const News = lazy(() => import('./pages/misc/News'));
 const Publications = lazy(() => import('./pages/misc/Publications'));
 const Accountability = lazy(() => import('./pages/misc/Accountability'));
+const NotFound = lazy(() => import('./pages/misc/NotFound'));
 const AtAGlance = lazy(() => import('./pages/regions/AtAGlance'));
 const WhereWeWork = lazy(() => import('./pages/regions/WhereWeWork'));
 const CountryPage = lazy(() => import('./pages/regions/CountryPage'));
@@ -75,7 +77,6 @@ export function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Layout><LazyPage><Home /></LazyPage></Layout>} />
-      <Route path="/login" element={<Layout><LazyPage><Login /></LazyPage></Layout>} />
       <Route path="/donate" element={<Layout><LazyPage><Donate /></LazyPage></Layout>} />
       <Route path="/donate/monthly" element={<Layout><LazyPage><DonateMonthly /></LazyPage></Layout>} />
       <Route path="/donate/stocks" element={<Layout><LazyPage><DonateStocks /></LazyPage></Layout>} />
@@ -88,6 +89,7 @@ export function AppRoutes() {
       <Route path="/leave-legacy" element={<Layout><LazyPage><LeaveLegacy /></LazyPage></Layout>} />
       <Route path="/tribute-gifts" element={<Layout><LazyPage><TributeGifts /></LazyPage></Layout>} />
       <Route path="/partner" element={<Layout><LazyPage><BecomePartner /></LazyPage></Layout>} />
+      <Route path="/contact" element={<Layout><LazyPage><Contact /></LazyPage></Layout>} />
       <Route path="/programs/volunteering" element={<Layout><LazyPage><Volunteering /></LazyPage></Layout>} />
       <Route path="/programs/gender" element={<Layout><LazyPage><GenderEquality /></LazyPage></Layout>} />
       <Route path="/programs/economic" element={<Layout><LazyPage><EconomicResilience /></LazyPage></Layout>} />
@@ -107,14 +109,17 @@ export function AppRoutes() {
       <Route path="/regions/glance" element={<Layout><LazyPage><AtAGlance /></LazyPage></Layout>} />
       <Route path="/regions/where" element={<Layout><LazyPage><WhereWeWork /></LazyPage></Layout>} />
       <Route path="/regions/:slug" element={<Layout><LazyPage><CountryPage /></LazyPage></Layout>} />
+      <Route path="*" element={<Layout><LazyPage><NotFound /></LazyPage></Layout>} />
     </Routes>
   );
 }
 
 export default function App() {
   return (
-    <BrowserRouter basename={window.location.hostname.includes('github.io') ? '/ChildernforLife.com' : '/'}>
-      <AppRoutes />
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter basename={window.location.hostname.includes('github.io') ? '/ChildernforLife.com' : '/'}>
+        <AppRoutes />
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
