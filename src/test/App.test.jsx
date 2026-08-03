@@ -31,7 +31,8 @@ describe('App', () => {
         <AppRoutes />
       </MemoryRouter></HelmetProvider>
     );
-    await screen.findByText(/Choose Your Impact Path/, {}, { timeout: 5000 });
+    // /donate is a heavy page (tier cards + multiple forms) — allow extra time.
+    await screen.findByText(/Choose Your Impact Path/, {}, { timeout: 10000 });
   });
 
   it('renders the news page at /news', async () => {
