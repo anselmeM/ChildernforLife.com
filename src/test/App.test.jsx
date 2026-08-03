@@ -41,4 +41,22 @@ describe('App', () => {
     );
     expect(await screen.findByText('LATEST NEWS', {}, { timeout: 5000 })).toBeInTheDocument();
   });
+
+  it('renders a news article at /news/:slug', async () => {
+    render(
+      <HelmetProvider><MemoryRouter initialEntries={['/news/communique-update-tanzania-programs']}>
+        <AppRoutes />
+      </MemoryRouter></HelmetProvider>
+    );
+    expect(await screen.findByText('Communiqué: Update on Tanzania Programs', {}, { timeout: 5000 })).toBeInTheDocument();
+  });
+
+  it('renders an impact story at /stories/:slug', async () => {
+    render(
+      <HelmetProvider><MemoryRouter initialEntries={['/stories/clean-water-morogoro-schools']}>
+        <AppRoutes />
+      </MemoryRouter></HelmetProvider>
+    );
+    expect(await screen.findByText('Clean Water for Morogoro Schools', {}, { timeout: 5000 })).toBeInTheDocument();
+  });
 });

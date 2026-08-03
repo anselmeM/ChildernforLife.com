@@ -1,0 +1,51 @@
+import sallyStory from '../assets/sally_story.png';
+import ugirlsGraduation from '../assets/ugirls_graduation.png';
+import cleanWater from '../assets/clean_water.png';
+
+// Impact stories. To publish a new story, add an entry here — no component
+// changes needed. `body` is an array of paragraphs rendered on /stories/:slug.
+export const impactStories = [
+  {
+    slug: 'sallys-story-lighting-futures',
+    title: "Sally's Story: Lighting Futures",
+    tag: 'Solar Energy',
+    img: sallyStory,
+    excerpt:
+      "How a solar lighting installation and safe latrine restored safety, dignity, and study opportunities for Sally's family.",
+    body: [
+      "When the sun set in Sally's village, studying stopped. Kerosene lamps were expensive, dim, and dangerous — and for Sally, a secondary school student with big ambitions, every lost hour of study mattered.",
+      "A solar lighting installation changed her evenings. Safe, free light means Sally can revise after dinner, and her family no longer spends scarce income on fuel. A new, safe latrine also restored dignity and privacy at home.",
+      "Small infrastructure changes, installed with the community, can transform what a child believes is possible. Sally now says she wants to be an engineer — powered, in every sense, by light.",
+    ],
+  },
+  {
+    slug: 'empowering-girls-through-stem',
+    title: 'Empowering Girls Through STEM',
+    tag: 'Education',
+    img: ugirlsGraduation,
+    excerpt:
+      'Read how secondary scholarships under U-GIRLS 2 are helping girls transition to science and technology careers.',
+    body: [
+      'Across our program areas, girls are still the first to lose out when families must choose who can attend school. The U-GIRLS 2 initiative pairs scholarships with mentoring and STEM-focused support to change that math.',
+      'Scholarship recipients receive tuition support, school materials, and regular mentoring from women in science and technology careers. The goal is not just enrollment — it is transition into fields where girls remain dramatically underrepresented.',
+      'Early cohorts are now entering universities and technical colleges. Each one becomes a visible proof point for the next generation: girls belong in the lab, the workshop, and the classroom.',
+    ],
+  },
+  {
+    slug: 'clean-water-morogoro-schools',
+    title: 'Clean Water for Morogoro Schools',
+    tag: 'WASH',
+    img: cleanWater,
+    excerpt:
+      'Installing solar-powered water filtration pumps reduced absenteeism and waterborne diseases by 90%.',
+    body: [
+      'For the schools of Morogoro, the school day once began with a long walk to collect water — often dirty water. Time lost to collection and illness kept children out of class and put their health at risk.',
+      'Solar-powered water filtration pumps now supply clean, safe water on school grounds. Maintenance is handled by trained local technicians, and the systems run on energy that costs nothing and pollutes nothing.',
+      'Within the first year, waterborne diseases and absenteeism dropped by 90%. Clean water did not just quench thirst — it put children back in classrooms.',
+    ],
+  },
+];
+
+export function getStoryBySlug(slug) {
+  return impactStories.find((s) => s.slug === slug);
+}

@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import cleanEnergy from '../../assets/clean_energy.png';
-import heroStudents from '../../assets/hero_students.png';
-import sallyStory from '../../assets/sally_story.png';
-import monthlyGiving from '../../assets/monthly_giving.png';
-import ugirlsGraduation from '../../assets/ugirls_graduation.png';
-import cleanWater from '../../assets/clean_water.png';
+import { newsItems, newsTags } from '../../data/news';
 import PageSEO from '../../components/PageSEO';
 
 export default function News() {
@@ -15,17 +11,7 @@ export default function News() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTag, setSelectedTag] = useState('All');
 
-  const allNews = [
-    { title: "Communiqué: Update on Tanzania Programs", tag: "Policy", date: "June 22, 2026", img: sallyStory },
-    { title: "Supporters Reaffirm Commitment to Clean Development", tag: "Fundraising", date: "June 10, 2026", img: monthlyGiving },
-    { title: "Civil Society Rallies Ahead of Global Justice Forums", tag: "Advocacy", date: "June 3, 2026", img: heroStudents },
-    { title: "What Our Supporters Want the Executive Board to Know", tag: "Opinion", date: "May 25, 2026", img: ugirlsGraduation },
-    { title: "From Communities to the Stage: Leadership Reflects", tag: "Profile", date: "May 14, 2026", img: cleanEnergy },
-    { title: "Ensuring Long-Term Assistance for Remote Clinics", tag: "WASH", date: "May 2, 2026", img: cleanWater },
-    { title: "Listening and Learning: Sustainable Development Journeys", tag: "Partnership", date: "April 28, 2026", img: heroStudents },
-    { title: "Mission Over Politics: Why Capacity Building Matters", tag: "Insight", date: "April 15, 2026", img: sallyStory },
-    { title: "Strategic Plan Launch Approaching: Highlights", tag: "Strategy", date: "March 30, 2026", img: ugirlsGraduation }
-  ];
+  const allNews = newsItems;
 
   const filteredNews = allNews.filter(news => {
     const matchesSearch = news.title.toLowerCase().includes(searchQuery.toLowerCase());
@@ -74,7 +60,7 @@ export default function News() {
                 <fieldset>
                   <legend className="block text-[10.5px] font-black text-gray-500 uppercase tracking-widest mb-2">Filter by Category</legend>
                   <div role="group" className="flex flex-wrap gap-2">
-                    {['All', 'Policy', 'Fundraising', 'Advocacy', 'Opinion', 'Profile', 'WASH', 'Partnership', 'Insight', 'Strategy'].map(tag => (
+                    {newsTags.map(tag => (
                       <button key={tag} onClick={() => setSelectedTag(tag)} className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider transition-all border ${selectedTag === tag ? 'bg-[#005c7a] border-[#005c7a] text-white shadow-sm' : 'bg-white border-gray-200 text-gray-400 hover:border-[#005c7a] hover:text-[#005c7a]'}`}>{tag}</button>
                     ))}
                   </div>
@@ -90,8 +76,8 @@ export default function News() {
           <div className="bg-white border border-gray-200 rounded-3xl p-12 text-center text-gray-500 font-semibold shadow-sm max-w-md mx-auto">No articles found matching your search.</div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {filteredNews.map((news, i) => (
-              <div key={i} className="bg-white border border-gray-150 rounded-2xl overflow-hidden hover:shadow-md transition-all flex flex-col justify-between">
+            {filteredNews.map((news) => (
+              <Link key={news.slug} to={`/news/${news.slug}`} className="bg-white border border-gray-150 rounded-2xl overflow-hidden hover:shadow-md transition-all flex flex-col justify-between group">
                 <div>
                   <img loading="lazy" src={news.img} className="w-full h-48 object-cover" alt={news.title} />
                   <div className="p-6">
@@ -99,13 +85,13 @@ export default function News() {
                       <span className="text-[#005c7a] bg-[#e1f3f8] px-2 py-0.5 rounded">{news.tag}</span>
                       <span>{news.date}</span>
                     </div>
-                    <h3 className="text-base font-black text-gray-900 mt-3 leading-snug hover:text-[#005c7a] transition-colors cursor-pointer">{news.title}</h3>
+                    <h3 className="text-base font-black text-gray-900 mt-3 leading-snug group-hover:text-[#005c7a] transition-colors">{news.title}</h3>
                   </div>
                 </div>
                 <div className="p-6 pt-0">
-                  <span className="text-xs font-bold text-gray-400">Read Article →</span>
+                  <span className="text-xs font-bold text-gray-400 group-hover:text-[#005c7a] transition-colors">Read Article →</span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}

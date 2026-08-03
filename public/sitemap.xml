@@ -37,4 +37,18 @@
   <url><loc>https://childrenforlife.com/regions/ethiopia</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://childrenforlife.com/regions/nigeria</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://childrenforlife.com/regions/tanzania</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/news</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://childrenforlife.com/news/communique-update-tanzania-programs</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/news/supporters-reaffirm-clean-development</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/news/civil-society-rallies-ahead-global-justice-forums</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/news/what-supporters-want-executive-board-to-know</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/news/from-communities-to-stage-leadership-reflects</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/news/long-term-assistance-remote-clinics</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/news/listening-and-learning-sustainable-development</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/news/mission-over-politics-capacity-building</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/news/strategic-plan-launch-approaching-highlights</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/impact-stories</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://childrenforlife.com/stories/sallys-story-lighting-futures</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/stories/empowering-girls-through-stem</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/stories/clean-water-morogoro-schools</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>

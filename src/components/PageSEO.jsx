@@ -24,7 +24,10 @@ export default function PageSEO({ title, description, path, image, schema }) {
   const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} — Every Child Deserves a Future`;
   const desc = description || DEFAULT_DESCRIPTION;
   const url = path ? `${BASE_URL}${path}` : BASE_URL;
-  const resolvedImage = image || DEFAULT_IMAGE;
+  // Social scrapers require absolute image URLs; resolve root-relative assets.
+  const resolvedImage = image
+    ? (/^https?:\/\//.test(image) ? image : `${BASE_URL}${image}`)
+    : DEFAULT_IMAGE;
 
   // Pages may pass extra JSON-LD (array or object); Organization is always included.
   const schemaBlocks = [

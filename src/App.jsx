@@ -32,6 +32,7 @@ const Leadership = lazy(() => import('./pages/about/Leadership'));
 const Careers = lazy(() => import('./pages/about/Careers'));
 const SallyStory = lazy(() => import('./pages/misc/SallyStory'));
 const ImpactStories = lazy(() => import('./pages/misc/ImpactStories'));
+const ArticleDetail = lazy(() => import('./pages/misc/ArticleDetail'));
 const News = lazy(() => import('./pages/misc/News'));
 const Publications = lazy(() => import('./pages/misc/Publications'));
 const Accountability = lazy(() => import('./pages/misc/Accountability'));
@@ -104,6 +105,8 @@ export function AppRoutes() {
       <Route path="/stories/sally" element={<Layout><LazyPage><SallyStory /></LazyPage></Layout>} />
       <Route path="/impact-stories" element={<Layout><LazyPage><ImpactStories /></LazyPage></Layout>} />
       <Route path="/news" element={<Layout><LazyPage><News /></LazyPage></Layout>} />
+      <Route path="/news/:slug" element={<Layout><LazyPage><ArticleDetail kind="news" backPath="/news" backLabel="News" pathPrefix="news" /></LazyPage></Layout>} />
+      <Route path="/stories/:slug" element={<Layout><LazyPage><ArticleDetail kind="stories" backPath="/impact-stories" backLabel="Impact Stories" pathPrefix="stories" /></LazyPage></Layout>} />
       <Route path="/publications" element={<Layout><LazyPage><Publications /></LazyPage></Layout>} />
       <Route path="/accountability" element={<Layout><LazyPage><Accountability /></LazyPage></Layout>} />
       <Route path="/regions/glance" element={<Layout><LazyPage><AtAGlance /></LazyPage></Layout>} />
