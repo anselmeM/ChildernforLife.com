@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { CheckCircle2, Mail, Send } from 'lucide-react';
+import { useI18n } from '../i18n/useI18n';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export default function NewsletterForm() {
+  const { t } = useI18n();
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
   const [errorMessage, setErrorMessage] = useState('');
@@ -46,20 +48,19 @@ export default function NewsletterForm() {
 
   return (
     <div className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10 mb-20 text-center">
-      <h3 className="text-2xl font-extrabold text-white mb-2">Stay in the loop</h3>
+      <h3 className="text-2xl font-extrabold text-white mb-2">{t('footer.newsletterTitle')}</h3>
       <p className="text-blue-100/80 text-sm font-semibold mb-6 max-w-md mx-auto">
-        Get impact stories, program updates, and ways to help — straight to your inbox.
-        No spam, unsubscribe anytime.
+        {t('footer.newsletterSub')}
       </p>
 
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" noValidate>
-        <label htmlFor="newsletter-email" className="sr-only">Email address</label>
+        <label htmlFor="newsletter-email" className="sr-only">{t('footer.emailLabel')}</label>
         <input
           id="newsletter-email"
           name="email"
           type="email"
           autoComplete="email"
-          placeholder="you@example.com"
+          placeholder={t('footer.newsletterPlaceholder')}
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
@@ -75,14 +76,14 @@ export default function NewsletterForm() {
           className="inline-flex items-center justify-center gap-2 bg-[#ffc72c] text-black font-extrabold px-8 py-3.5 rounded-full hover:bg-[#eebb22] text-[13px] uppercase tracking-wider transition-all duration-300 transform hover:-translate-y-0.5 shadow-md disabled:opacity-60 disabled:hover:translate-y-0"
         >
           {status === 'submitting' ? <Mail className="w-4 h-4 animate-pulse" /> : <Send className="w-4 h-4" />}
-          {status === 'submitting' ? 'Subscribing…' : 'Subscribe'}
+          {status === 'submitting' ? t('footer.subscribing') : t('footer.subscribe')}
         </button>
       </form>
 
       <p role="status" aria-live="polite" className="mt-4 text-sm font-semibold min-h-5">
         {status === 'success' && (
           <span className="inline-flex items-center gap-1.5 text-green-300">
-            <CheckCircle2 className="w-4 h-4" /> Thanks! Please check your inbox.
+            <CheckCircle2 className="w-4 h-4" /> {t('footer.thanks')}
           </span>
         )}
         {status === 'error' && <span className="text-red-300">{errorMessage}</span>}

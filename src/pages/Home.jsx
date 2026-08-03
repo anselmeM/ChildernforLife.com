@@ -3,6 +3,7 @@ import { ChevronRight, ChevronLeft, Mail, Leaf } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import useScrollReveal from '../hooks/useScrollReveal';
 import CountUp from '../components/CountUp';
+import { useI18n } from '../i18n/useI18n';
 import { impactStats } from '../data/impactStats';
 
 import heroStudents from '../assets/hero_students.jpg';
@@ -15,6 +16,7 @@ import cleanEnergy from '../assets/clean_energy.jpg';
 
 export default function Home() {
   const navigate = useNavigate();
+  const { t } = useI18n();
   const pageRef = useScrollReveal();
   const [activeStory, setActiveStory] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -150,7 +152,7 @@ export default function Home() {
       <section className="py-16 bg-white px-4">
         <div className="max-w-4xl mx-auto text-center scroll-animate">
           <h2 className="text-2xl sm:text-3xl lg:text-[44px] font-bold text-[#005c7a] mb-4 leading-tight">
-            Every Child Deserves a Chance to Shine
+            {t('home.heroTitle')}
           </h2>
           <p className="text-gray-500 text-lg leading-relaxed font-semibold max-w-3xl mx-auto">
             At Children for Life, we believe every child, no matter their gender, religion, race, or background, deserves the opportunity to grow, learn, and reach their full potential.
@@ -162,11 +164,11 @@ export default function Home() {
       <section className="py-14 bg-white border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 scroll-animate">
           <div className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl lg:text-[40px] font-bold text-[#005c7a] mb-3">Our Global Impact</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-[40px] font-bold text-[#005c7a] mb-3">{t('home.globalImpact')}</h2>
             <p className="text-gray-500 max-w-3xl mx-auto text-base font-semibold leading-relaxed">
               We work in partnership with governments, non-profits, and local organizations all over the globe to end extreme poverty and inequality and empower previously excluded groups, building up human and financial capital and strengthening livelihoods to leave no one behind.
             </p>
-            <h3 className="text-xl font-bold text-gray-800 mt-8 uppercase tracking-wider">Children for Life Impact 2025</h3>
+            <h3 className="text-xl font-bold text-gray-800 mt-8 uppercase tracking-wider">{t('home.impact2025')}</h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-gray-200 scroll-animate">
@@ -323,10 +325,10 @@ export default function Home() {
           <div className="bg-white p-10 md:p-14 rounded-xl shadow-md border border-gray-100">
             
             <h3 className="text-2xl font-extrabold text-[#005c7a] mb-3 flex items-center">
-              <Mail className="mr-3 text-[#005c7a] w-6 h-6" /> Impact Delivered
+              <Mail className="mr-3 text-[#005c7a] w-6 h-6" /> {t('home.impactDelivered')}
             </h3>
             <p className="text-gray-500 mb-10 font-bold text-sm">
-              See how your support is helping — get monthly stories, impact updates, and educational news about our fundraising campaigns.
+              {t('home.impactDeliveredSub')}
             </p>
             
             <form className="space-y-6" onSubmit={handleSubscribe}>

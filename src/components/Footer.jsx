@@ -2,6 +2,8 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Heart, Leaf, ShieldCheck } from 'lucide-react';
 import NewsletterForm from './NewsletterForm';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useI18n } from '../i18n/useI18n';
 
 const FacebookIcon = (props) => (
   <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" {...props}>
@@ -29,6 +31,7 @@ const YoutubeIcon = (props) => (
 
 export default function Footer() {
   const navigate = useNavigate();
+  const { t } = useI18n();
 
   return (
     <footer className="bg-[#007b9e] text-white pt-24 pb-12 border-t-[12px] border-[#005c7a]" role="contentinfo" aria-label="Footer">
@@ -38,30 +41,30 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-20">
           
           <div>
-            <h4 className="font-extrabold mb-6 uppercase tracking-wider text-[13.5px] text-[#e0f2fe]">Take Action</h4>
+            <h4 className="font-extrabold mb-6 uppercase tracking-wider text-[13.5px] text-[#e0f2fe]">{t('footer.takeAction')}</h4>
             <ul className="space-y-4 text-[14.5px] font-bold text-blue-50/90">
-              <li><button onClick={() => navigate('/volunteer')} className="hover:underline hover:text-white transition-all text-left">Become a Volunteer</button></li>
-              <li><button onClick={() => navigate('/donate')} className="hover:underline hover:text-white transition-all text-left">Donate</button></li>
-              <li><button onClick={() => navigate('/about/careers')} className="hover:underline hover:text-white transition-all text-left">Careers at Children for Life</button></li>
+              <li><button onClick={() => navigate('/volunteer')} className="hover:underline hover:text-white transition-all text-left">{t('footer.becomeVolunteer')}</button></li>
+              <li><button onClick={() => navigate('/donate')} className="hover:underline hover:text-white transition-all text-left">{t('footer.donate')}</button></li>
+              <li><button onClick={() => navigate('/about/careers')} className="hover:underline hover:text-white transition-all text-left">{t('footer.careers')}</button></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-extrabold mb-6 uppercase tracking-wider text-[13.5px] text-[#e0f2fe]">Stay Informed</h4>
+            <h4 className="font-extrabold mb-6 uppercase tracking-wider text-[13.5px] text-[#e0f2fe]">{t('footer.stayInformed')}</h4>
             <ul className="space-y-4 text-[14.5px] font-bold text-blue-50/90">
-              <li><button onClick={() => navigate('/programs/strategic')} className="hover:underline hover:text-white transition-all text-left">Strategic Plan 2026</button></li>
-              <li><button onClick={() => navigate('/impact-stories')} className="hover:underline hover:text-white transition-all text-left">Stories</button></li>
-              <li><button onClick={() => navigate('/news')} className="hover:underline hover:text-white transition-all text-left">News</button></li>
-              <li><button onClick={() => navigate('/publications')} className="hover:underline hover:text-white transition-all text-left">Publications</button></li>
+              <li><button onClick={() => navigate('/programs/strategic')} className="hover:underline hover:text-white transition-all text-left">{t('footer.strategicPlan')}</button></li>
+              <li><button onClick={() => navigate('/impact-stories')} className="hover:underline hover:text-white transition-all text-left">{t('footer.stories')}</button></li>
+              <li><button onClick={() => navigate('/news')} className="hover:underline hover:text-white transition-all text-left">{t('footer.news')}</button></li>
+              <li><button onClick={() => navigate('/publications')} className="hover:underline hover:text-white transition-all text-left">{t('footer.publications')}</button></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-extrabold mb-6 uppercase tracking-wider text-[13.5px] text-[#e0f2fe]">Connect</h4>
+            <h4 className="font-extrabold mb-6 uppercase tracking-wider text-[13.5px] text-[#e0f2fe]">{t('footer.connect')}</h4>
             <ul className="space-y-4 text-[14.5px] font-bold text-blue-50/90 mb-8">
-              <li><button onClick={() => navigate('/contact')} className="hover:underline hover:text-white transition-all">Contact Us</button></li>
-              <li><button onClick={() => navigate('/about/leadership')} className="hover:underline hover:text-white transition-all text-left">Meet our leadership</button></li>
-              <li><a href="#" className="hover:underline hover:text-white transition-all">Media Room</a></li>
+              <li><button onClick={() => navigate('/contact')} className="hover:underline hover:text-white transition-all">{t('footer.contactUs')}</button></li>
+              <li><button onClick={() => navigate('/about/leadership')} className="hover:underline hover:text-white transition-all text-left">{t('footer.meetLeadership')}</button></li>
+              <li><a href="#" className="hover:underline hover:text-white transition-all">{t('footer.mediaRoom')}</a></li>
             </ul>
             <div className="text-[13px] text-blue-100/80 space-y-2 font-semibold">
               <p>9 Dagoni Street, Mbweni JKT</p>
@@ -86,7 +89,7 @@ export default function Footer() {
                 onClick={() => navigate('/donate')}
                 className="bg-[#ffc72c] text-black font-extrabold px-8 py-4 rounded-full flex items-center hover:bg-[#eebb22] text-[13px] uppercase tracking-wider transition-all duration-300 transform hover:-translate-y-0.5 shadow-md"
               >
-                <Heart className="w-5 h-5 mr-2.5 fill-black stroke-black" /> DONATE NOW
+                <Heart className="w-5 h-5 mr-2.5 fill-black stroke-black" /> {t('footer.donateNow')}
               </button>
               <div className="w-11 h-11 flex items-center justify-center bg-white/20 rounded-full border border-white/30 backdrop-blur-sm hover:scale-105 transition-transform duration-200">
                 <Leaf className="w-5 h-5 text-white" />
@@ -96,7 +99,7 @@ export default function Footer() {
             <div className="flex items-center space-x-3 mt-2">
                <div className="px-4 py-2 bg-white/10 rounded-lg border border-white/20 flex items-center space-x-2 text-[11px] uppercase font-black tracking-widest text-blue-100 shadow-sm">
                   <ShieldCheck className="w-5 h-5 text-white" />
-                  <span>Accredited Partner</span>
+                  <span>{t('footer.accredited')}</span>
                </div>
             </div>
           </div>
@@ -111,15 +114,18 @@ export default function Footer() {
           <div className="flex items-center space-x-3.5 mb-4 md:mb-0">
              <Leaf className="w-7 h-7 text-white/95" />
              <div>
-                <p className="font-bold text-white">Charitable registration:</p>
+                <p className="font-bold text-white">{t('footer.registration')}</p>
                 <p className="font-medium">11883 4184 RR0001</p>
              </div>
           </div>
-          <div className="text-center md:text-right space-y-2 font-bold text-blue-100/80">
-            <p>© 2015-2026 by Children for Life. All rights reserved.</p>
-            <p className="font-semibold text-blue-100/60">
-              <a href="#" className="hover:underline hover:text-white transition-colors">Privacy policy</a> | <a href="#" className="hover:underline hover:text-white transition-colors">Legal notes</a>
-            </p>
+          <div className="flex items-center gap-6">
+            <LanguageSwitcher />
+            <div className="text-center md:text-right space-y-2 font-bold text-blue-100/80">
+              <p>© 2015-2026 by Children for Life. All rights reserved.</p>
+              <p className="font-semibold text-blue-100/60">
+                <a href="#" className="hover:underline hover:text-white transition-colors">{t('footer.privacy')}</a> | <a href="#" className="hover:underline hover:text-white transition-colors">{t('footer.legal')}</a>
+              </p>
+            </div>
           </div>
         </div>
 

@@ -3,9 +3,11 @@ import { Heart, X } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
 import PageSEO from '../components/PageSEO';
 import MatchingGiftForm from '../components/MatchingGiftForm';
+import { useI18n } from '../i18n/useI18n';
 import { campaignBySlug } from '../data/campaigns';
 
 const Donate = () => {
+  const { t } = useI18n();
   const [selectedTier, setSelectedTier] = useState('core');
   const [customAmount, setCustomAmount] = useState('');
   const [frequency, setFrequency] = useState('monthly');
@@ -151,10 +153,10 @@ const Donate = () => {
         <div className="bg-white rounded-3xl p-8 md:p-12 border border-gray-200 shadow-sm space-y-6">
           <div className="inline-flex items-center space-x-2 text-[#f37021] text-[11px] font-black tracking-widest uppercase bg-[#f37021]/15 px-3 py-1.5 rounded-full">
             <Heart className="w-3.5 h-3.5 fill-[#f37021]" />
-            <span>SUPPORT A HOME</span>
+            <span>{t('donate.supportHome')}</span>
           </div>
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-900 leading-tight">
-            Listen First, Act Next
+            {t('donate.title')}
           </h1>
           <p className="text-gray-600 font-bold text-[14.5px] leading-relaxed max-w-4xl">
             “Listening First, Acting Next” is CFL’s donation programme that supports children’s homes (orphanages and safe shelters) with what they need most based on their own priorities. We work with each home to agree on a practical support plan and then fund (or procure) essentials that keep children safe, healthy, learning, and thriving.
@@ -169,8 +171,8 @@ const Donate = () => {
           {/* Tiers List (Left 2 Columns) */}
           <div className="lg:col-span-2 space-y-6">
             <div className="flex justify-between items-center px-2">
-              <h3 className="text-lg font-black text-gray-900">Choose Your Impact Path</h3>
-              <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Select one tier below</span>
+              <h3 className="text-lg font-black text-gray-900">{t('donate.choosePath')}</h3>
+              <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('donate.selectTier')}</span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -222,13 +224,13 @@ const Donate = () => {
             {/* Sponsorship Form */}
             <form onSubmit={handleDonation} className="bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-sm space-y-6">
               <div>
-                <h3 className="text-lg font-black text-gray-900 mb-1">Donation Details</h3>
-                <p className="text-gray-400 font-semibold text-[11px]">Secure Checkout powered by Stripe</p>
+                <h3 className="text-lg font-black text-gray-900 mb-1">{t('donate.donationDetails')}</h3>
+                <p className="text-gray-400 font-semibold text-[11px]">{t('donate.secureCheckout')}</p>
               </div>
 
               {/* Frequency selector */}
               <fieldset className="space-y-2">
-                <legend className="block text-[10px] font-black text-gray-400 uppercase tracking-widest">Sponsorship Type</legend>
+                <legend className="block text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('donate.sponsorshipType')}</legend>
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     type="button"
@@ -241,7 +243,7 @@ const Donate = () => {
                         : 'bg-gray-50 text-gray-500 hover:bg-gray-100'
                     }`}
                   >
-                    Monthly
+                    {t('donate.monthly')}
                   </button>
                   <button
                     type="button"
@@ -254,7 +256,7 @@ const Donate = () => {
                         : 'bg-gray-50 text-gray-500 hover:bg-gray-100'
                     }`}
                   >
-                    One-off
+                    {t('donate.oneOff')}
                   </button>
                 </div>
               </fieldset>
@@ -262,13 +264,13 @@ const Donate = () => {
               {/* Selected tier / custom amount display */}
               <div className="space-y-3.5 bg-gray-50 rounded-2xl p-4 border border-gray-100">
                 <div className="flex justify-between items-center text-xs font-bold">
-                  <span className="text-gray-400">Total Gift:</span>
+                  <span className="text-gray-400">{t('donate.totalGift')}</span>
                   <span className="text-[#005c7a] font-black">{displayAmountText}</span>
                 </div>
 
                 {/* Custom Amount input */}
                 <div>
-                  <label htmlFor="custom-tzs-amount" className="block text-[11px] font-black text-gray-400 uppercase tracking-widest mb-1.5">Or enter custom TZS amount</label>
+                  <label htmlFor="custom-tzs-amount" className="block text-[11px] font-black text-gray-400 uppercase tracking-widest mb-1.5">{t('donate.customTzs')}</label>
                   <div className="relative">
                     <span className="absolute left-3.5 top-2.5 text-gray-400 font-bold text-xs">TZS</span>
                     <input
@@ -288,7 +290,7 @@ const Donate = () => {
                 disabled={isProcessing}
                 className="w-full bg-[#f37021] text-white font-extrabold text-sm py-4 rounded-xl hover:bg-[#da621a] transition-colors shadow-sm flex items-center justify-center disabled:opacity-70 uppercase tracking-wider"
               >
-                {isProcessing ? 'Processing Transaction...' : `Confirm Gift of ${displayAmountText}`}
+                {isProcessing ? t('donate.processing') : `${t('donate.confirmGift')} ${displayAmountText}`}
               </button>
             </form>
 
