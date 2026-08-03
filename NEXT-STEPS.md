@@ -6,13 +6,14 @@ Go to [Vercel Project Settings → Environment Variables](https://vercel.com/ans
 
 | Key | Description | Required |
 |---|---|---|
-| `STRIPE_SECRET_KEY` | Your Stripe secret key from the [Stripe Dashboard](https://dashboard.stripe.com/apikeys) | Yes |
-| `RESEND_API_KEY` | Your Resend API key from [resend.com/api-keys](https://resend.com/api-keys) | Yes |
+| `STRIPE_SECRET_KEY` | Your Stripe secret key from the [Stripe Dashboard](https://dashboard.stripe.com/apikeys). Enables donations, receipt emails, and the donor portal. | Yes |
+| `RESEND_API_KEY` | Your Resend API key from [resend.com/api-keys](https://resend.com/api-keys). Enables the contact form and donation receipts. | Yes |
 | `VITE_SENTRY_DSN` | Your Sentry DSN from [sentry.io](https://sentry.io) (optional — error monitoring) | No |
 
-## 2. Add a social sharing image
+## 2. Verify the social sharing image ✅
 
-Create a **1200×630** PNG image and save it to `public/og-image.png`. This is the image shown when the site is shared on Facebook, Twitter, LinkedIn, and other social platforms.
+`public/og-image.png` (1200×630) now ships with the site and is the default OG image.
+Regenerate it anytime with `python scripts/generate-og-image.py`.
 
 ## 3. Verify analytics
 
@@ -21,6 +22,19 @@ The site includes Plausible Analytics (`plausible.io`). Either:
 - Register at [plausible.io](https://plausible.io) and verify the `childrenforlife.com` domain, **or**
 - Remove the `<script defer data-domain="childrenforlife.com" src="https://plausible.io/js/script.js">` line from `index.html` if not using Plausible
 
-## 4. Deploy
+## 4. Donation receipts & donor portal (new)
 
-The site auto-deploys to Vercel on every push to `master`. Push is already done — Vercel will pick up the latest commit (`5a56e11`). Check deployment status at [Vercel Dashboard](https://vercel.com/anselmeM/ChildernforLife.com).
+- `POST /api/send-receipt` emails a branded donation receipt via Resend after a successful
+  Stripe checkout (triggered from `/donate/success`). The amount/email are read from the
+  Stripe session server-side — never trusted from the client.
+- `POST /api/create-portal-session` opens the Stripe **Customer Portal** so monthly donors
+  can update or cancel their recurring gift.
+- **Action**: in the Stripe Dashboard, confirm your branding, and (recommended) enable
+  Stripe's built-in receipts for one-time payments as a fallback: Settings → Customer emails.
+
+## 5. Deploy
+
+The site auto-deploys to Vercel on every push to `master`. Check deployment status at
+[Vercel Dashboard](https://vercel.com/anselmeM/ChildernforLife.com). After deploying, test
+a live donation with a Stripe [test card](https://docs.stripe.com/testing) (4242 4242 4242 4242)
+to confirm receipts and the portal work end-to-end.

@@ -1,4 +1,5 @@
 import Stripe from 'stripe';
+import { resolveOrigin } from './lib/origin.js';
 
 const requiredVars = ['STRIPE_SECRET_KEY'];
 const missing = requiredVars.filter(v => !process.env[v]);
@@ -9,15 +10,26 @@ if (missing.length) {
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+// Donation bounds: at least $1.00, at most $100,000 per transaction.
+const MIN_AMOUNT_CENTS = 100;
+const MAX_AMOUNT_CENTS = 10_000_000;
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-    const { amount, currency, frequency, tierName, tierDesc, cancelUrl, successUrl } = req.body;
+    const { amount, currency, frequency, tierName, tierDesc } = req.body;
     const amountInCents = Math.round(Number(amount));
 
+    if (!Number.isFinite(amountInCents) || amountInCents < MIN_AMOUNT_CENTS || amountInCents > MAX_AMOUNT_CENTS) {
+      return res.status(400).json({ error: 'Donation amount must be between $1 and $100,000.' });
+    }
+
+    const origin = resolveOrigin(req);
+    const successUrl = `${origin}/donate/success?session_id={CHECKOUT_SESSION_ID}`;
+    const cancelUrl = `${origin}/donate?cancelled=true`;
     const isSubscription = frequency === 'monthly';
 
     if (isSubscription) {
@@ -37,8 +49,8 @@ export default async function handler(req, res) {
             quantity: 1,
           },
         ],
-        success_url: successUrl || `${req.headers.origin}/donate/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: cancelUrl || `${req.headers.origin}/donate?cancelled=true`,
+        success_url: successUrl,
+        cancel_url: cancelUrl,
         metadata: {
           source: 'childrenforlife.com',
         },
@@ -61,8 +73,10 @@ export default async function handler(req, res) {
           quantity: 1,
         },
       ],
-      success_url: successUrl || `${req.headers.origin}/donate/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: cancelUrl || `${req.headers.origin}/donate?cancelled=true`,
+      success_url: successUrl,
+      cancel_url: cancelUrl,
+      // Always create a customer record so donors can manage gifts via the billing portal.
+      customer_creation: 'always',
       metadata: {
         source: 'childrenforlife.com',
       },

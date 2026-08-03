@@ -98,7 +98,14 @@ export default function Home() {
 
   return (
     <div ref={pageRef} className="flex flex-col min-h-screen">
-      <PageSEO />
+      <PageSEO
+        schema={{
+          '@type': 'WebSite',
+          name: 'Children for Life',
+          url: 'https://childrenforlife.com',
+          publisher: { '@id': 'https://childrenforlife.com/#organization' },
+        }}
+      />
 
       {/* Primary Hero Section */}
       <section className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] flex items-center">

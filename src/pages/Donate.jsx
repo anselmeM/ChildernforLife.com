@@ -68,7 +68,6 @@ const Donate = () => {
     const amountInCents = Math.round(amountInTZS / 10);
 
     try {
-      const origin = window.location.origin;
       const res = await fetch('/api/create-checkout-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -78,8 +77,6 @@ const Donate = () => {
           frequency,
           tierName: customAmount ? 'Custom Donation' : (selectedTierObj ? selectedTierObj.name : 'Donation'),
           tierDesc: customAmount ? 'Custom amount donation' : (selectedTierObj ? selectedTierObj.focus : ''),
-          successUrl: `${origin}/donate/success?session_id={CHECKOUT_SESSION_ID}`,
-          cancelUrl: `${origin}/donate?cancelled=true`,
         }),
       });
 

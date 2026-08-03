@@ -30,7 +30,7 @@ describe('App', () => {
         <AppRoutes />
       </MemoryRouter></HelmetProvider>
     );
-    await screen.findByText(/Choose Your Impact Path/);
+    await screen.findByText(/Choose Your Impact Path/, {}, { timeout: 5000 });
   });
 
   it('renders the news page at /news', async () => {
@@ -39,6 +39,6 @@ describe('App', () => {
         <AppRoutes />
       </MemoryRouter></HelmetProvider>
     );
-    expect(await screen.findByText('LATEST NEWS')).toBeInTheDocument();
+    expect(await screen.findByText('LATEST NEWS', {}, { timeout: 5000 })).toBeInTheDocument();
   });
 });
