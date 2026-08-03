@@ -31,6 +31,16 @@ export default function ArticleDetail({ kind, backPath, backLabel, pathPrefix })
     .filter((item) => item.slug !== article.slug && item.tag === article.tag)
     .slice(0, 3);
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://childrenforlife.com/' },
+      { '@type': 'ListItem', position: 2, name: backLabel, item: `https://childrenforlife.com${backPath}` },
+      { '@type': 'ListItem', position: 3, name: article.title, item: `https://childrenforlife.com/${pathPrefix}/${article.slug}` },
+    ],
+  };
+
   return (
     <div className="bg-white min-h-screen">
       <PageSEO
@@ -38,6 +48,7 @@ export default function ArticleDetail({ kind, backPath, backLabel, pathPrefix })
         description={article.excerpt}
         path={`/${pathPrefix}/${article.slug}`}
         image={article.img}
+        schema={breadcrumbSchema}
       />
       <div className="relative h-[300px] sm:h-[360px] lg:h-[420px] bg-cover bg-center bg-local md:bg-fixed flex items-end" style={{ backgroundImage: `url(${article.img})` }}>
         <div className="absolute inset-0 bg-[#005c7a]/70 z-0"></div>

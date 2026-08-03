@@ -1,43 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://childrenforlife.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://childrenforlife.com/donate</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://childrenforlife.com/campaigns</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://childrenforlife.com/news</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://childrenforlife.com/volunteer</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://childrenforlife.com/impact-stories</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://childrenforlife.com/contact</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://childrenforlife.com/regions/where</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://childrenforlife.com/regions/glance</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/donate/monthly</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://childrenforlife.com/partner</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/placements</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/fundraise</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/donate/stocks</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://childrenforlife.com/about/who</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://childrenforlife.com/about/competencies</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://childrenforlife.com/about/team</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://childrenforlife.com/about/board</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://childrenforlife.com/about/leadership</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://childrenforlife.com/about/careers</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://childrenforlife.com/contact</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://childrenforlife.com/donate</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://childrenforlife.com/donate/monthly</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://childrenforlife.com/donate/stocks</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://childrenforlife.com/volunteer</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://childrenforlife.com/volunteer-faq</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://childrenforlife.com/placements</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://childrenforlife.com/alumni</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://childrenforlife.com/fundraise</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://childrenforlife.com/leave-legacy</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://childrenforlife.com/tribute-gifts</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://childrenforlife.com/partner</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://childrenforlife.com/programs/volunteering</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://childrenforlife.com/programs/gender</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://childrenforlife.com/programs/economic</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://childrenforlife.com/programs/climate</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://childrenforlife.com/programs/strategic</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://childrenforlife.com/impact-stories</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://childrenforlife.com/programs/volunteering</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://childrenforlife.com/programs/gender</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://childrenforlife.com/programs/economic</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://childrenforlife.com/programs/climate</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://childrenforlife.com/programs/strategic</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://childrenforlife.com/stories/sally</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://childrenforlife.com/news</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://childrenforlife.com/publications</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://childrenforlife.com/accountability</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://childrenforlife.com/regions/glance</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://childrenforlife.com/regions/where</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://childrenforlife.com/regions/benin</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://childrenforlife.com/regions/cameroon</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://childrenforlife.com/regions/congo</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://childrenforlife.com/regions/ethiopia</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://childrenforlife.com/regions/nigeria</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://childrenforlife.com/regions/tanzania</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://childrenforlife.com/news</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://childrenforlife.com/publications</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://childrenforlife.com/accountability</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://childrenforlife.com/news/communique-update-tanzania-programs</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://childrenforlife.com/news/supporters-reaffirm-clean-development</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://childrenforlife.com/news/civil-society-rallies-ahead-global-justice-forums</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -47,12 +41,16 @@
   <url><loc>https://childrenforlife.com/news/listening-and-learning-sustainable-development</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://childrenforlife.com/news/mission-over-politics-capacity-building</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://childrenforlife.com/news/strategic-plan-launch-approaching-highlights</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://childrenforlife.com/impact-stories</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://childrenforlife.com/stories/sallys-story-lighting-futures</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://childrenforlife.com/stories/empowering-girls-through-stem</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://childrenforlife.com/stories/clean-water-morogoro-schools</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://childrenforlife.com/campaigns</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://childrenforlife.com/campaigns/solar-powered-futures</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://childrenforlife.com/campaigns/clean-water-schools</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://childrenforlife.com/campaigns/girls-stem-scholarships</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://childrenforlife.com/regions/benin</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/regions/cameroon</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/regions/congo</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/regions/ethiopia</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/regions/nigeria</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/regions/tanzania</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>

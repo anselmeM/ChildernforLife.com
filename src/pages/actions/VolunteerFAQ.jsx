@@ -16,7 +16,20 @@ export default function VolunteerFAQ() {
 
   return (
     <div className="bg-white min-h-screen">
-      <PageSEO title="Volunteer FAQ" description="Frequently asked questions about volunteering with Children for Life." path="/volunteer-faq" />
+      <PageSEO
+        title="Volunteer FAQ"
+        description="Frequently asked questions about volunteering with Children for Life."
+        path="/volunteer-faq"
+        schema={{
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqs.map((faq) => ({
+            '@type': 'Question',
+            name: faq.q,
+            acceptedAnswer: { '@type': 'Answer', text: faq.a },
+          })),
+        }}
+      />
       <div className="relative h-[260px] sm:h-[320px] lg:h-[380px] bg-cover bg-center bg-local md:bg-fixed flex items-center" style={{ backgroundImage: `url(${cleanEnergy})` }}>
         <div className="absolute inset-0 bg-black/60 z-0"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-white">

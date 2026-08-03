@@ -24,9 +24,19 @@ export default function CampaignDetail() {
     );
   }
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://childrenforlife.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Campaigns', item: 'https://childrenforlife.com/campaigns' },
+      { '@type': 'ListItem', position: 3, name: campaign.name, item: `https://childrenforlife.com/campaigns/${campaign.slug}` },
+    ],
+  };
+
   return (
     <div className="bg-white min-h-screen">
-      <PageSEO title={campaign.name} description={campaign.tagline} path={`/campaigns/${campaign.slug}`} image={campaign.img} />
+      <PageSEO title={campaign.name} description={campaign.tagline} path={`/campaigns/${campaign.slug}`} image={campaign.img} schema={breadcrumbSchema} />
       <div className="relative h-[300px] sm:h-[360px] lg:h-[420px] bg-cover bg-center bg-local md:bg-fixed flex items-end" style={{ backgroundImage: `url(${campaign.img})` }}>
         <div className="absolute inset-0 bg-[#005c7a]/70 z-0"></div>
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-white pb-10">
