@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import cleanEnergy from '../../assets/clean_energy.jpg';
-import { newsItems, newsTags } from '../../data/news';
+import useContentItems from '../../hooks/useContentItems';
 import PageSEO from '../../components/PageSEO';
 
 export default function News() {
@@ -11,7 +11,8 @@ export default function News() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTag, setSelectedTag] = useState('All');
 
-  const allNews = newsItems;
+  const { items: allNews } = useContentItems('news');
+  const newsTags = ['All', ...new Set(allNews.map((n) => n.tag))];
 
   const filteredNews = allNews.filter(news => {
     const matchesSearch = news.title.toLowerCase().includes(searchQuery.toLowerCase());

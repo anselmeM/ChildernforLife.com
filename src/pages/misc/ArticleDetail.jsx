@@ -1,16 +1,19 @@
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import PageSEO from '../../components/PageSEO';
-import { newsItems, getNewsBySlug } from '../../data/news';
-import { impactStories, getStoryBySlug } from '../../data/impactStories';
+import useContentItems from '../../hooks/useContentItems';
+import { getNewsBySlug } from '../../data/news';
+import { getStoryBySlug } from '../../data/impactStories';
 
 export default function ArticleDetail({ kind, backPath, backLabel, pathPrefix }) {
   const navigate = useNavigate();
   const { slug } = useParams();
 
-  // Data is imported here (inside the lazy chunk), not in the entry bundle.
-  const items = kind === 'news' ? newsItems : impactStories;
-  const article = kind === 'news' ? getNewsBySlug(slug) : getStoryBySlug(slug);
+  const { items } = useContentItems(kind);
+  const localArticle = kind === 'news' ? getNewsBySlug(slug) : getStoryBySlug(slug);
+  // CMS items (when configured) take precedence; local data covers slugs that
+  // only exist in the repo.
+  const article = items.find((item) => item.slug === slug) || localArticle;
 
   if (!article) {
     return (

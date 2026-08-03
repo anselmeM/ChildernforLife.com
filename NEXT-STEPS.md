@@ -10,6 +10,8 @@ Go to [Vercel Project Settings → Environment Variables](https://vercel.com/ans
 | `RESEND_API_KEY` | Your Resend API key from [resend.com/api-keys](https://resend.com/api-keys). Enables the contact form, donation receipts, and the newsletter. | Yes |
 | `RESEND_AUDIENCE_ID` | Your Resend **audience** ID (Newsletter list). Create one at [resend.com/audiences](https://resend.com/audiences) — needed for the footer newsletter signup. | Yes |
 | `VITE_SENTRY_DSN` | Your Sentry DSN from [sentry.io](https://sentry.io) (optional — error monitoring) | No |
+| `VITE_CONTENTFUL_SPACE_ID` | Your Contentful space ID (see §8). Optional — news/stories fall back to the repo's local data without it. | No |
+| `VITE_CONTENTFUL_DELIVERY_TOKEN` | Contentful **Delivery** token (read-only, safe for the browser — see §8) | No |
 
 ## 2. Verify the social sharing image ✅
 
@@ -55,3 +57,27 @@ The site auto-deploys to Vercel on every push to `master`. Check deployment stat
 [Vercel Dashboard](https://vercel.com/anselmeM/ChildernforLife.com). After deploying, test
 a live donation with a Stripe [test card](https://docs.stripe.com/testing) (4242 4242 4242 4242)
 to confirm receipts and the portal work end-to-end.
+
+## 8. Contentful CMS (new — staff-published news & stories)
+
+The news and impact-story pages can be published from a Contentful web dashboard.
+Without it, they render the repo's local data (`src/data/news.js`, `src/data/impactStories.js`)
+— the site works either way.
+
+**Setup (one time):**
+1. Create a free space at [contentful.com](https://www.contentful.com).
+2. Add two content types in **Content model** (Settings → Content model → Add content type):
+   - `newsPost` with fields: `title` (Short text, required), `slug` (Short text, required —
+     must be unique, becomes `/news/<slug>`), `tag` (Short text), `date` (Date), `excerpt`
+     (Long text), `body` (Long text, paragraphs separated by blank lines), `image` (Media, required).
+   - `story` with the same fields but **no `date`** (becomes `/stories/<slug>`).
+3. **Settings → API keys → Add API key**: copy the **Space ID** and the **Content Delivery API**
+   token (the delivery token is read-only and safe in the browser).
+4. Add `VITE_CONTENTFUL_SPACE_ID` and `VITE_CONTENTFUL_DELIVERY_TOKEN` to Vercel env vars
+   (and `.env` locally) → Vercel rebuilds automatically.
+5. Publish entries (remember to publish **both** the entry and its image asset).
+
+**Notes:**
+- Images are served from `images.ctfassets.net` (CSP already allows it); the client requests
+  WebP resized variants via Contentful's image API.
+- If Contentful is unreachable, pages silently fall back to the local data files.

@@ -2,11 +2,12 @@ import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import heroStudents from '../../assets/hero_students.jpg';
-import { impactStories } from '../../data/impactStories';
+import useContentItems from '../../hooks/useContentItems';
 import PageSEO from '../../components/PageSEO';
 
 export default function ImpactStories() {
   const navigate = useNavigate();
+  const { items: stories } = useContentItems('stories');
 
   return (
     <div className="bg-white min-h-screen">
@@ -24,7 +25,7 @@ export default function ImpactStories() {
       </div>
       <section className="py-12 sm:py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {impactStories.map((story) => (
+          {stories.map((story) => (
             <Link key={story.slug} to={`/stories/${story.slug}`} className="bg-white border border-gray-150 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col justify-between group">
               <div>
                 <picture>

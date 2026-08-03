@@ -34,6 +34,8 @@ Copy `.env.example` to `.env` and fill in values:
 | `RESEND_API_KEY` | `api/contact.js`, `api/send-receipt.js`, `api/subscribe.js` | Yes (contact + receipts + newsletter) |
 | `RESEND_AUDIENCE_ID` | `api/subscribe.js` | Yes (newsletter list) |
 | `VITE_SENTRY_DSN` | `src/main.jsx` | No (error monitoring) |
+| `VITE_CONTENTFUL_SPACE_ID` | `src/lib/content.js` | No (news/stories fall back to local data) |
+| `VITE_CONTENTFUL_DELIVERY_TOKEN` | `src/lib/content.js` | No (read-only Delivery token, safe in the browser) |
 
 Never commit real keys — only `STRIPE_SECRET_KEY` and `RESEND_API_KEY` are needed in
 Vercel's dashboard (Vercel reads server-side env vars; `VITE_`-prefixed vars are inlined
@@ -73,6 +75,10 @@ src/
 ```
 
 ## Notes
+
+- **CMS**: news & impact stories can be published from Contentful (`src/lib/content.js` +
+  `src/hooks/useContentItems.js`). When `VITE_CONTENTFUL_*` are unset, pages render the
+  local data files — see `NEXT-STEPS.md` §8 for the content-model setup guide.
 
 - **Adding news or impact stories**: edit `src/data/news.js` / `src/data/impactStories.js`
   — each entry needs a unique `slug` (becomes the URL), `title`, `tag`, `date` (news only),
