@@ -50,6 +50,10 @@ and submit the footer form to confirm the welcome email arrives.
 - The employer matching-gift form (`POST /api/matching-gift`) emails requests to
   `info@childrenforlife.com`. Confirm the sending address (`contact@childrenforlife.com`)
   is verified in Resend.
+- Volunteer (`POST /api/volunteer-apply`) and careers (`POST /api/career-apply`) forms
+  email applications to the same address.
+- An RSS feed for news is generated at `public/rss.xml` by
+  `node scripts/generate-sitemap.mjs` (run alongside the sitemap).
 
 ## 7. Deploy
 

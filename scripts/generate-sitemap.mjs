@@ -97,3 +97,49 @@ ${urls
 
 writeFileSync(OUT, xml);
 console.log(`wrote ${OUT} (${urls.length} URLs)`);
+
+// --- RSS feed -------------------------------------------------------------
+// News entries (slug/title/date/excerpt) parsed from src/data/news.js so the
+// feed stays in sync with the articles. Entries are 4-space indented blocks.
+const RSS_OUT = join(root, 'public', 'rss.xml');
+const newsSource = readFileSync(join(root, 'src/data/news.js'), 'utf8');
+const entryChunks = newsSource.split(/^    slug: '/m).slice(1);
+const newsEntries = entryChunks
+  .map((chunk) => {
+    const slug = chunk.slice(0, chunk.indexOf("'"));
+    const field = (name) => {
+      const m = chunk.match(new RegExp(`^    ${name}: '([^']*)'`, 'm'));
+      return m ? m[1] : '';
+    };
+    return { slug, title: field('title'), date: field('date'), excerpt: field('excerpt') };
+  })
+  .filter((e) => e.slug && e.title);
+
+const rssItems = newsEntries
+  .map((entry) => {
+    const pubDate = entry.date ? new Date(`${entry.date} UTC`).toUTCString() : '';
+    return `    <item>
+      <title>${escapeXml(entry.title)}</title>
+      <link>${BASE}/news/${escapeXml(entry.slug)}</link>
+      <guid>${BASE}/news/${escapeXml(entry.slug)}</guid>
+      ${pubDate ? `<pubDate>${pubDate}</pubDate>` : ''}
+      ${entry.excerpt ? `<description>${escapeXml(entry.excerpt)}</description>` : ''}
+    </item>`;
+  })
+  .join('\n');
+
+const rss = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Children for Life — News</title>
+    <link>${BASE}/news</link>
+    <description>Latest news and updates from Children for Life.</description>
+    <language>en-us</language>
+    <atom:link href="${BASE}/rss.xml" rel="self" type="application/rss+xml" />
+${rssItems}
+  </channel>
+</rss>
+`;
+
+writeFileSync(RSS_OUT, rss);
+console.log(`wrote ${RSS_OUT} (${newsEntries.length} items)`);

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import cleanWater from '../../assets/clean_water.jpg';
 import PageSEO from '../../components/PageSEO';
+import VolunteerApplyForm from '../../components/VolunteerApplyForm';
 
 export default function Volunteer() {
   const navigate = useNavigate();
@@ -24,37 +25,7 @@ export default function Volunteer() {
       <section className="py-12 sm:py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mx-auto">
           <p className="text-gray-600 text-lg font-medium leading-relaxed mb-10 text-center">Ready to make a difference? Fill out the inquiry form below, and our recruitment team will get in touch with you about matching placements.</p>
-          <form onSubmit={(e) => { e.preventDefault(); alert("Application Submitted Successfully!"); navigate('/'); }} className="space-y-6 bg-gray-50 border border-gray-150 p-8 rounded-3xl shadow-sm">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label htmlFor="vol-firstname" className="block text-xs font-bold text-gray-500 uppercase mb-2">First Name</label>
-                <input id="vol-firstname" required type="text" className="w-full border border-gray-300 rounded-lg px-4 py-3 font-semibold focus:outline-none focus:border-[#005c7a]" />
-              </div>
-              <div>
-                <label htmlFor="vol-lastname" className="block text-xs font-bold text-gray-500 uppercase mb-2">Last Name</label>
-                <input id="vol-lastname" required type="text" className="w-full border border-gray-300 rounded-lg px-4 py-3 font-semibold focus:outline-none focus:border-[#005c7a]" />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="vol-email" className="block text-xs font-bold text-gray-500 uppercase mb-2">Email Address</label>
-              <input id="vol-email" required type="email" className="w-full border border-gray-300 rounded-lg px-4 py-3 font-semibold focus:outline-none focus:border-[#005c7a]" />
-            </div>
-            <div>
-              <label htmlFor="vol-expertise" className="block text-xs font-bold text-gray-500 uppercase mb-2">Area of Expertise</label>
-              <select id="vol-expertise" className="w-full border border-gray-300 bg-white rounded-lg px-4 py-3 font-semibold focus:outline-none focus:border-[#005c7a]">
-                <option>Education & Literacy</option>
-                <option>Healthcare & Sanitation (WASH)</option>
-                <option>Renewable Energy & Technology</option>
-                <option>Sustainable Agriculture</option>
-                <option>Other / Administration</option>
-              </select>
-            </div>
-            <div>
-              <label htmlFor="vol-reason" className="block text-xs font-bold text-gray-500 uppercase mb-2">Briefly describe why you want to volunteer</label>
-              <textarea id="vol-reason" rows="4" className="w-full border border-gray-300 rounded-lg px-4 py-3 font-semibold focus:outline-none focus:border-[#005c7a]"></textarea>
-            </div>
-            <button type="submit" className="w-full bg-[#f37021] text-white font-extrabold py-4 rounded-xl hover:bg-[#da621a] uppercase text-sm tracking-wider shadow-sm transition-colors">Submit Application</button>
-          </form>
+          <VolunteerApplyForm />
         </div>
       </section>
     </div>

@@ -69,7 +69,11 @@ const Donate = () => {
     const amountInTZS = customAmount
       ? Number(customAmount)
       : (selectedTierObj ? selectedTierObj.value : 0);
-    const amountInCents = Math.round(amountInTZS / 10);
+    // TZS -> USD cents. ~2,500 TZS/USD keeps charges aligned with the
+    // "US$ approx." labels on the tier cards. Update TZS_PER_USD as the
+    // exchange rate drifts.
+    const TZS_PER_USD = 2500;
+    const amountInCents = Math.round(amountInTZS / TZS_PER_USD * 100);
 
     try {
       const res = await fetch('/api/create-checkout-session', {

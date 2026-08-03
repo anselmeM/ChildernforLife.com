@@ -124,4 +124,31 @@ describe('Donation Flow', () => {
     expect(screen.getByText(/Employer Matching Gift/)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Request a Match/i })).toBeInTheDocument();
   });
+
+  it('charges USD matching the tier label (TZS ÷ 2500)', async () => {
+    global.fetch.mockResolvedValueOnce({
+      ok: true,
+      json: () => Promise.resolve({ url: 'https://checkout.stripe.com/test' }),
+    });
+
+    render(
+      <MemoryRouter>
+        <Donate />
+      </MemoryRouter>
+    );
+
+    // Starter Support = TZS 250,000 → ~US$100 = 10000 cents
+    fireEvent.click(screen.getByText('Starter Support'));
+    fireEvent.click(screen.getByRole('button', { name: /Confirm Gift/i }));
+
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalledWith(
+        '/api/create-checkout-session',
+        expect.objectContaining({
+          method: 'POST',
+          body: expect.stringContaining('"amount":10000'),
+        }),
+      );
+    });
+  });
 });
