@@ -55,8 +55,9 @@ export default function Navbar() {
   return (
     <nav className="bg-white sticky top-0 z-50 border-b border-gray-200 shadow-sm h-16 lg:h-36 flex flex-col justify-end relative" role="navigation" aria-label={t('nav.main')}>
     
-    {/* Desktop Utility Bar — full-width so every link fits on all desktop sizes */}
-    <div className="absolute top-0 right-0 left-0 h-12 bg-[#e1f3f8] rounded-l-full hidden lg:flex items-center pl-8 pr-12 text-[13.5px] font-extrabold text-[#005a74] tracking-wide shadow-sm z-10">
+    {/* Desktop Utility Bar — right-anchored pill that grows leftward only as
+        needed so every link stays visible without spanning full width */}
+    <div className="absolute top-0 right-0 w-max h-12 bg-[#e1f3f8] rounded-l-full hidden lg:flex items-center pl-8 pr-12 text-[13.5px] font-extrabold text-[#005a74] tracking-wide shadow-sm z-10">
       <div className="relative group/about py-1">
         <button className="hover:text-[#008cb3] transition-colors flex items-center cursor-pointer whitespace-nowrap">
           {t('nav.about')} <ChevronDown size={13} className="ml-0.5 text-[#005a74] stroke-[2.5]" />
