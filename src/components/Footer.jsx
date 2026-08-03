@@ -56,6 +56,7 @@ export default function Footer() {
               <li><button onClick={() => navigate('/impact-stories')} className="hover:underline hover:text-white transition-all text-left">{t('footer.stories')}</button></li>
               <li><button onClick={() => navigate('/news')} className="hover:underline hover:text-white transition-all text-left">{t('footer.news')}</button></li>
               <li><button onClick={() => navigate('/publications')} className="hover:underline hover:text-white transition-all text-left">{t('footer.publications')}</button></li>
+              <li><button onClick={() => navigate('/supporters')} className="hover:underline hover:text-white transition-all text-left">Wall of Support</button></li>
             </ul>
           </div>
 

@@ -80,6 +80,16 @@ describe('App', () => {
     expect(screen.getByRole('link', { name: /Donate to this campaign/i })).toHaveAttribute('href', '/donate?campaign=clean-water-schools');
   });
 
+  it('renders the Wall of Support at /supporters', async () => {
+    render(
+      <HelmetProvider><MemoryRouter initialEntries={['/supporters']}>
+        <AppRoutes />
+      </MemoryRouter></HelmetProvider>
+    );
+    // Wait on page-unique content (the footer also links "Wall of Support").
+    expect(await screen.findByText('Solar lighting for 40 homes', {}, { timeout: 5000 })).toBeInTheDocument();
+  });
+
   it('emits FAQPage structured data on /volunteer-faq', async () => {
     // Rendered directly (not via the lazy route) to keep this focused on
     // structured-data output rather than chunk-load timing.

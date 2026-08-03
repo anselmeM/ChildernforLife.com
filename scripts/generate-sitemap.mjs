@@ -25,6 +25,7 @@ const STATIC_ROUTES = [
   ['/news', '0.8', 'weekly'],
   ['/volunteer', '0.8', 'monthly'],
   ['/impact-stories', '0.7', 'monthly'],
+  ['/supporters', '0.6', 'monthly'],
   ['/contact', '0.7', 'monthly'],
   ['/regions/where', '0.7', 'monthly'],
   ['/regions/glance', '0.6', 'monthly'],
