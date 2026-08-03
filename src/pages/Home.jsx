@@ -128,7 +128,10 @@ export default function Home() {
             
             <div className="space-y-4 hero-animate">
               <div className="flex items-center space-x-3">
-                <button className="bg-[#ffc72c] hover:bg-[#eebb22] text-black font-extrabold py-4 px-8 rounded flex items-center justify-center shadow-lg transition-colors text-xs uppercase tracking-wider">
+                <button
+                  onClick={() => document.getElementById('action')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="bg-[#ffc72c] hover:bg-[#eebb22] text-black font-extrabold py-4 px-8 rounded flex items-center justify-center shadow-lg transition-colors text-xs uppercase tracking-wider"
+                >
                   <Mail className="w-4 h-4 mr-2" />
                   SUBSCRIBE TO OUR NEWSLETTER
                 </button>
@@ -141,7 +144,7 @@ export default function Home() {
                 className="w-full sm:w-auto bg-[#f37021] hover:bg-[#da621a] text-white font-extrabold py-4 px-8 rounded flex items-center justify-center sm:justify-start shadow-lg transition-colors text-xs uppercase tracking-wider"
               >
                 <ChevronRight className="w-4 h-4 mr-2" />
-                APPLY FOR THE INDIGENOUS CANADA MICRO-GRANT PROGRAM
+                DONATE NOW
               </button>
             </div>
           </div>

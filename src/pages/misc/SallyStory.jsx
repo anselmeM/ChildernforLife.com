@@ -84,7 +84,7 @@ export default function SallyStory() {
             <div className="lg:col-span-3">
               <h3 className="text-2xl md:text-[28px] font-black text-gray-900 leading-snug mb-4 hover:text-[#005c7a] transition-colors">How Children for Life stepped in to build a brighter future</h3>
               <p className="text-gray-500 font-bold text-[14.5px] leading-relaxed mb-6">The local Children for Life team visited Sally's home, assessed their needs, and installed a solar power grid and a safe toilet. Amara can now study late into the evening, and the family has safe, private sanitation.</p>
-              <button onClick={() => navigate('/donate')} className="bg-[#008cb3] hover:bg-[#005c7a] text-white px-7 py-3 rounded-full text-xs font-black uppercase tracking-wider transition-all shadow-sm">READ THIS STORY</button>
+              <button onClick={() => navigate('/donate')} className="bg-[#008cb3] hover:bg-[#005c7a] text-white px-7 py-3 rounded-full text-xs font-black uppercase tracking-wider transition-all shadow-sm">SUPPORT THIS STORY</button>
             </div>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">

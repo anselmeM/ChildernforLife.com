@@ -26,18 +26,18 @@ export default function DonateMonthly() {
           <p className="text-gray-600 text-lg font-medium leading-relaxed">Monthly giving provides Children for Life with stable, predictable funding to planning infrastructure developments like water systems, school expansions, and clinics.</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
-              { amt: "$15", text: "Supplies school books for one child monthly" },
-              { amt: "$35", text: "Provides solar lights for one household monthly" },
-              { amt: "$75", text: "Powers clean water purification monthly" }
+              { amt: 15, text: "Supplies school books for one child monthly" },
+              { amt: 35, text: "Provides solar lights for one household monthly" },
+              { amt: 75, text: "Powers clean water purification monthly" }
             ].map((m, i) => (
-              <div key={i} className="border-2 border-gray-150 rounded-2xl p-6 bg-gray-50 flex flex-col justify-between hover:border-[#005c7a] transition-all cursor-pointer" onClick={() => navigate('/donate')}>
-                <div className="text-2xl font-black text-[#005c7a] mb-2">{m.amt}</div>
+              <div key={i} className="border-2 border-gray-200 rounded-2xl p-6 bg-gray-50 flex flex-col justify-between hover:border-[#005c7a] transition-all cursor-pointer" onClick={() => navigate('/donate', { state: { amountUsd: m.amt, frequency: 'monthly' } })}>
+                <div className="text-2xl font-black text-[#005c7a] mb-2">${m.amt}</div>
                 <div className="text-gray-500 font-bold text-xs leading-relaxed">{m.text}</div>
               </div>
             ))}
           </div>
           <div className="pt-6">
-            <button onClick={() => navigate('/donate')} className="bg-[#f37021] text-white font-extrabold px-10 py-4 rounded-full hover:bg-[#da621a] uppercase text-xs tracking-wider shadow-md">Start Monthly Giving</button>
+            <button onClick={() => navigate('/donate', { state: { frequency: 'monthly' } })} className="bg-[#f37021] text-white font-extrabold px-10 py-4 rounded-full hover:bg-[#da621a] uppercase text-xs tracking-wider shadow-md">Start Monthly Giving</button>
           </div>
         </div>
       </section>

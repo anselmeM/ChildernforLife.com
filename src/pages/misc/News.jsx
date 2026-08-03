@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import cleanEnergy from '../../assets/clean_energy.jpg';
 import useContentItems from '../../hooks/useContentItems';
 import PageSEO from '../../components/PageSEO';
 
+const PAGE_SIZE = 9;
+
 export default function News() {
   const navigate = useNavigate();
   const [isRefinerOpen, setIsRefinerOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTag, setSelectedTag] = useState('All');
+  const [page, setPage] = useState(1);
 
   const { items: allNews } = useContentItems('news');
   const newsTags = ['All', ...new Set(allNews.map((n) => n.tag))];
@@ -23,7 +26,17 @@ export default function News() {
   const handleClearAll = () => {
     setSearchQuery('');
     setSelectedTag('All');
+    setPage(1);
   };
+
+  // Reset to the first page whenever the filters change.
+  useEffect(() => {
+    setPage(1);
+  }, [searchQuery, selectedTag]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredNews.length / PAGE_SIZE));
+  const currentPage = Math.min(page, totalPages);
+  const pagedNews = filteredNews.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
   return (
     <div className="bg-[#f0f9fc] min-h-screen">
@@ -77,7 +90,7 @@ export default function News() {
           <div className="bg-white border border-gray-200 rounded-3xl p-12 text-center text-gray-500 font-semibold shadow-sm max-w-md mx-auto">No articles found matching your search.</div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {filteredNews.map((news) => (
+            {pagedNews.map((news) => (
               <Link key={news.slug} to={`/news/${news.slug}`} className="bg-white border border-gray-150 rounded-2xl overflow-hidden hover:shadow-md transition-all flex flex-col justify-between group">
                 <div>
                   <picture>
@@ -100,9 +113,23 @@ export default function News() {
           </div>
         )}
         <div className="flex items-center justify-center space-x-6 mt-12 text-sm font-black text-[#005c7a]">
-          <button className="bg-white border border-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-sm hover:bg-gray-50" aria-label="Previous page"><ChevronLeft size={16} /></button>
-          <span>1 of {Math.max(1, Math.ceil(filteredNews.length / 9))}</span>
-          <button className="bg-white border border-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-sm hover:bg-gray-50" aria-label="Next page"><ChevronRight size={16} /></button>
+          <button
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+            disabled={currentPage <= 1}
+            aria-label="Previous page"
+            className="bg-white border border-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-sm hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            <ChevronLeft size={16} />
+          </button>
+          <span aria-live="polite">{currentPage} of {totalPages}</span>
+          <button
+            onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+            disabled={currentPage >= totalPages}
+            aria-label="Next page"
+            className="bg-white border border-gray-200 w-10 h-10 rounded-full flex items-center justify-center shadow-sm hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            <ChevronRight size={16} />
+          </button>
         </div>
       </section>
 

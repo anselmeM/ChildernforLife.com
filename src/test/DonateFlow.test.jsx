@@ -151,4 +151,64 @@ describe('Donation Flow', () => {
       );
     });
   });
+
+  it('prefills the custom amount from the monthly page state', async () => {
+    global.fetch.mockResolvedValueOnce({
+      ok: true,
+      json: () => Promise.resolve({ url: 'https://checkout.stripe.com/test' }),
+    });
+
+    render(
+      <MemoryRouter initialEntries={[{ pathname: '/donate', state: { amountUsd: 35, frequency: 'monthly' } }]}>
+        <Donate />
+      </MemoryRouter>
+    );
+
+    // $35 → TZS 87,500 → 3500 cents
+    expect(screen.getByLabelText('Or enter custom TZS amount')).toHaveValue(87500);
+
+    fireEvent.click(screen.getByRole('button', { name: /Confirm Gift/i }));
+
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalledWith(
+        '/api/create-checkout-session',
+        expect.objectContaining({
+          method: 'POST',
+          body: expect.stringContaining('"amount":3500'),
+        }),
+      );
+    });
+  });
+
+  it('shows a tribute banner and sends tribute details with the gift', async () => {
+    global.fetch.mockResolvedValueOnce({
+      ok: true,
+      json: () => Promise.resolve({ url: 'https://checkout.stripe.com/test' }),
+    });
+
+    render(
+      <MemoryRouter
+        initialEntries={[{
+          pathname: '/donate',
+          state: { tribute: { honoree: 'Grandma Ruth', recipientName: 'Mom', recipientEmail: 'mom@example.com' } },
+        }]}
+      >
+        <Donate />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText('In honor of Grandma Ruth')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: /Confirm Gift/i }));
+
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalledWith(
+        '/api/create-checkout-session',
+        expect.objectContaining({
+          method: 'POST',
+          body: expect.stringContaining('"honoree":"Grandma Ruth"'),
+        }),
+      );
+    });
+  });
 });

@@ -35,7 +35,7 @@ export default function Publications() {
           <div className="space-y-4">
             <h3 className="text-2xl font-black text-gray-900">Solstice Magazine — Summer 2026</h3>
             <p className="text-gray-500 font-semibold text-sm leading-relaxed">Our flagship biannual publication covering international skills-sharing advancements, community solar microgrids, and inclusive WASH structures.</p>
-            <button className="bg-[#008cb3] hover:bg-[#005c7a] text-white px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider">Download PDF</button>
+            <button onClick={() => navigate('/contact')} className="bg-[#008cb3] hover:bg-[#005c7a] text-white px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider">Request a Copy</button>
           </div>
         </div>
       </section>
@@ -78,7 +78,7 @@ export default function Publications() {
               </div>
               <h4 className="font-black text-gray-900 text-sm">{news.issue}</h4>
               <p className="text-gray-500 font-bold text-xs leading-normal mt-1 mb-4">{news.desc}</p>
-              <button className="text-[#005c7a] hover:underline font-black text-xs uppercase">Download Issue</button>
+              <button onClick={() => navigate('/contact')} className="text-[#005c7a] hover:underline font-black text-xs uppercase">Request Issue</button>
             </div>
           ))}
         </div>

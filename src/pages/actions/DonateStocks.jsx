@@ -27,12 +27,12 @@ export default function DonateStocks() {
           <div className="bg-gray-50 rounded-3xl p-8 border border-gray-150 space-y-4">
             <h3 className="text-xl font-black text-gray-900 mb-2">How to Complete a Transfer</h3>
             <ol className="list-decimal pl-6 space-y-3 text-gray-500 font-bold text-[14.5px] leading-relaxed">
-              <li>Download our Transfer Notification Form.</li>
+              <li>Request our Transfer Notification Form.</li>
               <li>Instruct your broker to transfer the shares to Children for Life's brokerage account.</li>
               <li>Submit the notification form to our finance team to ensure your tax receipt is generated instantly.</li>
             </ol>
             <div className="pt-4">
-              <a href="mailto:finance@childrenforlife.org" className="bg-[#008cb3] hover:bg-[#005c7a] text-white px-6 py-3 rounded-full text-xs font-black uppercase tracking-wider inline-block">Request Form Details</a>
+              <button onClick={() => navigate('/contact')} className="bg-[#008cb3] hover:bg-[#005c7a] text-white px-6 py-3 rounded-full text-xs font-black uppercase tracking-wider inline-block">Request Form Details</button>
             </div>
           </div>
         </div>

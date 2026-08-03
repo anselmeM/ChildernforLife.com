@@ -65,7 +65,7 @@ export default function Footer() {
             <ul className="space-y-4 text-[14.5px] font-bold text-blue-50/90 mb-8">
               <li><button onClick={() => navigate('/contact')} className="hover:underline hover:text-white transition-all">{t('footer.contactUs')}</button></li>
               <li><button onClick={() => navigate('/about/leadership')} className="hover:underline hover:text-white transition-all text-left">{t('footer.meetLeadership')}</button></li>
-              <li><a href="#" className="hover:underline hover:text-white transition-all">{t('footer.mediaRoom')}</a></li>
+              <li><button onClick={() => navigate('/publications')} className="hover:underline hover:text-white transition-all">{t('footer.mediaRoom')}</button></li>
             </ul>
             <div className="text-[13px] text-blue-100/80 space-y-2 font-semibold">
               <p>9 Dagoni Street, Mbweni JKT</p>
@@ -79,10 +79,11 @@ export default function Footer() {
 
           <div className="flex flex-col items-start md:items-end space-y-8">
             <div className="flex space-x-5 text-white/95">
-              <a href="#" className="hover:text-[#ffc72c] transition-colors"><FacebookIcon className="w-6 h-6 hover:scale-110 transition-transform duration-200" /></a>
-              <a href="#" className="hover:text-[#ffc72c] transition-colors"><TwitterIcon className="w-6 h-6 hover:scale-110 transition-transform duration-200" /></a>
-              <a href="#" className="hover:text-[#ffc72c] transition-colors"><LinkedinIcon className="w-6 h-6 hover:scale-110 transition-transform duration-200" /></a>
-              <a href="#" className="hover:text-[#ffc72c] transition-colors"><YoutubeIcon className="w-6 h-6 hover:scale-110 transition-transform duration-200" /></a>
+              {/* TODO: replace with the organization's actual social profiles */}
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Children for Life on Facebook" className="hover:text-[#ffc72c] transition-colors"><FacebookIcon className="w-6 h-6 hover:scale-110 transition-transform duration-200" /></a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Children for Life on X (Twitter)" className="hover:text-[#ffc72c] transition-colors"><TwitterIcon className="w-6 h-6 hover:scale-110 transition-transform duration-200" /></a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="Children for Life on LinkedIn" className="hover:text-[#ffc72c] transition-colors"><LinkedinIcon className="w-6 h-6 hover:scale-110 transition-transform duration-200" /></a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="Children for Life on YouTube" className="hover:text-[#ffc72c] transition-colors"><YoutubeIcon className="w-6 h-6 hover:scale-110 transition-transform duration-200" /></a>
             </div>
             
             <div className="flex items-center space-x-4">
@@ -123,8 +124,9 @@ export default function Footer() {
             <LanguageSwitcher />
             <div className="text-center md:text-right space-y-2 font-bold text-blue-100/80">
               <p>© 2015-2026 by Children for Life. All rights reserved.</p>
+              {/* Privacy/legal pages don't exist yet — plain text until they do */}
               <p className="font-semibold text-blue-100/60">
-                <a href="#" className="hover:underline hover:text-white transition-colors">{t('footer.privacy')}</a> | <a href="#" className="hover:underline hover:text-white transition-colors">{t('footer.legal')}</a>
+                <span>{t('footer.privacy')}</span> | <span>{t('footer.legal')}</span>
               </p>
             </div>
           </div>

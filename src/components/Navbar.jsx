@@ -84,13 +84,6 @@ export default function Navbar() {
       <button onClick={go('/accountability')} className="hover:text-[#008cb3] transition-colors">{t('nav.accountability')}</button>
       <span className="text-gray-300 px-3.5">|</span>
       <LanguageDropdown />
-      <span className="text-gray-300 px-3.5">|</span>
-      <button className="hover:text-[#008cb3] transition-colors flex items-center" aria-label="Search">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4.5 h-4.5">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-      </button>
     </div>
 
     {/* Main Nav Bar Container */}
@@ -214,7 +207,10 @@ export default function Navbar() {
 
           {/* Pill Action Buttons */}
           <div className="flex items-center space-x-4 text-[14px] font-black tracking-wider uppercase">
-            <button className="bg-[#9dc84a] hover:bg-[#8bb43d] text-gray-900 px-8 py-3.5 rounded-full flex items-center space-x-2 shadow-sm transition-all duration-300 transform hover:-translate-y-0.5">
+            <button
+              onClick={go('/volunteer')}
+              className="bg-[#9dc84a] hover:bg-[#8bb43d] text-gray-900 px-8 py-3.5 rounded-full flex items-center space-x-2 shadow-sm transition-all duration-300 transform hover:-translate-y-0.5"
+            >
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 mr-0.5">
                 <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3l.7.8M22 12.5a10 10 0 0 1-18.8 4.2l-.7-.8" />
               </svg>

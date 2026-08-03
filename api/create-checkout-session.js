@@ -28,7 +28,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { amount, currency, frequency, tierName, tierDesc, campaign } = req.body;
+    const { amount, currency, frequency, tierName, tierDesc, campaign, tribute } = req.body;
     const amountInCents = Math.round(Number(amount));
 
     if (!Number.isFinite(amountInCents) || amountInCents < MIN_AMOUNT_CENTS || amountInCents > MAX_AMOUNT_CENTS) {
@@ -37,6 +37,19 @@ export default async function handler(req, res) {
 
     const campaignSlug = typeof campaign === 'string' && ALLOWED_CAMPAIGNS.has(campaign) ? campaign : '';
     const campaignPrefix = campaignSlug ? `${campaignSlug} · ` : '';
+
+    // Tribute details are free text from the client — sanitize (strings only,
+    // length-capped) before they go into Stripe metadata.
+    const rawTribute = typeof tribute === 'object' && tribute !== null ? tribute : {};
+    const cleanTribute = (key) => {
+      const value = rawTribute[key];
+      return typeof value === 'string' ? value.trim().slice(0, 200) : '';
+    };
+    const tributeMeta = {
+      ...(cleanTribute('honoree') ? { tributeHonoree: cleanTribute('honoree') } : {}),
+      ...(cleanTribute('recipientName') ? { tributeRecipientName: cleanTribute('recipientName') } : {}),
+      ...(cleanTribute('recipientEmail') ? { tributeRecipientEmail: cleanTribute('recipientEmail') } : {}),
+    };
 
     const origin = resolveOrigin(req);
     const successUrl = `${origin}/donate/success?session_id={CHECKOUT_SESSION_ID}`;
@@ -64,6 +77,8 @@ export default async function handler(req, res) {
         cancel_url: cancelUrl,
         metadata: {
           source: 'childrenforlife.com',
+          ...(campaignSlug ? { campaign: campaignSlug } : {}),
+          ...tributeMeta,
         },
       });
       return res.status(200).json({ url: session.url });
@@ -91,6 +106,7 @@ export default async function handler(req, res) {
       metadata: {
         source: 'childrenforlife.com',
         ...(campaignSlug ? { campaign: campaignSlug } : {}),
+        ...tributeMeta,
       },
     });
 

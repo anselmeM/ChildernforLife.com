@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Heart, X } from 'lucide-react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import PageSEO from '../components/PageSEO';
 import MatchingGiftForm from '../components/MatchingGiftForm';
 import GiftAidForm from '../components/GiftAidForm';
@@ -10,9 +10,13 @@ import { campaignBySlug } from '../data/campaigns';
 
 const Donate = () => {
   const { t } = useI18n();
+  const location = useLocation();
+  const { tribute, amountUsd } = location.state || {};
   const [selectedTier, setSelectedTier] = useState('core');
-  const [customAmount, setCustomAmount] = useState('');
-  const [frequency, setFrequency] = useState('monthly');
+  const [customAmount, setCustomAmount] = useState(() =>
+    typeof amountUsd === 'number' && amountUsd > 0 ? String(Math.round(amountUsd * 2500)) : '',
+  );
+  const [frequency, setFrequency] = useState(() => (location.state?.frequency || 'monthly'));
   const [isProcessing, setIsProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
@@ -88,6 +92,7 @@ const Donate = () => {
           currency: 'usd',
           frequency,
           campaign: campaign ? campaign.slug : '',
+          tribute,
           tierName: customAmount ? 'Custom Donation' : (selectedTierObj ? selectedTierObj.name : 'Donation'),
           tierDesc: customAmount ? 'Custom amount donation' : (selectedTierObj ? selectedTierObj.focus : ''),
         }),
@@ -114,6 +119,21 @@ const Donate = () => {
         {wasCancelled && (
           <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 text-center">
             <p className="text-yellow-800 font-bold">Your donation was not completed. If you ran into an issue, please try again or contact us.</p>
+          </div>
+        )}
+
+        {tribute && tribute.honoree && (
+          <div className="bg-[#fff7ed] border border-[#f37021]/30 rounded-2xl p-5 flex items-start justify-between gap-4">
+            <div className="flex items-start gap-3">
+              <span className="w-9 h-9 bg-[#f37021]/15 text-[#f37021] rounded-full flex items-center justify-center shrink-0">
+                <Heart className="w-4 h-4 fill-[#f37021]" />
+              </span>
+              <div>
+                <p className="text-[10px] font-black text-[#f37021] uppercase tracking-widest">Tribute gift</p>
+                <p className="font-black text-gray-900 text-sm">In honor of {tribute.honoree}</p>
+                {tribute.recipientName && <p className="text-gray-500 font-semibold text-xs mt-0.5">Notification card to {tribute.recipientName}</p>}
+              </div>
+            </div>
           </div>
         )}
 

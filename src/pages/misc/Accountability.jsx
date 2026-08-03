@@ -38,7 +38,7 @@ export default function Accountability() {
             ].map((doc, idx) => (
               <div key={idx} className="py-4 flex flex-wrap justify-between items-center gap-2 first:pt-0 last:pb-0">
                 <span className="font-bold text-gray-900">{doc}</span>
-                <button className="bg-[#008cb3] hover:bg-[#005c7a] text-white px-4 py-2 rounded-full text-xs font-black uppercase tracking-wider">Download</button>
+                <button onClick={() => navigate('/contact')} className="bg-[#008cb3] hover:bg-[#005c7a] text-white px-4 py-2 rounded-full text-xs font-black uppercase tracking-wider">Request Copy</button>
               </div>
             ))}
           </div>

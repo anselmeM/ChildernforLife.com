@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Heart, Leaf, ShieldCheck } from 'lucide-react';
 import AfricaMap from '../../AfricaMap';
 import { getCountry } from '../../data/countries';
@@ -144,9 +144,6 @@ export default function CountryPage() {
               <div className="pl-2">
                 <h3 className="text-2xl font-black text-gray-900 leading-snug mb-4">{activeSolution.title}</h3>
                 <p className="text-gray-500 font-semibold text-sm leading-relaxed mb-6">{activeSolution.desc}</p>
-                <button className="bg-[#f37021] hover:bg-[#da621a] text-white font-black py-3.5 px-8 rounded-full uppercase text-xs tracking-widest shadow-md transition-all hover:translate-y-[-1px] active:translate-y-0">
-                  See More
-                </button>
               </div>
             </div>
           </div>
@@ -160,9 +157,9 @@ export default function CountryPage() {
           <p className="text-gray-500 font-semibold text-xs mb-12">Together we share skills, build resilience and foster long-term positive change.</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {Array.from({ length: 12 }).map((_, idx) => (
-              <div key={idx} className="bg-white border border-gray-150 rounded-2xl aspect-[3/2] flex items-center justify-center p-6 shadow-sm hover:shadow-md transition-all relative group cursor-pointer">
-                <div className="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center border border-gray-100 group-hover:border-[#005c7a]/30 transition-colors">
-                  <ShieldCheck size={24} className="text-gray-300 group-hover:text-[#005c7a] transition-colors" />
+              <div key={idx} className="relative bg-white border border-gray-200 rounded-2xl aspect-[3/2] flex items-center justify-center p-6 shadow-sm transition-all">
+                <div className="w-16 h-16 rounded-full bg-gray-50 flex items-center justify-center border border-gray-100">
+                  <ShieldCheck size={24} className="text-gray-300" />
                 </div>
                 <div className="absolute bottom-3 right-3 w-1.5 h-1.5 rounded-full bg-[#f37021]"></div>
               </div>
@@ -181,17 +178,9 @@ export default function CountryPage() {
             <div className="lg:col-span-3">
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900 leading-tight mb-4">{data.name}'s Voices of<br/>Change</h2>
               <p className="text-gray-400 font-bold text-[10px] uppercase tracking-widest mb-8">Stories from the field</p>
-              <div className="flex space-x-3">
-                <button className="w-10 h-10 rounded-full bg-[#f37021] text-white flex items-center justify-center hover:bg-[#da621a] transition-colors shadow-md" aria-label="Previous story">
-                  <ChevronLeft size={16} className="stroke-[3]" />
-                </button>
-                <button className="w-10 h-10 rounded-full bg-[#f37021] text-white flex items-center justify-center hover:bg-[#da621a] transition-colors shadow-md" aria-label="Next story">
-                  <ChevronRight size={16} className="stroke-[3]" />
-                </button>
-              </div>
-              <div className="mt-8 text-[#005c7a] font-black text-[10px] uppercase tracking-widest hover:underline cursor-pointer">
+              <Link to="/impact-stories" className="inline-flex items-center text-[#005c7a] font-black text-[10px] uppercase tracking-widest hover:underline">
                 See All Stories →
-              </div>
+              </Link>
             </div>
 
             <div className="lg:col-span-9 grid grid-cols-1 md:grid-cols-2 gap-6">

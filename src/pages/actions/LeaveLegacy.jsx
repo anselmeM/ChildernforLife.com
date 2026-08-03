@@ -29,7 +29,7 @@ export default function LeaveLegacy() {
             <p className="text-gray-500 font-bold text-[14.5px] leading-relaxed mb-4">A legacy gift allows you to make a larger, more significant donation than might be possible during your lifetime, leaving a legacy of hope, opportunity, and safety.</p>
             <p className="text-gray-500 font-bold text-[14.5px] leading-relaxed">We offer several formats including specific bequests, residual bequests, and life insurance policies. Consult your estate planner for guidance.</p>
             <div className="pt-6">
-              <a href="mailto:legacy@childrenforlife.org" className="bg-[#008cb3] hover:bg-[#005c7a] text-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-wider inline-block">Contact Legacy Team</a>
+              <button onClick={() => navigate('/contact')} className="bg-[#008cb3] hover:bg-[#005c7a] text-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-wider inline-block">Contact Our Team</button>
             </div>
           </div>
         </div>
