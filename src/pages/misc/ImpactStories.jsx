@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import heroStudents from '../../assets/hero_students.png';
+import heroStudents from '../../assets/hero_students.jpg';
 import { impactStories } from '../../data/impactStories';
 import PageSEO from '../../components/PageSEO';
 
@@ -27,7 +27,10 @@ export default function ImpactStories() {
           {impactStories.map((story) => (
             <Link key={story.slug} to={`/stories/${story.slug}`} className="bg-white border border-gray-150 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow flex flex-col justify-between group">
               <div>
-                <img loading="lazy" src={story.img} className="w-full h-52 object-cover" alt={story.title} />
+                <picture>
+                  <source srcSet={story.imgCard} type="image/webp" />
+                  <img loading="lazy" src={story.img} className="w-full h-52 object-cover" alt={story.title} />
+                </picture>
                 <div className="p-6">
                   <span className="text-[11px] font-black text-[#005c7a] uppercase tracking-widest bg-[#e1f3f8] px-2.5 py-1 rounded">{story.tag}</span>
                   <h3 className="text-xl font-black text-gray-900 mt-4 mb-2 group-hover:text-[#005c7a] transition-colors">{story.title}</h3>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import sallyStory from '../../assets/sally_story.png';
+import sallyStory from '../../assets/sally_story.jpg';
 import PageSEO from '../../components/PageSEO';
 
 export default function StrategicPlan() {

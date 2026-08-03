@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import monthlyGiving from '../../assets/monthly_giving.png';
-import ugirlsGraduation from '../../assets/ugirls_graduation.png';
-import sallyStory from '../../assets/sally_story.png';
-import heroStudents from '../../assets/hero_students.png';
-import cleanWater from '../../assets/clean_water.png';
-import cleanEnergy from '../../assets/clean_energy.png';
+import monthlyGiving from '../../assets/monthly_giving.jpg';
+import ugirlsGraduation from '../../assets/ugirls_graduation.jpg';
+import sallyStory from '../../assets/sally_story.jpg';
+import heroStudents from '../../assets/hero_students.jpg';
+import cleanWater from '../../assets/clean_water.jpg';
+import cleanEnergy from '../../assets/clean_energy.jpg';
 import PageSEO from '../../components/PageSEO';
 
 export default function Publications() {

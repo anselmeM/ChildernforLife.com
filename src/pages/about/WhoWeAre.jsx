@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import aboutHero from '../../assets/about_hero.png';
-import aboutWomenHand from '../../assets/about_women_hand.png';
-import heroStudents from '../../assets/hero_students.png';
+import aboutHero from '../../assets/about_hero.jpg';
+import aboutWomenHand from '../../assets/about_women_hand.jpg';
+import heroStudents from '../../assets/hero_students.jpg';
 import PageSEO from '../../components/PageSEO';
 
 export default function WhoWeAre() {

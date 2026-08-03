@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import ugirlsGraduation from '../../assets/ugirls_graduation.png';
+import ugirlsGraduation from '../../assets/ugirls_graduation.jpg';
 import PageSEO from '../../components/PageSEO';
 
 export default function TributeGifts() {

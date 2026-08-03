@@ -3,13 +3,13 @@ import { ChevronRight, ChevronLeft, Mail, Leaf } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import useScrollReveal from '../hooks/useScrollReveal';
 
-import heroStudents from '../assets/hero_students.png';
-import ugirlsGraduation from '../assets/ugirls_graduation.png';
+import heroStudents from '../assets/hero_students.jpg';
+import ugirlsGraduation from '../assets/ugirls_graduation.jpg';
 import PageSEO from '../components/PageSEO';
-import sallyStory from '../assets/sally_story.png';
-import monthlyGiving from '../assets/monthly_giving.png';
-import cleanWater from '../assets/clean_water.png';
-import cleanEnergy from '../assets/clean_energy.png';
+import sallyStory from '../assets/sally_story.jpg';
+import monthlyGiving from '../assets/monthly_giving.jpg';
+import cleanWater from '../assets/clean_water.jpg';
+import cleanEnergy from '../assets/clean_energy.jpg';
 
 export default function Home() {
   const navigate = useNavigate();

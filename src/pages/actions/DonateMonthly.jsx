@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import monthlyGiving from '../../assets/monthly_giving.png';
+import monthlyGiving from '../../assets/monthly_giving.jpg';
 import PageSEO from '../../components/PageSEO';
 
 export default function DonateMonthly() {

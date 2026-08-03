@@ -1,10 +1,10 @@
-import heroStudents from '../assets/hero_students.png';
-import ugirlsGraduation from '../assets/ugirls_graduation.png';
-import sallyStory from '../assets/sally_story.png';
-import monthlyGiving from '../assets/monthly_giving.png';
-import cleanWater from '../assets/clean_water.png';
-import cleanEnergy from '../assets/clean_energy.png';
-import tanzaniaTLed from '../assets/tanzania_t_led.png';
+import heroStudents from '../assets/hero_students.jpg';
+import ugirlsGraduation from '../assets/ugirls_graduation.jpg';
+import sallyStory from '../assets/sally_story.jpg';
+import monthlyGiving from '../assets/monthly_giving.jpg';
+import cleanWater from '../assets/clean_water.jpg';
+import cleanEnergy from '../assets/clean_energy.jpg';
+import tanzaniaTLed from '../assets/tanzania_t_led.jpg';
 
 const countryData = {
   benin: {

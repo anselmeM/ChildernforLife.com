@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, Heart, BookOpen, Users, ShieldAlert, Sparkles } from 'lucide-react';
-import cleanWater from '../../assets/clean_water.png';
+import cleanWater from '../../assets/clean_water.jpg';
 import PageSEO from '../../components/PageSEO';
 
 export default function Competencies() {

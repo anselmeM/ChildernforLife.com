@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import heroStudents from '../../assets/hero_students.png';
+import heroStudents from '../../assets/hero_students.jpg';
 import PageSEO from '../../components/PageSEO';
 
 export default function Fundraise() {

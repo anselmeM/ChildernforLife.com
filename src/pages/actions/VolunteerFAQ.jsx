@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import cleanEnergy from '../../assets/clean_energy.png';
+import cleanEnergy from '../../assets/clean_energy.jpg';
 import PageSEO from '../../components/PageSEO';
 
 export default function VolunteerFAQ() {

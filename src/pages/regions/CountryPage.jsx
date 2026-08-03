@@ -3,8 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Heart, Leaf, ShieldCheck } from 'lucide-react';
 import AfricaMap from '../../AfricaMap';
 import { getCountry } from '../../data/countries';
-import cusoEffectSoap from '../../assets/cuso_effect_soap.png';
-import ugirlsGraduation from '../../assets/ugirls_graduation.png';
+import cusoEffectSoap from '../../assets/cuso_effect_soap.jpg';
+import ugirlsGraduation from '../../assets/ugirls_graduation.jpg';
 
 export default function CountryPage() {
   const navigate = useNavigate();

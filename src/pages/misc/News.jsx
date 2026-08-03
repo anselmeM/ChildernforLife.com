@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import cleanEnergy from '../../assets/clean_energy.png';
+import cleanEnergy from '../../assets/clean_energy.jpg';
 import { newsItems, newsTags } from '../../data/news';
 import PageSEO from '../../components/PageSEO';
 
@@ -79,7 +79,10 @@ export default function News() {
             {filteredNews.map((news) => (
               <Link key={news.slug} to={`/news/${news.slug}`} className="bg-white border border-gray-150 rounded-2xl overflow-hidden hover:shadow-md transition-all flex flex-col justify-between group">
                 <div>
-                  <img loading="lazy" src={news.img} className="w-full h-48 object-cover" alt={news.title} />
+                  <picture>
+                    <source srcSet={news.imgCard} type="image/webp" />
+                    <img loading="lazy" src={news.img} className="w-full h-48 object-cover" alt={news.title} />
+                  </picture>
                   <div className="p-6">
                     <div className="flex justify-between items-center text-[10px] font-black uppercase text-gray-400">
                       <span className="text-[#005c7a] bg-[#e1f3f8] px-2 py-0.5 rounded">{news.tag}</span>

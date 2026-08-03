@@ -65,7 +65,10 @@ export default function ArticleDetail({ kind, backPath, backLabel, pathPrefix })
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {related.map((item) => (
                 <Link key={item.slug} to={`/${pathPrefix}/${item.slug}`} className="group block">
-                  <img loading="lazy" src={item.img} alt={item.title} className="w-full h-32 object-cover rounded-xl mb-3 group-hover:opacity-90 transition-opacity" />
+                  <picture>
+                    <source srcSet={item.imgCard} type="image/webp" />
+                    <img loading="lazy" src={item.img} alt={item.title} className="w-full h-32 object-cover rounded-xl mb-3 group-hover:opacity-90 transition-opacity" />
+                  </picture>
                   <h3 className="text-sm font-black text-gray-900 group-hover:text-[#005c7a] transition-colors leading-snug">{item.title}</h3>
                 </Link>
               ))}
