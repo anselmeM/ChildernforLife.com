@@ -13,6 +13,8 @@ const Volunteer = lazy(() => import('./pages/actions/Volunteer'));
 const VolunteerFAQ = lazy(() => import('./pages/actions/VolunteerFAQ'));
 const Alumni = lazy(() => import('./pages/actions/Alumni'));
 const DonateMonthly = lazy(() => import('./pages/actions/DonateMonthly'));
+const Campaigns = lazy(() => import('./pages/actions/Campaigns'));
+const CampaignDetail = lazy(() => import('./pages/actions/CampaignDetail'));
 const DonateStocks = lazy(() => import('./pages/actions/DonateStocks'));
 const Fundraise = lazy(() => import('./pages/actions/Fundraise'));
 const LeaveLegacy = lazy(() => import('./pages/actions/LeaveLegacy'));
@@ -80,6 +82,8 @@ export function AppRoutes() {
       <Route path="/" element={<Layout><LazyPage><Home /></LazyPage></Layout>} />
       <Route path="/donate" element={<Layout><LazyPage><Donate /></LazyPage></Layout>} />
       <Route path="/donate/monthly" element={<Layout><LazyPage><DonateMonthly /></LazyPage></Layout>} />
+      <Route path="/campaigns" element={<Layout><LazyPage><Campaigns /></LazyPage></Layout>} />
+      <Route path="/campaigns/:slug" element={<Layout><LazyPage><CampaignDetail /></LazyPage></Layout>} />
       <Route path="/donate/stocks" element={<Layout><LazyPage><DonateStocks /></LazyPage></Layout>} />
       <Route path="/donate/success" element={<Layout><LazyPage><DonateSuccess /></LazyPage></Layout>} />
       <Route path="/placements" element={<Layout><LazyPage><Placements /></LazyPage></Layout>} />

@@ -85,4 +85,43 @@ describe('Donation Flow', () => {
 
     expect(screen.getByText(/not completed/)).toBeInTheDocument();
   });
+
+  it('shows campaign banner and sends campaign slug when ?campaign= is set', async () => {
+    global.fetch.mockResolvedValueOnce({
+      ok: true,
+      json: () => Promise.resolve({ url: 'https://checkout.stripe.com/test' }),
+    });
+
+    render(
+      <MemoryRouter initialEntries={['/donate?campaign=clean-water-schools']}>
+        <Donate />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText(/Supporting campaign/)).toBeInTheDocument();
+    expect(screen.getByText(/Clean Water for Schools/)).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: /Confirm Gift/i }));
+
+    await waitFor(() => {
+      expect(global.fetch).toHaveBeenCalledWith(
+        '/api/create-checkout-session',
+        expect.objectContaining({
+          method: 'POST',
+          body: expect.stringContaining('"campaign":"clean-water-schools"'),
+        }),
+      );
+    });
+  });
+
+  it('renders the employer matching gift form', () => {
+    render(
+      <MemoryRouter>
+        <Donate />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText(/Employer Matching Gift/)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Request a Match/i })).toBeInTheDocument();
+  });
 });

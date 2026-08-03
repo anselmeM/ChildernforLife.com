@@ -14,18 +14,29 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const MIN_AMOUNT_CENTS = 100;
 const MAX_AMOUNT_CENTS = 10_000_000;
 
+// Keep in sync with src/data/campaigns.js slugs. Only known campaigns are
+// accepted as metadata — never trust arbitrary client values here.
+const ALLOWED_CAMPAIGNS = new Set([
+  'solar-powered-futures',
+  'clean-water-schools',
+  'girls-stem-scholarships',
+]);
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-    const { amount, currency, frequency, tierName, tierDesc } = req.body;
+    const { amount, currency, frequency, tierName, tierDesc, campaign } = req.body;
     const amountInCents = Math.round(Number(amount));
 
     if (!Number.isFinite(amountInCents) || amountInCents < MIN_AMOUNT_CENTS || amountInCents > MAX_AMOUNT_CENTS) {
       return res.status(400).json({ error: 'Donation amount must be between $1 and $100,000.' });
     }
+
+    const campaignSlug = typeof campaign === 'string' && ALLOWED_CAMPAIGNS.has(campaign) ? campaign : '';
+    const campaignPrefix = campaignSlug ? `${campaignSlug} · ` : '';
 
     const origin = resolveOrigin(req);
     const successUrl = `${origin}/donate/success?session_id={CHECKOUT_SESSION_ID}`;
@@ -40,7 +51,7 @@ export default async function handler(req, res) {
             price_data: {
               currency: currency || 'usd',
               product_data: {
-                name: tierName || 'Monthly Donation',
+                name: `${campaignPrefix}${tierName || 'Monthly Donation'}`,
                 description: tierDesc || '',
               },
               unit_amount: amountInCents,
@@ -65,7 +76,7 @@ export default async function handler(req, res) {
           price_data: {
             currency: currency || 'usd',
             product_data: {
-              name: tierName || 'One-Time Donation',
+              name: `${campaignPrefix}${tierName || 'One-Time Donation'}`,
               description: tierDesc || '',
             },
             unit_amount: amountInCents,
@@ -79,6 +90,7 @@ export default async function handler(req, res) {
       customer_creation: 'always',
       metadata: {
         source: 'childrenforlife.com',
+        ...(campaignSlug ? { campaign: campaignSlug } : {}),
       },
     });
 

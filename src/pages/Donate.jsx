@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Heart } from 'lucide-react';
+import { Heart, X } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
 import PageSEO from '../components/PageSEO';
+import MatchingGiftForm from '../components/MatchingGiftForm';
+import { campaignBySlug } from '../data/campaigns';
 
 const Donate = () => {
   const [selectedTier, setSelectedTier] = useState('core');
@@ -9,8 +11,10 @@ const Donate = () => {
   const [frequency, setFrequency] = useState('monthly');
   const [isProcessing, setIsProcessing] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const wasCancelled = searchParams.get('cancelled') === 'true';
+  const campaignSlug = searchParams.get('campaign');
+  const campaign = campaignBySlug(campaignSlug);
 
   const tiers = [
     {
@@ -75,6 +79,7 @@ const Donate = () => {
           amount: amountInCents,
           currency: 'usd',
           frequency,
+          campaign: campaign ? campaign.slug : '',
           tierName: customAmount ? 'Custom Donation' : (selectedTierObj ? selectedTierObj.name : 'Donation'),
           tierDesc: customAmount ? 'Custom amount donation' : (selectedTierObj ? selectedTierObj.focus : ''),
         }),
@@ -107,6 +112,34 @@ const Donate = () => {
         {errorMessage && (
           <div className="bg-red-50 border border-red-200 rounded-2xl p-6 text-center">
             <p className="text-red-800 font-bold">{errorMessage}</p>
+          </div>
+        )}
+
+        {campaign && (
+          <div className="bg-[#f0f9fc] border border-[#005c7a]/20 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex items-start gap-3">
+              <span className="w-9 h-9 bg-[#f37021]/15 text-[#f37021] rounded-full flex items-center justify-center shrink-0">
+                <Heart className="w-4 h-4 fill-[#f37021]" />
+              </span>
+              <div>
+                <p className="text-[10px] font-black text-[#005c7a] uppercase tracking-widest">Supporting campaign</p>
+                <p className="font-black text-gray-900 text-sm">
+                  {campaign.name}
+                  {campaign.goal - campaign.raised > 0 ? (
+                    <span className="font-semibold text-gray-500"> — ${(campaign.goal - campaign.raised).toLocaleString()} to go</span>
+                  ) : (
+                    <span className="font-semibold text-green-600"> — goal reached, thank you!</span>
+                  )}
+                </p>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={() => setSearchParams({}, { replace: true })}
+              className="inline-flex items-center gap-1 text-[11px] font-black text-gray-400 uppercase tracking-wider hover:text-gray-600 shrink-0"
+            >
+              <X className="w-3.5 h-3.5" /> Remove
+            </button>
           </div>
         )}
 
@@ -297,6 +330,9 @@ const Donate = () => {
                 </div>
               </div>
             </div>
+
+            {/* Employer matching gift */}
+            <MatchingGiftForm />
 
           </div>
 

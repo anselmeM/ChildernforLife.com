@@ -40,7 +40,16 @@ audience and sends a welcome email. Create an audience in
 [Resend → Audiences](https://resend.com/audiences), copy its ID into `RESEND_AUDIENCE_ID`,
 and submit the footer form to confirm the welcome email arrives.
 
-## 6. Deploy
+## 6. Campaigns & matching gifts (new)
+
+- Campaign pages (`/campaigns`, `/campaigns/:slug`) show progress bars from
+  `src/data/campaigns.js`. Update `raised`/`goal` there as donations come in — or, once
+  Stripe is live, sum payments by the `campaign` metadata that checkout attaches.
+- The employer matching-gift form (`POST /api/matching-gift`) emails requests to
+  `info@childrenforlife.com`. Confirm the sending address (`contact@childrenforlife.com`)
+  is verified in Resend.
+
+## 7. Deploy
 
 The site auto-deploys to Vercel on every push to `master`. Check deployment status at
 [Vercel Dashboard](https://vercel.com/anselmeM/ChildernforLife.com). After deploying, test

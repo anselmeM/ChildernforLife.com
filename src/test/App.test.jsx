@@ -59,4 +59,23 @@ describe('App', () => {
     );
     expect(await screen.findByText('Clean Water for Morogoro Schools', {}, { timeout: 5000 })).toBeInTheDocument();
   });
+
+  it('renders the campaigns listing at /campaigns', async () => {
+    render(
+      <HelmetProvider><MemoryRouter initialEntries={['/campaigns']}>
+        <AppRoutes />
+      </MemoryRouter></HelmetProvider>
+    );
+    expect(await screen.findByText('Solar-Powered Futures', {}, { timeout: 5000 })).toBeInTheDocument();
+  });
+
+  it('renders a campaign detail page at /campaigns/:slug', async () => {
+    render(
+      <HelmetProvider><MemoryRouter initialEntries={['/campaigns/clean-water-schools']}>
+        <AppRoutes />
+      </MemoryRouter></HelmetProvider>
+    );
+    expect(await screen.findByText('Clean Water for Schools', {}, { timeout: 5000 })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /Donate to this campaign/i })).toHaveAttribute('href', '/donate?campaign=clean-water-schools');
+  });
 });

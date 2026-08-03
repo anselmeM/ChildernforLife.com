@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { ChevronRight, ChevronLeft, Mail, Leaf } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import useScrollReveal from '../hooks/useScrollReveal';
+import CountUp from '../components/CountUp';
+import { impactStats } from '../data/impactStats';
 
 import heroStudents from '../assets/hero_students.jpg';
 import ugirlsGraduation from '../assets/ugirls_graduation.jpg';
@@ -168,22 +170,14 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-gray-200 scroll-animate">
-            <div className="pt-4 md:pt-0">
-              <div className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-[#f37021] mb-3">3.2M</div>
-              <div className="text-[12px] text-gray-500 font-bold uppercase tracking-wider px-4">Lives Reached Worldwide since inception</div>
-            </div>
-            <div className="pt-4 md:pt-0">
-              <div className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-[#f37021] mb-3">124K</div>
-              <div className="text-[12px] text-gray-500 font-bold uppercase tracking-wider px-4">Direct Beneficiaries Reached</div>
-            </div>
-            <div className="pt-4 md:pt-0">
-              <div className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-[#f37021] mb-3">35</div>
-              <div className="text-[12px] text-gray-500 font-bold uppercase tracking-wider px-4">Countries</div>
-            </div>
-            <div className="pt-4 md:pt-0">
-              <div className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-[#f37021] mb-3">15K+</div>
-              <div className="text-[12px] text-gray-500 font-bold uppercase tracking-wider px-4">Volunteers</div>
-            </div>
+            {impactStats.map((stat) => (
+              <div key={stat.label} className="pt-4 md:pt-0">
+                <div className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-[#f37021] mb-3">
+                  <CountUp value={stat.value} decimals={stat.decimals} suffix={stat.suffix} />
+                </div>
+                <div className="text-[12px] text-gray-500 font-bold uppercase tracking-wider px-4">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

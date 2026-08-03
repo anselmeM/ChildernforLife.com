@@ -51,4 +51,8 @@
   <url><loc>https://childrenforlife.com/stories/sallys-story-lighting-futures</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://childrenforlife.com/stories/empowering-girls-through-stem</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://childrenforlife.com/stories/clean-water-morogoro-schools</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://childrenforlife.com/campaigns</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://childrenforlife.com/campaigns/solar-powered-futures</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://childrenforlife.com/campaigns/clean-water-schools</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://childrenforlife.com/campaigns/girls-stem-scholarships</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
 </urlset>
