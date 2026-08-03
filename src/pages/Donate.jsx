@@ -3,6 +3,8 @@ import { Heart, X } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
 import PageSEO from '../components/PageSEO';
 import MatchingGiftForm from '../components/MatchingGiftForm';
+import GiftAidForm from '../components/GiftAidForm';
+import CryptoGiving from '../components/CryptoGiving';
 import { useI18n } from '../i18n/useI18n';
 import { campaignBySlug } from '../data/campaigns';
 
@@ -339,6 +341,12 @@ const Donate = () => {
 
             {/* Employer matching gift */}
             <MatchingGiftForm />
+
+            {/* Tax receipt / Gift Aid */}
+            <GiftAidForm />
+
+            {/* Crypto giving */}
+            <CryptoGiving />
 
           </div>
 

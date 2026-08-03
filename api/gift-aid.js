@@ -29,33 +29,31 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { employeeName, email, company, amount, note } = req.body || {};
+    const { fullName, email, amount, consent } = req.body || {};
 
-    if (typeof employeeName !== 'string' || !employeeName.trim() || employeeName.length > MAX_LENGTH) {
+    if (typeof fullName !== 'string' || !fullName.trim() || fullName.length > MAX_LENGTH) {
       return res.status(400).json({ error: 'Please enter your name.' });
     }
     if (typeof email !== 'string' || !EMAIL_RE.test(email.trim()) || email.length > MAX_LENGTH) {
-      return res.status(400).json({ error: 'Please enter a valid work email address.' });
+      return res.status(400).json({ error: 'Please enter a valid email address.' });
     }
-    if (typeof company !== 'string' || !company.trim() || company.length > MAX_LENGTH) {
-      return res.status(400).json({ error: 'Please enter your employer name.' });
+    if (consent !== true) {
+      return res.status(400).json({ error: 'Please confirm the declaration to continue.' });
     }
 
     const amountText = typeof amount === 'string' ? amount.trim().slice(0, 50) : '';
-    const noteText = typeof note === 'string' ? note.trim().slice(0, 1000) : '';
 
     const { error } = await resend.emails.send({
       from: 'Children for Life <contact@childrenforlife.com>',
       to: [TO_EMAIL],
       replyTo: email.trim(),
-      subject: `Matching Gift Request: ${company.trim()}`,
+      subject: `Tax Receipt / Gift Aid Declaration: ${fullName.trim()}`,
       html: `
-        <h2>New Employer Matching Gift Request</h2>
-        <p><strong>Employee:</strong> ${escapeHtml(employeeName.trim())}</p>
-        <p><strong>Work email:</strong> ${escapeHtml(email.trim())}</p>
-        <p><strong>Employer:</strong> ${escapeHtml(company.trim())}</p>
-        ${amountText ? `<p><strong>Donation amount to match:</strong> ${escapeHtml(amountText)}</p>` : ''}
-        ${noteText ? `<p><strong>Note:</strong></p><p>${escapeHtml(noteText).replace(/\n/g, '<br>')}</p>` : ''}
+        <h2>Tax Receipt / Gift Aid Declaration</h2>
+        <p><strong>Name:</strong> ${escapeHtml(fullName.trim())}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email.trim())}</p>
+        ${amountText ? `<p><strong>Donation amount:</strong> ${escapeHtml(amountText)}</p>` : ''}
+        <p><strong>Declaration confirmed:</strong> yes</p>
         <hr>
         <p style="color:#888;font-size:12px;">Sent from the childrenforlife.com donation page</p>
       `,
@@ -68,7 +66,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ success: true });
   } catch (error) {
-    console.error('Matching gift error:', error);
+    console.error('Gift aid error:', error);
     return res.status(500).json({ error: 'Failed to submit. Please try again.' });
   }
 }

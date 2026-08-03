@@ -51,6 +51,7 @@ at build time).
 | `POST /api/matching-gift` | Send an employer matching-gift request via Resend |
 | `POST /api/volunteer-apply` | Send a volunteer application via Resend |
 | `POST /api/career-apply` | Send a job application via Resend |
+| `POST /api/gift-aid` | Send a tax-receipt / Gift Aid declaration via Resend |
 | `POST /api/subscribe` | Add an email to the Resend newsletter audience + send a welcome email |
 | `POST /api/contact` | Send contact-form messages via Resend |
 

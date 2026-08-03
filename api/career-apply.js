@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import { isRateLimited } from './lib/rateLimit.js';
 
 if (!process.env.RESEND_API_KEY) {
   throw new Error('Missing required environment variable: RESEND_API_KEY');
@@ -19,21 +20,6 @@ const POSITION_OPTIONS = [
   'General application',
 ];
 
-// Light per-IP rate limit (in-memory; per serverless instance).
-const RATE_LIMIT_MAX = 5;
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
-const requestsByIp = new Map();
-
-function isRateLimited(ip) {
-  const now = Date.now();
-  const windowStart = now - RATE_LIMIT_WINDOW_MS;
-  const timestamps = (requestsByIp.get(ip) || []).filter((t) => t > windowStart);
-  if (timestamps.length >= RATE_LIMIT_MAX) return true;
-  timestamps.push(now);
-  requestsByIp.set(ip, timestamps);
-  return false;
-}
-
 function escapeHtml(value) {
   return String(value ?? '')
     .replace(/&/g, '&amp;')
@@ -47,8 +33,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const ip = req.headers['x-forwarded-for']?.split(',')[0].trim() || req.socket?.remoteAddress || 'unknown';
-  if (isRateLimited(ip)) {
+  if (isRateLimited(req)) {
     return res.status(429).json({ error: 'Too many attempts. Please try again later.' });
   }
 

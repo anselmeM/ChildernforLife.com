@@ -54,6 +54,9 @@ and submit the footer form to confirm the welcome email arrives.
   email applications to the same address.
 - An RSS feed for news is generated at `public/rss.xml` by
   `node scripts/generate-sitemap.mjs` (run alongside the sitemap).
+- Gift-aid declarations (`POST /api/gift-aid`) and crypto giving (set the wallet in
+  `src/data/cryptoGiving.js`) are on the Donate page — review the Gift Aid wording for
+  your organization's tax jurisdiction before going live.
 
 ## 7. Deploy
 

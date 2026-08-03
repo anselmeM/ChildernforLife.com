@@ -1,4 +1,5 @@
 import { Resend } from 'resend';
+import { isRateLimited } from './lib/rateLimit.js';
 
 const missing = ['RESEND_API_KEY', 'RESEND_AUDIENCE_ID'].filter((v) => !process.env[v]);
 if (missing.length) {
@@ -12,27 +13,6 @@ const FROM_EMAIL = 'Children for Life <newsletter@childrenforlife.com>';
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const MAX_EMAIL_LENGTH = 254;
 const MAX_NAME_LENGTH = 80;
-
-// Simple per-IP rate limit (in-memory; per serverless instance — a mitigation,
-// not a guarantee). Prevents the endpoint from being used as a spam pipe.
-const RATE_LIMIT_MAX = 5;
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
-const requestsByIp = new Map();
-
-function isRateLimited(ip) {
-  const now = Date.now();
-  const windowStart = now - RATE_LIMIT_WINDOW_MS;
-  const timestamps = (requestsByIp.get(ip) || []).filter((t) => t > windowStart);
-  if (timestamps.length >= RATE_LIMIT_MAX) return true;
-  timestamps.push(now);
-  requestsByIp.set(ip, timestamps);
-  if (requestsByIp.size > 1000) {
-    for (const [key, list] of requestsByIp) {
-      if (list.every((t) => t <= windowStart)) requestsByIp.delete(key);
-    }
-  }
-  return false;
-}
 
 function escapeHtml(value) {
   return String(value ?? '')
@@ -48,8 +28,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const ip = req.headers['x-forwarded-for']?.split(',')[0].trim() || req.socket?.remoteAddress || 'unknown';
-    if (isRateLimited(ip)) {
+    if (isRateLimited(req)) {
       return res.status(429).json({ error: 'Too many attempts. Please try again later.' });
     }
 
