@@ -26,6 +26,8 @@ describe('i18n', () => {
 
     expect(screen.getAllByText('Donate').length).toBeGreaterThan(0);
 
+    // Open the language dropdown, then pick Français.
+    await user.click(screen.getAllByRole('button', { name: /English/i })[0]);
     await user.click(screen.getAllByRole('button', { name: 'Français' })[0]);
 
     expect(screen.getAllByText('Faire un don').length).toBeGreaterThan(0);
@@ -47,6 +49,7 @@ describe('i18n', () => {
 
     expect(screen.getByText('Every Child Deserves a Future')).toBeInTheDocument();
 
+    await user.click(screen.getAllByRole('button', { name: /English/i })[0]);
     await user.click(screen.getAllByRole('button', { name: 'Kiswahili' })[0]);
 
     expect(screen.getByText('Kila Mtoto Anastahili Maisha Bora')).toBeInTheDocument();

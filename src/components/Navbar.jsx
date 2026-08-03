@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Menu, X, Heart, ChevronDown, ChevronRight } from 'lucide-react';
 import { useI18n } from '../i18n/useI18n';
+import LanguageDropdown from './LanguageDropdown';
 import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Navbar() {
@@ -82,7 +83,7 @@ export default function Navbar() {
       <span className="text-gray-300 px-3.5">|</span>
       <button onClick={go('/accountability')} className="hover:text-[#008cb3] transition-colors">{t('nav.accountability')}</button>
       <span className="text-gray-300 px-3.5">|</span>
-      <LanguageSwitcher />
+      <LanguageDropdown />
       <span className="text-gray-300 px-3.5">|</span>
       <button className="hover:text-[#008cb3] transition-colors flex items-center" aria-label="Search">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-4.5 h-4.5">
