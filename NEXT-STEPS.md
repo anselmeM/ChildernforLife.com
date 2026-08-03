@@ -7,7 +7,8 @@ Go to [Vercel Project Settings → Environment Variables](https://vercel.com/ans
 | Key | Description | Required |
 |---|---|---|
 | `STRIPE_SECRET_KEY` | Your Stripe secret key from the [Stripe Dashboard](https://dashboard.stripe.com/apikeys). Enables donations, receipt emails, and the donor portal. | Yes |
-| `RESEND_API_KEY` | Your Resend API key from [resend.com/api-keys](https://resend.com/api-keys). Enables the contact form and donation receipts. | Yes |
+| `RESEND_API_KEY` | Your Resend API key from [resend.com/api-keys](https://resend.com/api-keys). Enables the contact form, donation receipts, and the newsletter. | Yes |
+| `RESEND_AUDIENCE_ID` | Your Resend **audience** ID (Newsletter list). Create one at [resend.com/audiences](https://resend.com/audiences) — needed for the footer newsletter signup. | Yes |
 | `VITE_SENTRY_DSN` | Your Sentry DSN from [sentry.io](https://sentry.io) (optional — error monitoring) | No |
 
 ## 2. Verify the social sharing image ✅
@@ -32,7 +33,14 @@ The site includes Plausible Analytics (`plausible.io`). Either:
 - **Action**: in the Stripe Dashboard, confirm your branding, and (recommended) enable
   Stripe's built-in receipts for one-time payments as a fallback: Settings → Customer emails.
 
-## 5. Deploy
+## 5. Verify the newsletter (new)
+
+The footer newsletter signup (`POST /api/subscribe`) adds subscribers to your Resend
+audience and sends a welcome email. Create an audience in
+[Resend → Audiences](https://resend.com/audiences), copy its ID into `RESEND_AUDIENCE_ID`,
+and submit the footer form to confirm the welcome email arrives.
+
+## 6. Deploy
 
 The site auto-deploys to Vercel on every push to `master`. Check deployment status at
 [Vercel Dashboard](https://vercel.com/anselmeM/ChildernforLife.com). After deploying, test

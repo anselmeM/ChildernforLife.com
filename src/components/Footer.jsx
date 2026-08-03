@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Heart, Leaf, ShieldCheck } from 'lucide-react';
+import NewsletterForm from './NewsletterForm';
 
 const FacebookIcon = (props) => (
   <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" {...props}>
@@ -101,6 +102,9 @@ export default function Footer() {
           </div>
 
         </div>
+
+        {/* Newsletter signup */}
+        <NewsletterForm />
 
         {/* Bottom copyright section */}
         <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center text-[13px] text-blue-100/70">

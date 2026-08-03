@@ -31,7 +31,8 @@ Copy `.env.example` to `.env` and fill in values:
 | Variable | Used by | Required |
 |---|---|---|
 | `STRIPE_SECRET_KEY` | `api/create-checkout-session.js`, `api/send-receipt.js`, `api/create-portal-session.js` | Yes (live donations) |
-| `RESEND_API_KEY` | `api/contact.js`, `api/send-receipt.js` | Yes (contact + receipts) |
+| `RESEND_API_KEY` | `api/contact.js`, `api/send-receipt.js`, `api/subscribe.js` | Yes (contact + receipts + newsletter) |
+| `RESEND_AUDIENCE_ID` | `api/subscribe.js` | Yes (newsletter list) |
 | `VITE_SENTRY_DSN` | `src/main.jsx` | No (error monitoring) |
 
 Never commit real keys — only `STRIPE_SECRET_KEY` and `RESEND_API_KEY` are needed in
@@ -45,6 +46,7 @@ at build time).
 | `POST /api/create-checkout-session` | Create a Stripe Checkout session (one-time or monthly) |
 | `POST /api/send-receipt` | Verify a paid Stripe session and email a donation receipt via Resend |
 | `POST /api/create-portal-session` | Open the Stripe Customer Portal for a donor (manage/cancel monthly gifts) |
+| `POST /api/subscribe` | Add an email to the Resend newsletter audience + send a welcome email |
 | `POST /api/contact` | Send contact-form messages via Resend |
 
 ## Deployment
