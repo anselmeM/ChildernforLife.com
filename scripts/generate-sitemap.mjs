@@ -38,7 +38,6 @@ const STATIC_ROUTES = [
   ['/about/competencies', '0.5', 'monthly'],
   ['/about/team', '0.5', 'monthly'],
   ['/about/board', '0.5', 'monthly'],
-  ['/about/leadership', '0.5', 'monthly'],
   ['/about/careers', '0.5', 'monthly'],
   ['/volunteer-faq', '0.5', 'monthly'],
   ['/alumni', '0.5', 'monthly'],

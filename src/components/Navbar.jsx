@@ -70,7 +70,6 @@ export default function Navbar() {
           <button onClick={go('/about/competencies')} className="text-left hover:underline transition-all">{t('nav.coreCompetencies')}</button>
           <button onClick={go('/about/team')} className="text-left hover:underline transition-all">{t('nav.team')}</button>
           <button onClick={go('/about/board')} className="text-left hover:underline transition-all">{t('nav.board')}</button>
-          <button onClick={go('/about/leadership')} className="text-left hover:underline transition-all">{t('nav.leadership')}</button>
           <button onClick={go('/about/careers')} className="text-left hover:underline transition-all">{t('nav.careers')}</button>
         </div>
       </div>
@@ -274,7 +273,6 @@ export default function Navbar() {
             <button onClick={() => { navigate('/about/competencies'); setIsMobileMenuOpen(false); }} className="flex items-center justify-between text-left py-2.5 text-base font-semibold text-gray-800 hover:text-[#005c7a] border-b border-gray-100"><span>{t('nav.coreCompetencies')}</span><ChevronRight size={16} className="text-gray-300" /></button>
             <button onClick={() => { navigate('/about/team'); setIsMobileMenuOpen(false); }} className="flex items-center justify-between text-left py-2.5 text-base font-semibold text-gray-800 hover:text-[#005c7a] border-b border-gray-100"><span>{t('nav.team')}</span><ChevronRight size={16} className="text-gray-300" /></button>
             <button onClick={() => { navigate('/about/board'); setIsMobileMenuOpen(false); }} className="flex items-center justify-between text-left py-2.5 text-base font-semibold text-gray-800 hover:text-[#005c7a] border-b border-gray-100"><span>{t('nav.board')}</span><ChevronRight size={16} className="text-gray-300" /></button>
-            <button onClick={() => { navigate('/about/leadership'); setIsMobileMenuOpen(false); }} className="flex items-center justify-between text-left py-2.5 text-base font-semibold text-gray-800 hover:text-[#005c7a] border-b border-gray-100"><span>{t('nav.leadership')}</span><ChevronRight size={16} className="text-gray-300" /></button>
             <button onClick={() => { navigate('/about/careers'); setIsMobileMenuOpen(false); }} className="flex items-center justify-between text-left py-2.5 text-base font-semibold text-gray-800 hover:text-[#005c7a] border-b border-gray-100"><span>{t('nav.careers')}</span><ChevronRight size={16} className="text-gray-300" /></button>
           </div>
         </div>

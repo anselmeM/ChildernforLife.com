@@ -64,7 +64,7 @@ export default function Footer() {
             <h4 className="font-extrabold mb-6 uppercase tracking-wider text-[13.5px] text-[#e0f2fe]">{t('footer.connect')}</h4>
             <ul className="space-y-4 text-[14.5px] font-bold text-blue-50/90 mb-8">
               <li><button onClick={() => navigate('/contact')} className="hover:underline hover:text-white transition-all">{t('footer.contactUs')}</button></li>
-              <li><button onClick={() => navigate('/about/leadership')} className="hover:underline hover:text-white transition-all text-left">{t('footer.meetLeadership')}</button></li>
+              <li><button onClick={() => navigate('/about/team')} className="hover:underline hover:text-white transition-all text-left">{t('footer.meetLeadership')}</button></li>
               <li><button onClick={() => navigate('/publications')} className="hover:underline hover:text-white transition-all">{t('footer.mediaRoom')}</button></li>
             </ul>
             <div className="text-[13px] text-blue-100/80 space-y-2 font-semibold">

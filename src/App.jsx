@@ -31,7 +31,6 @@ const WhoWeAre = lazy(() => import('./pages/about/WhoWeAre'));
 const Competencies = lazy(() => import('./pages/about/Competencies'));
 const Team = lazy(() => import('./pages/about/Team'));
 const Board = lazy(() => import('./pages/about/Board'));
-const Leadership = lazy(() => import('./pages/about/Leadership'));
 const Careers = lazy(() => import('./pages/about/Careers'));
 const SallyStory = lazy(() => import('./pages/misc/SallyStory'));
 const ImpactStories = lazy(() => import('./pages/misc/ImpactStories'));
@@ -106,7 +105,8 @@ export function AppRoutes() {
       <Route path="/about/competencies" element={<Layout><LazyPage><Competencies /></LazyPage></Layout>} />
       <Route path="/about/team" element={<Layout><LazyPage><Team /></LazyPage></Layout>} />
       <Route path="/about/board" element={<Layout><LazyPage><Board /></LazyPage></Layout>} />
-      <Route path="/about/leadership" element={<Layout><LazyPage><Leadership /></LazyPage></Layout>} />
+      {/* /about/leadership intentionally renders the merged Team page (kept for old links) */}
+      <Route path="/about/leadership" element={<Layout><LazyPage><Team /></LazyPage></Layout>} />
       <Route path="/about/careers" element={<Layout><LazyPage><Careers /></LazyPage></Layout>} />
       <Route path="/stories/sally" element={<Layout><LazyPage><SallyStory /></LazyPage></Layout>} />
       <Route path="/impact-stories" element={<Layout><LazyPage><ImpactStories /></LazyPage></Layout>} />
