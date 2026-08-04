@@ -40,5 +40,10 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './src/test/setup.js',
     css: true,
+    // Lazy-route + jsdom tests are slow and flaky under parallel file load
+    // (heavy pages like /donate contended for CPU). Serialize test files for
+    // deterministic runs; a 20s test timeout gives heavy pages headroom.
+    testTimeout: 20000,
+    fileParallelism: false,
   },
 })
