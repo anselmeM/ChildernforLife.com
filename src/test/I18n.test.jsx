@@ -27,8 +27,8 @@ describe('i18n', () => {
     expect(screen.getAllByText('Donate').length).toBeGreaterThan(0);
 
     // Open the language dropdown, then pick Français.
-    await user.click(screen.getAllByRole('button', { name: /English/i })[0]);
-    await user.click(screen.getAllByRole('button', { name: 'Français' })[0]);
+    await user.click(screen.getByRole('button', { name: /Language/i }));
+    await user.click(screen.getByRole('menuitem', { name: 'Français' }));
 
     expect(screen.getAllByText('Faire un don').length).toBeGreaterThan(0);
     expect(screen.queryByText('Donate')).not.toBeInTheDocument();
@@ -49,8 +49,8 @@ describe('i18n', () => {
 
     expect(screen.getByText('Every Child Deserves a Future')).toBeInTheDocument();
 
-    await user.click(screen.getAllByRole('button', { name: /English/i })[0]);
-    await user.click(screen.getAllByRole('button', { name: 'Kiswahili' })[0]);
+    await user.click(screen.getByRole('button', { name: /Language/i }));
+    await user.click(screen.getByRole('menuitem', { name: 'Kiswahili' }));
 
     expect(screen.getByText('Kila Mtoto Anastahili Maisha Bora')).toBeInTheDocument();
     expect(localStorage.getItem('cfl-language')).toBe('sw');

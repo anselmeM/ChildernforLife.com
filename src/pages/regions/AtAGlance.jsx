@@ -30,7 +30,7 @@ export default function AtAGlance() {
               { region: "West Africa", countries: "Benin, Nigeria, Cameroon", desc: "Supporting digital vocational workshops, microgrid installer training, gender inclusion pedagogy, and women-led Cassava milling." },
               { region: "Central Africa", countries: "Democratic Republic of the Congo", desc: "Providing emergency clean water filtration grids and solar power generators for remote maternity clinics." }
             ].map((r, i) => (
-              <div key={i} className="bg-gray-50 border border-gray-150 rounded-2xl p-8 shadow-sm flex flex-col justify-between">
+              <div key={i} className="bg-gray-50 border border-gray-200 rounded-2xl p-8 shadow-sm flex flex-col justify-between">
                 <div>
                   <h3 className="text-lg font-black text-gray-900 mb-2">{r.region}</h3>
                   <p className="text-[#005c7a] font-bold text-xs mb-4">{r.countries}</p>

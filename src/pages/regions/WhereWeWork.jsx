@@ -25,7 +25,7 @@ export default function WhereWeWork() {
         <div className="space-y-12">
           <p className="text-gray-600 text-lg font-medium leading-relaxed">Children for Life works in partnership with communities across Africa. We collaborate with local governments, NGOs, and community-based organizations to design and implement programs that address the unique needs of each region.</p>
           <p className="text-gray-600 text-lg font-medium leading-relaxed">Our work spans East Africa (Tanzania, Ethiopia), West Africa (Benin, Nigeria, Cameroon), and Central Africa (Democratic Republic of the Congo). In each country, we focus on locally-led solutions in education, health, clean energy, WASH, and sustainable livelihoods.</p>
-          <div className="bg-gray-50 border border-gray-150 rounded-3xl p-8 space-y-6">
+          <div className="bg-gray-50 border border-gray-200 rounded-3xl p-8 space-y-6">
             <h3 className="text-xl font-black text-gray-900">Our Presence Across Africa</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">

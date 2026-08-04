@@ -30,7 +30,7 @@ export default function Volunteering() {
               { title: "Sustainable Growth", desc: "Placements are designed in alignment with local municipal plans to guarantee long-term operational continuity after the placement ends." },
               { title: "Global Network", desc: "Join over 15,000 alumni who continue to advocate for global solidarity, inclusion, and equity." }
             ].map((item, i) => (
-              <div key={i} className="bg-gray-50 border border-gray-150 rounded-2xl p-8 shadow-sm">
+              <div key={i} className="bg-gray-50 border border-gray-200 rounded-2xl p-8 shadow-sm">
                 <h3 className="text-lg font-black text-gray-900 mb-3">{item.title}</h3>
                 <p className="text-gray-500 font-bold text-xs leading-relaxed">{item.desc}</p>
               </div>

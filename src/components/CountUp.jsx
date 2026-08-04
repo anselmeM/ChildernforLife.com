@@ -45,8 +45,12 @@ export default function CountUp({ value, decimals = 0, suffix = '', duration = 1
   }, [started, value, duration]);
 
   return (
-    <span ref={ref} className="tabular-nums">
-      {display.toFixed(decimals)}{suffix}
+    <span>
+      {/* Animated number is decorative; the sr-only span carries the real value */}
+      <span ref={ref} aria-hidden="true" className="tabular-nums">
+        {display.toFixed(decimals)}{suffix}
+      </span>
+      <span className="sr-only">{value.toFixed(decimals)}{suffix}</span>
     </span>
   );
 }

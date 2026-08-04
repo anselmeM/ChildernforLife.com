@@ -26,9 +26,9 @@ export default function Publications() {
         </div>
       </div>
 
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-gray-150">
+      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-gray-200">
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-950 mb-6 lg:mb-8 border-l-4 border-[#8bb43d] pl-4">Solstice Magazine</h2>
-        <div className="bg-white border border-gray-150 rounded-3xl p-8 shadow-sm flex flex-col md:flex-row gap-8 items-center max-w-4xl">
+        <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm flex flex-col md:flex-row gap-8 items-center max-w-4xl">
           <div className="w-full md:w-48 h-64 bg-gray-200 rounded-xl overflow-hidden shrink-0 shadow-md border-4 border-[#8bb43d]">
             <img loading="lazy" src={ugirlsGraduation} className="w-full h-full object-cover" alt="Magazine" />
           </div>
@@ -40,7 +40,7 @@ export default function Publications() {
         </div>
       </section>
 
-      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-gray-150">
+      <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-gray-200">
         <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-950 mb-6 lg:mb-8 border-l-4 border-[#f37021] pl-4">Annual Reports</h2>
         <div className="grid grid-cols-2 md:grid-cols-6 gap-6">
           {[
@@ -72,7 +72,7 @@ export default function Publications() {
             { issue: "Autumn 2025", desc: "Focus: Girls' secondary scholarships", img: ugirlsGraduation },
             { issue: "Summer 2025", desc: "Focus: Climate resilient farming yields", img: sallyStory }
           ].map((news, i) => (
-            <div key={i} className="bg-white border border-gray-150 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
+            <div key={i} className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
               <div className="aspect-[4/3] rounded-xl overflow-hidden mb-4 border border-gray-100">
                 <img loading="lazy" src={news.img} className="w-full h-full object-cover" alt={news.issue} />
               </div>

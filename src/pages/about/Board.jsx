@@ -31,7 +31,7 @@ export default function Board() {
               { name: "Samuel Wambua", role: "Director", desc: "Community leader and agricultural specialist advocate based in Tanzania." },
               { name: "Claire Dupont", role: "Director", desc: "Human rights lawyer specializing in children's education rights and social inclusion." }
             ].map((b, i) => (
-              <div key={i} className="bg-gray-50 border border-gray-150 rounded-2xl p-8 shadow-sm">
+              <div key={i} className="bg-gray-50 border border-gray-200 rounded-2xl p-8 shadow-sm">
                 <h4 className="font-black text-gray-900 text-lg mb-1">{b.name}</h4>
                 <p className="text-[#005c7a] font-bold text-xs uppercase mb-3">{b.role}</p>
                 <p className="text-gray-500 font-semibold text-xs leading-relaxed">{b.desc}</p>

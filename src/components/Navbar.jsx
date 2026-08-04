@@ -51,6 +51,35 @@ export default function Navbar() {
     }
   };
 
+  // Keyboard access: Escape (or a click outside) closes every dropdown, and
+  // clicking a trigger opens its panel (hover still works too).
+  const closeAllDropdowns = () => {
+    [whatWeDoDropdownRef, regionsDropdownRef, takeActionDropdownRef].forEach((ref) => {
+      if (ref.current) {
+        ref.current.style.display = 'none';
+        ref.current.style.opacity = '0';
+      }
+    });
+    setOpenDropdown(null);
+  };
+
+  const [openDropdown, setOpenDropdown] = useState(null);
+
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') closeAllDropdowns();
+    };
+    const onPointerDown = (e) => {
+      if (!e.target.closest('[data-nav-dropdown]')) closeAllDropdowns();
+    };
+    document.addEventListener('keydown', onKeyDown);
+    document.addEventListener('pointerdown', onPointerDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.removeEventListener('pointerdown', onPointerDown);
+    };
+  }, []);
+
   const go = (path) => () => { navigate(path); };
 
   return (
@@ -63,7 +92,7 @@ export default function Navbar() {
         <button className="hover:text-[#008cb3] transition-colors flex items-center cursor-pointer whitespace-nowrap">
           {t('nav.about')} <ChevronDown size={13} className="ml-0.5 text-[#005a74] stroke-[2.5]" />
         </button>
-        <div className="absolute left-0 mt-2 w-[240px] bg-white border border-[#005c7a] rounded-xl shadow-xl p-4 hidden group-hover/about:flex flex-col space-y-2.5 z-50 normal-case text-left text-[16.94px] text-[#005c7a] font-bold">
+        <div className="absolute left-0 mt-2 w-[240px] bg-white border border-[#005c7a] rounded-xl shadow-xl p-4 hidden group-hover/about:flex group-focus-within/about:flex flex-col space-y-2.5 z-50 normal-case text-left text-[16.94px] text-[#005c7a] font-bold">
           <div className="absolute top-[-12px] left-0 right-0 h-3 bg-transparent"></div>
           <button onClick={go('/about/who')} className="text-left hover:underline transition-all">{t('nav.who')}</button>
           <button onClick={go('/programs/volunteering')} className="text-left hover:underline transition-all">{t('nav.whatWeDo')}</button>
@@ -106,12 +135,13 @@ export default function Navbar() {
             {/* What We Do Dropdown */}
             <div 
               className="relative py-2"
-              onMouseEnter={() => handleMouseEnter(whatWeDoDropdownRef)}
+              data-nav-dropdown
+              onMouseEnter={() => { handleMouseEnter(whatWeDoDropdownRef); setOpenDropdown('what'); }}
               onMouseLeave={() => handleMouseLeave(whatWeDoDropdownRef)}
             >
-              <a href="#programmes" className="hover:text-[#005c7a] transition-colors flex items-center cursor-pointer">
+              <button type="button" aria-haspopup="true" aria-expanded={openDropdown === 'what'} onClick={() => { handleMouseEnter(whatWeDoDropdownRef); setOpenDropdown('what'); }} className="hover:text-[#005c7a] transition-colors flex items-center cursor-pointer">
                 {t('nav.whatWeDo')} <span className="text-[11px] ml-1.5 text-gray-400">▼</span>
-              </a>
+              </button>
               
               <div 
                 ref={whatWeDoDropdownRef}
@@ -130,12 +160,13 @@ export default function Navbar() {
             {/* Regions We Serve Dropdown */}
             <div 
               className="relative py-2"
-              onMouseEnter={() => handleMouseEnter(regionsDropdownRef, 'flex')}
+              data-nav-dropdown
+              onMouseEnter={() => { handleMouseEnter(regionsDropdownRef); setOpenDropdown('regions'); }}
               onMouseLeave={() => handleMouseLeave(regionsDropdownRef)}
             >
-              <a href="#regions" className="hover:text-[#005c7a] transition-colors flex items-center cursor-pointer">
+              <button type="button" aria-haspopup="true" aria-expanded={openDropdown === 'regions'} onClick={() => { handleMouseEnter(regionsDropdownRef); setOpenDropdown('regions'); }} className="hover:text-[#005c7a] transition-colors flex items-center cursor-pointer">
                 {t('nav.regions')} <span className="text-[11px] ml-1.5 text-gray-400">▼</span>
-              </a>
+              </button>
               
               <div 
                 ref={regionsDropdownRef}
@@ -165,12 +196,13 @@ export default function Navbar() {
             {/* Take Action Dropdown */}
             <div 
               className="relative py-2"
-              onMouseEnter={() => handleMouseEnter(takeActionDropdownRef, 'grid')}
+              data-nav-dropdown
+              onMouseEnter={() => { handleMouseEnter(takeActionDropdownRef); setOpenDropdown('action'); }}
               onMouseLeave={() => handleMouseLeave(takeActionDropdownRef)}
             >
-              <a href="#difference" className="hover:text-[#005c7a] transition-colors flex items-center cursor-pointer">
+              <button type="button" aria-haspopup="true" aria-expanded={openDropdown === 'action'} onClick={() => { handleMouseEnter(takeActionDropdownRef); setOpenDropdown('action'); }} className="hover:text-[#005c7a] transition-colors flex items-center cursor-pointer">
                 {t('nav.takeAction')} <span className="text-[11px] ml-1.5 text-gray-400">▼</span>
-              </a>
+              </button>
               
               <div 
                 ref={takeActionDropdownRef}
@@ -251,8 +283,8 @@ export default function Navbar() {
       aria-hidden="true"
     />
 
-    {/* Mobile Menu Panel */}
-    <div className={`lg:hidden fixed top-16 right-0 h-[calc(100vh-64px)] w-full sm:max-w-sm bg-white z-50 shadow-2xl overflow-y-auto transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+    {/* Mobile Menu Panel — inert when closed so it's not reachable by keyboard/Tab */}
+    <div className={`lg:hidden fixed top-16 right-0 h-[calc(100vh-64px)] w-full sm:max-w-sm bg-white z-50 shadow-2xl overflow-y-auto transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`} inert={!isMobileMenuOpen} aria-hidden={!isMobileMenuOpen}>
       <div className="px-6 pt-6 pb-10 space-y-6">
         
         <div>

@@ -39,7 +39,7 @@ export default function WhoWeAre() {
         </div>
       </section>
 
-      <section className="py-12 sm:py-20 lg:py-24 bg-gray-50 border-t border-gray-150">
+      <section className="py-12 sm:py-20 lg:py-24 bg-gray-50 border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-2xl sm:text-3xl font-black text-[#005c7a] mb-6">Our Mission, Vision & Values</h2>

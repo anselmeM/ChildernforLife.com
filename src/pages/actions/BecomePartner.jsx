@@ -33,7 +33,7 @@ export default function BecomePartner() {
                 <li className="flex items-start"><span className="text-[#005c7a] mr-2">✔</span><span>Direct alignment with United Nations Sustainable Development Goals.</span></li>
               </ul>
             </div>
-            <form onSubmit={(e) => { e.preventDefault(); alert("Partnership Inquiry Received!"); navigate('/'); }} className="space-y-4 bg-gray-50 border border-gray-150 p-8 rounded-3xl">
+            <form onSubmit={(e) => { e.preventDefault(); alert("Partnership Inquiry Received!"); navigate('/'); }} className="space-y-4 bg-gray-50 border border-gray-200 p-8 rounded-3xl">
               <div>
                 <label htmlFor="partner-company" className="block text-xs font-bold text-gray-500 uppercase mb-1">Company / Organization</label>
                 <input id="partner-company" required type="text" className="w-full border border-gray-300 rounded-lg px-4 py-2 font-semibold focus:outline-none focus:border-[#005c7a]" />

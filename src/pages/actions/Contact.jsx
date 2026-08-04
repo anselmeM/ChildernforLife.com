@@ -59,7 +59,7 @@ export default function Contact() {
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-6 bg-gray-50 border border-gray-150 p-8 rounded-3xl shadow-sm">
+          <form onSubmit={handleSubmit} className="space-y-6 bg-gray-50 border border-gray-200 p-8 rounded-3xl shadow-sm">
             {status === 'error' && (
               <div className="bg-red-50 border border-red-200 rounded-2xl p-4 text-center">
                 <p className="text-red-600 font-bold text-sm">Failed to send. Please try again or email us directly.</p>

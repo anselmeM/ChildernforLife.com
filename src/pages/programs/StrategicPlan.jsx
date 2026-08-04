@@ -32,7 +32,7 @@ export default function StrategicPlan() {
           <p className="text-gray-600 text-lg font-medium leading-relaxed">Our 2024–2028 Strategic Plan lays out our vision for children and families. Over the next five years, Children for Life is focusing resources on three core pillars:</p>
           <div className="space-y-6">
             {pillars.map((p, i) => (
-              <div key={i} className="border-b border-gray-150 pb-6">
+              <div key={i} className="border-b border-gray-200 pb-6">
                 <h3 className="text-xl font-black text-gray-900 mb-2">{p.title}</h3>
                 <p className="text-gray-500 font-semibold text-[14.5px] leading-relaxed">{p.desc}</p>
               </div>

@@ -101,7 +101,7 @@ export default function CountryPage() {
       </div>
 
       {/* Locally-Led Solutions */}
-      <div className="bg-[#f0f9fc] py-12 sm:py-20 lg:py-24 relative z-20 border-t border-b border-gray-150">
+      <div className="bg-[#f0f9fc] py-12 sm:py-20 lg:py-24 relative z-20 border-t border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900 mb-4">Locally-Led Solutions</h2>

@@ -199,13 +199,15 @@ const Donate = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {tiers.map(tier => (
-                <div
+                <button
+                  type="button"
                   key={tier.id}
                   onClick={() => {
                     setSelectedTier(tier.id);
                     setCustomAmount('');
                   }}
-                  className={`bg-white border rounded-3xl p-6 shadow-sm hover:shadow-md transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between min-h-[210px] h-auto ${
+                  aria-pressed={selectedTier === tier.id && !customAmount}
+                  className={`text-left bg-white border rounded-3xl p-6 shadow-sm hover:shadow-md transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between min-h-[210px] h-auto ${
                     selectedTier === tier.id && !customAmount
                       ? 'border-2 border-[#f37021] ring-4 ring-[#f37021]/10 bg-orange-50/5'
                       : 'border-gray-200 hover:border-[#005c7a]'
@@ -227,7 +229,7 @@ const Donate = () => {
                   <p className="text-gray-500 font-medium text-[11px] leading-relaxed border-t border-gray-100 pt-3 mt-3">
                     {tier.desc}
                   </p>
-                </div>
+                </button>
               ))}
             </div>
 

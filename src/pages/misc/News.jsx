@@ -91,7 +91,7 @@ export default function News() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {pagedNews.map((news) => (
-              <Link key={news.slug} to={`/news/${news.slug}`} className="bg-white border border-gray-150 rounded-2xl overflow-hidden hover:shadow-md transition-all flex flex-col justify-between group">
+              <Link key={news.slug} to={`/news/${news.slug}`} className="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-md transition-all flex flex-col justify-between group">
                 <div>
                   <picture>
                     <source srcSet={news.imgCard} type="image/webp" />
@@ -133,7 +133,7 @@ export default function News() {
         </div>
       </section>
 
-      <section className="bg-white border-t border-gray-150 py-16 text-center">
+      <section className="bg-white border-t border-gray-200 py-16 text-center">
         <div className="max-w-xl mx-auto px-4">
           <div className="w-16 h-16 bg-[#e1f3f8] rounded-full flex items-center justify-center mx-auto mb-4 text-[#005c7a]">
             <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" /></svg>

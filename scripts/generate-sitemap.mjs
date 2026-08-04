@@ -48,7 +48,7 @@ const STATIC_ROUTES = [
   ['/programs/economic', '0.5', 'monthly'],
   ['/programs/climate', '0.5', 'monthly'],
   ['/programs/strategic', '0.5', 'monthly'],
-  ['/stories/sally', '0.5', 'monthly'],
+  ['/stories/sallys-story-lighting-futures', '0.5', 'monthly'],
   ['/publications', '0.5', 'monthly'],
   ['/accountability', '0.5', 'monthly'],
 ];

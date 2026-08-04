@@ -30,7 +30,7 @@ export default function Alumni() {
               { name: "Sarah Jenkins", role: "WASH Educator (Tanzania, 2023)", text: "Teaching clean water hygiene in local schools was one of the most challenging and rewarding years of my life. It gave me a new perspective on global health and led to my career in NGO administration.", img: ugirlsGraduation },
               { name: "David Chen", role: "Solar Microgrid Engineer (Ethiopia, 2024)", text: "Installing solar grids for clinics meant electricity for vaccine fridges and maternal care. Seeing the immediate change when the lights came on is a memory I will cherish forever.", img: cleanEnergy }
             ].map((al, i) => (
-              <div key={i} className="bg-gray-50 border border-gray-150 rounded-3xl p-8 flex flex-col md:flex-row gap-6 items-center">
+              <div key={i} className="bg-gray-50 border border-gray-200 rounded-3xl p-8 flex flex-col md:flex-row gap-6 items-center">
                 <div className="w-24 h-24 rounded-full overflow-hidden shrink-0 shadow-md">
                   <img loading="lazy" src={al.img} className="w-full h-full object-cover" alt={al.name} />
                 </div>

@@ -255,7 +255,7 @@ export default function Home() {
                     <button 
                       onClick={() => {
                         if (story.type === "Sally's Story") {
-                          navigate('/stories/sally');
+                          navigate('/stories/sallys-story-lighting-futures');
                         } else {
                           navigate('/donate');
                         }
@@ -296,7 +296,7 @@ export default function Home() {
               After losing her husband, Sally struggled to raise her three children in a home without electricity or safe sanitation. Children for Life assessed her family's needs and provided solar lighting and a proper toilet: restoring safety, dignity, and the opportunity for her children to study and thrive.
             </p>
             <button 
-              onClick={() => navigate('/stories/sally')}
+              onClick={() => navigate('/stories/sallys-story-lighting-futures')}
               className="bg-[#ffc72c] hover:bg-[#eebb22] text-black font-black px-8 py-4 rounded-full flex items-center space-x-2 transition-all duration-300 transform hover:-translate-y-0.5 shadow-md uppercase text-xs tracking-wider"
             >
               <span>READ SALLY'S STORY</span>

@@ -33,7 +33,7 @@ export default function Placements() {
           <p className="text-gray-600 text-lg font-medium leading-relaxed">Children for Life places skilled professionals in communities around the world to support local health, education, and livelihood projects. Browse our current open placements below and begin your journey.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {placements.map((p, i) => (
-              <div key={i} className="bg-gray-50 border border-gray-150 rounded-2xl p-8 hover:shadow-md transition-shadow flex flex-col justify-between">
+              <div key={i} className="bg-gray-50 border border-gray-200 rounded-2xl p-8 hover:shadow-md transition-shadow flex flex-col justify-between">
                 <div>
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-black text-gray-900">{p.title}</h3>

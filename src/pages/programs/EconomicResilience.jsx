@@ -30,7 +30,7 @@ export default function EconomicResilience() {
               { title: "Financial Literacy", desc: "Training rural women's groups in budgeting, saving models, and using micro-finance accounts to launch home businesses." },
               { title: "Vocational Skills", desc: "Supporting youth with technical training in clean energy installation, sustainable building, and information technology." }
             ].map((item, i) => (
-              <div key={i} className="bg-gray-50 border border-gray-150 rounded-2xl p-8 shadow-sm">
+              <div key={i} className="bg-gray-50 border border-gray-200 rounded-2xl p-8 shadow-sm">
                 <h3 className="text-lg font-black text-gray-900 mb-3">{item.title}</h3>
                 <p className="text-gray-500 font-bold text-xs leading-relaxed">{item.desc}</p>
               </div>

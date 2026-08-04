@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -32,7 +32,6 @@ const Competencies = lazy(() => import('./pages/about/Competencies'));
 const Team = lazy(() => import('./pages/about/Team'));
 const Board = lazy(() => import('./pages/about/Board'));
 const Careers = lazy(() => import('./pages/about/Careers'));
-const SallyStory = lazy(() => import('./pages/misc/SallyStory'));
 const ImpactStories = lazy(() => import('./pages/misc/ImpactStories'));
 const ArticleDetail = lazy(() => import('./pages/misc/ArticleDetail'));
 const News = lazy(() => import('./pages/misc/News'));
@@ -108,7 +107,8 @@ export function AppRoutes() {
       {/* /about/leadership intentionally renders the merged Team page (kept for old links) */}
       <Route path="/about/leadership" element={<Layout><LazyPage><Team /></LazyPage></Layout>} />
       <Route path="/about/careers" element={<Layout><LazyPage><Careers /></LazyPage></Layout>} />
-      <Route path="/stories/sally" element={<Layout><LazyPage><SallyStory /></LazyPage></Layout>} />
+      {/* Legacy Sally story URL — content now lives in the data-driven article */}
+      <Route path="/stories/sally" element={<Navigate to="/stories/sallys-story-lighting-futures" replace />} />
       <Route path="/impact-stories" element={<Layout><LazyPage><ImpactStories /></LazyPage></Layout>} />
       <Route path="/news" element={<Layout><LazyPage><News /></LazyPage></Layout>} />
       <Route path="/news/:slug" element={<Layout><LazyPage><ArticleDetail kind="news" backPath="/news" backLabel="News" pathPrefix="news" /></LazyPage></Layout>} />
