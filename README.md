@@ -58,8 +58,14 @@ at build time).
 ## Deployment
 
 - **Primary**: Vercel — auto-deploys on push to `master` (see `vercel.json`).
+  `master` is **protected**: all changes land via a feature branch + PR
+  (squash merge). The pre-push hook in `.githooks/` blocks direct pushes to
+  `master` — enable it with `git config core.hooksPath .githooks`.
 - **Alternative**: GitHub Pages — `npm run deploy` builds with `GITHUB_PAGES=true`
   (the router picks a `/ChildernforLife.com` basename) and publishes `dist/`.
+
+Contributing guidelines live in [`CONTRIBUTING.md`](CONTRIBUTING.md) (humans)
+and [`AGENTS.md`](AGENTS.md) (AI agents).
 
 Go-live checklist lives in [`NEXT-STEPS.md`](NEXT-STEPS.md).
 
