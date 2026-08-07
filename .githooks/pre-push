@@ -1,0 +1,15 @@
+#!/bin/sh
+# Block direct pushes to the default branch (branch + PR workflow).
+# Requires core.hooksPath=.githooks (see CONTRIBUTING.md).
+
+DEFAULT_BRANCH="master"
+
+while read local_ref local_sha remote_ref remote_sha; do
+  if [ "$remote_ref" = "refs/heads/$DEFAULT_BRANCH" ]; then
+    echo "ERROR: direct push to '$DEFAULT_BRANCH' is blocked. Use a feature branch + PR." >&2
+    echo "  git switch -c feat/x && git push -u origin feat/x && gh pr create" >&2
+    exit 1
+  fi
+done
+
+exit 0
