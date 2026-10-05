@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { session_id } = req.body || {};
+    const { session_id, intent } = req.body || {};
 
     if (typeof session_id !== 'string' || !/^cs_(test|live)_[A-Za-z0-9]+$/.test(session_id)) {
       return res.status(400).json({ error: 'Invalid session id' });
@@ -37,6 +37,15 @@ export default async function handler(req, res) {
       status: 'active',
       limit: 1,
     });
+    const hasActiveSubscription = activeSubscriptions.data.length > 0;
+
+    // intent: 'check' is the read-only probe the thank-you page uses on mount.
+    // It answers "is this a paid session with a recurring gift?" without
+    // creating a Stripe billing-portal session for every visitor holding the
+    // URL. The portal session is only created when the donor clicks through.
+    if (intent === 'check') {
+      return res.status(200).json({ mode: session.mode, hasActiveSubscription });
+    }
 
     const portal = await stripe.billingPortal.sessions.create({
       customer: customerId,
@@ -46,7 +55,7 @@ export default async function handler(req, res) {
     return res.status(200).json({
       url: portal.url,
       mode: session.mode,
-      hasActiveSubscription: activeSubscriptions.data.length > 0,
+      hasActiveSubscription,
     });
   } catch (error) {
     console.error('Portal session error:', error);
