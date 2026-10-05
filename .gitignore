@@ -12,6 +12,13 @@ dist
 dist-ssr
 *.local
 
+# Environment files. Only .env.example is tracked — see AGENTS.md; a local
+# `vercel env pull` writes .env (or .env.local) containing live
+# STRIPE_SECRET_KEY / RESEND_API_KEY, and `git add -A` must never pick it up.
+.env
+.env.*
+!.env.example
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
