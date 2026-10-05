@@ -1,0 +1,1 @@
+var e=`/ChildernforLife.com/assets/sally_story-CHkkKCmR.jpg`;export{e as t};

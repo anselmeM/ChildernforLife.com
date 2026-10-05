@@ -1,0 +1,1 @@
+var e=`/ChildernforLife.com/assets/monthly_giving-TS_4BUnr.jpg`;export{e as t};

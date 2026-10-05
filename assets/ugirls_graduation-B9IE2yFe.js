@@ -1,0 +1,1 @@
+var e=`/ChildernforLife.com/assets/ugirls_graduation-CpTgtvFH.jpg`;export{e as t};

@@ -1,0 +1,1 @@
+var e=`/ChildernforLife.com/assets/clean_energy-CCufbRFk.jpg`;export{e as t};

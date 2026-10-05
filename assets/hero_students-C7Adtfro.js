@@ -1,0 +1,1 @@
+var e=`/ChildernforLife.com/assets/hero_students-CGYV70Fj.jpg`;export{e as t};

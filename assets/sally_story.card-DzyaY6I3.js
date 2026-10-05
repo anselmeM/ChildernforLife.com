@@ -1,0 +1,1 @@
+var e=`/ChildernforLife.com/assets/monthly_giving.card-5X0H2xaZ.webp`,t=`/ChildernforLife.com/assets/sally_story.card-DYTnrNJg.webp`;export{e as n,t};

@@ -1,0 +1,1 @@
+var e=`/ChildernforLife.com/assets/clean_water-CJIkMHgO.jpg`;export{e as t};
