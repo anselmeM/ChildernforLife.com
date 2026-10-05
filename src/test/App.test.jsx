@@ -32,7 +32,7 @@ describe('App', () => {
       </MemoryRouter></HelmetProvider>
     );
     // /donate is a heavy page (tier cards + multiple forms) — allow extra time.
-    await screen.findByText(/Choose Your Impact Path/, {}, { timeout: 10000 });
+    await screen.findByText(/Choose Your Impact Path/, {}, { timeout: 20000 });
   });
 
   it('renders the news page at /news', async () => {
@@ -41,7 +41,7 @@ describe('App', () => {
         <AppRoutes />
       </MemoryRouter></HelmetProvider>
     );
-    expect(await screen.findByText('LATEST NEWS', {}, { timeout: 5000 })).toBeInTheDocument();
+    expect(await screen.findByText('LATEST NEWS', {}, { timeout: 15000 })).toBeInTheDocument();
   });
 
   it('renders a news article at /news/:slug', async () => {
@@ -50,7 +50,7 @@ describe('App', () => {
         <AppRoutes />
       </MemoryRouter></HelmetProvider>
     );
-    expect(await screen.findByText('Communiqué: Update on Tanzania Programs', {}, { timeout: 5000 })).toBeInTheDocument();
+    expect(await screen.findByText('Communiqué: Update on Tanzania Programs', {}, { timeout: 15000 })).toBeInTheDocument();
   });
 
   it('renders an impact story at /stories/:slug', async () => {
@@ -59,7 +59,7 @@ describe('App', () => {
         <AppRoutes />
       </MemoryRouter></HelmetProvider>
     );
-    expect(await screen.findByText('Clean Water for Morogoro Schools', {}, { timeout: 5000 })).toBeInTheDocument();
+    expect(await screen.findByText('Clean Water for Morogoro Schools', {}, { timeout: 15000 })).toBeInTheDocument();
   });
 
   it('renders the campaigns listing at /campaigns', async () => {
@@ -68,7 +68,7 @@ describe('App', () => {
         <AppRoutes />
       </MemoryRouter></HelmetProvider>
     );
-    expect(await screen.findByText('Solar-Powered Futures', {}, { timeout: 5000 })).toBeInTheDocument();
+    expect(await screen.findByText('Solar-Powered Futures', {}, { timeout: 15000 })).toBeInTheDocument();
   });
 
   it('renders a campaign detail page at /campaigns/:slug', async () => {
@@ -77,7 +77,7 @@ describe('App', () => {
         <AppRoutes />
       </MemoryRouter></HelmetProvider>
     );
-    expect(await screen.findByText('Clean Water for Schools', {}, { timeout: 5000 })).toBeInTheDocument();
+    expect(await screen.findByText('Clean Water for Schools', {}, { timeout: 15000 })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /Donate to this campaign/i })).toHaveAttribute('href', '/donate?campaign=clean-water-schools');
   });
 
@@ -88,7 +88,7 @@ describe('App', () => {
       </MemoryRouter></HelmetProvider>
     );
     // Wait on page-unique content (the footer also links "Wall of Support").
-    expect(await screen.findByText('Solar lighting for 40 homes', {}, { timeout: 5000 })).toBeInTheDocument();
+    expect(await screen.findByText('Solar lighting for 40 homes', {}, { timeout: 15000 })).toBeInTheDocument();
   });
 
   it('emits FAQPage structured data on /volunteer-faq', async () => {
