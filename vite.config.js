@@ -4,10 +4,36 @@ import react from '@vitejs/plugin-react'
 import { visualizer } from 'rollup-plugin-visualizer'
 import imagemin from 'vite-plugin-imagemin'
 
+// Emits a preload for the above-the-fold hero image using the hashed filename
+// from the build output. react-helmet-async could only inject this after React
+// mounted, so the browser discovered the hero only after downloading, parsing
+// and executing the entry chunk — far too late to help LCP.
+function heroPreloadPlugin() {
+  return {
+    name: 'cfl-hero-preload',
+    enforce: 'post',
+    transformIndexHtml: {
+      order: 'post',
+      handler(html, ctx) {
+        const hero = Object.keys(ctx.bundle ?? {}).find((name) =>
+          /assets\/hero_students\.full-.*\.webp$/.test(name),
+        );
+        if (!hero) return html;
+
+        return html.replace(
+          '</head>',
+          `    <link rel="preload" as="image" type="image/webp" fetchpriority="high" href="/${hero}" />\n  </head>`,
+        );
+      },
+    },
+  };
+}
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
+    heroPreloadPlugin(),
     visualizer({ open: true, gzipSize: true, brotliSize: true }),
     imagemin({
       gifsicle: false,
