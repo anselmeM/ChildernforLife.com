@@ -1,5 +1,5 @@
 import { Resend } from 'resend';
-import { isRateLimited } from './lib/rateLimit.js';
+import { rejectIfRateLimited } from './lib/rateLimit.js';
 
 const missing = ['RESEND_API_KEY', 'RESEND_AUDIENCE_ID'].filter((v) => !process.env[v]);
 if (missing.length) {
@@ -27,11 +27,9 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  try {
-    if (isRateLimited(req)) {
-      return res.status(429).json({ error: 'Too many attempts. Please try again later.' });
-    }
+  if (rejectIfRateLimited(req, res)) return;
 
+  try {
     const { email, name } = req.body || {};
 
     if (typeof email !== 'string' || email.length > MAX_EMAIL_LENGTH || !EMAIL_RE.test(email.trim())) {
