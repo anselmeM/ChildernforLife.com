@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { CheckCircle2, Mail, Send } from 'lucide-react';
 import { useI18n } from '../i18n/useI18n';
-
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+import { NEWSLETTER_EMAIL_RE, subscribeToNewsletter } from '../lib/newsletter';
 
 export default function NewsletterForm() {
   const { t } = useI18n();
@@ -14,7 +13,7 @@ export default function NewsletterForm() {
     e.preventDefault();
     const trimmed = email.trim();
 
-    if (!EMAIL_RE.test(trimmed)) {
+    if (!NEWSLETTER_EMAIL_RE.test(trimmed)) {
       setErrorMessage('Please enter a valid email address.');
       setStatus('error');
       return;
@@ -23,24 +22,14 @@ export default function NewsletterForm() {
     setStatus('submitting');
     setErrorMessage('');
 
-    try {
-      const res = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: trimmed }),
-      });
-      const data = await res.json().catch(() => ({}));
+    const result = await subscribeToNewsletter({ email: trimmed });
 
-      if (res.ok) {
-        setStatus('success');
-        setEmail('');
-      } else {
-        setStatus('error');
-        setErrorMessage(data.error || 'Could not subscribe. Please try again.');
-      }
-    } catch {
+    if (result.ok) {
+      setStatus('success');
+      setEmail('');
+    } else {
       setStatus('error');
-      setErrorMessage('Could not subscribe. Please try again later.');
+      setErrorMessage(result.error);
     }
   };
 
