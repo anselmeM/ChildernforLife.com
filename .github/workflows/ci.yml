@@ -59,6 +59,15 @@ jobs:
     needs: build-and-test
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
+    # The repository's default workflow token is read-only ("read" in
+    # Settings -> Actions -> General), so peaceiris/actions-gh-pages failed on
+    # every master push with:
+    #   remote: Permission to ... denied to github-actions[bot]. (403)
+    # The job-level `permissions` key overrides that default; scope the grant to
+    # this job rather than the whole workflow. The gh-pages branch is not
+    # protected, so contents: write is all the push needs.
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
