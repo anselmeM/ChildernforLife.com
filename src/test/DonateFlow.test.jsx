@@ -125,7 +125,14 @@ describe('Donation Flow', () => {
     expect(screen.getByRole('button', { name: /Request a Match/i })).toBeInTheDocument();
   });
 
-  it('charges USD matching the tier label (TZS ÷ 2500)', async () => {
+  // Every tier must charge exactly the USD figure printed on its card. The
+  // 4th tier used to advertise US$600 while charging US$1,000.
+  it.each([
+    ['Starter Support', 10000],
+    ['Core Care', 20000],
+    ['Strong Foundation', 40000],
+    ['Whole Home Sponsor', 100000],
+  ])('charges %s at the price on its card (%i cents)', async (tierName, expectedCents) => {
     global.fetch.mockResolvedValueOnce({
       ok: true,
       json: () => Promise.resolve({ url: 'https://checkout.stripe.com/test' }),
@@ -137,19 +144,15 @@ describe('Donation Flow', () => {
       </MemoryRouter>
     );
 
-    // Starter Support = TZS 250,000 → ~US$100 = 10000 cents
-    fireEvent.click(screen.getByText('Starter Support'));
+    fireEvent.click(screen.getByText(tierName));
     fireEvent.click(screen.getByRole('button', { name: /Confirm Gift/i }));
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenCalledWith(
-        '/api/create-checkout-session',
-        expect.objectContaining({
-          method: 'POST',
-          body: expect.stringContaining('"amount":10000'),
-        }),
-      );
+      expect(global.fetch).toHaveBeenCalled();
     });
+
+    const [, options] = global.fetch.mock.calls.at(-1);
+    expect(JSON.parse(options.body)).toMatchObject({ amount: expectedCents, currency: 'usd' });
   });
 
   it('prefills the custom amount from the monthly page state', async () => {
@@ -209,6 +212,91 @@ describe('Donation Flow', () => {
           body: expect.stringContaining('"honoree":"Grandma Ruth"'),
         }),
       );
+    });
+  });
+
+  it('blocks an invalid custom amount and never calls the API', async () => {
+    render(
+      <MemoryRouter>
+        <Donate />
+      </MemoryRouter>
+    );
+
+    const input = screen.getByLabelText('Or enter custom TZS amount');
+    fireEvent.change(input, { target: { value: '-5000' } });
+
+    expect(screen.getByRole('alert')).toHaveTextContent(/minimum gift/i);
+    expect(input).toHaveAttribute('aria-invalid', 'true');
+
+    const submit = screen.getByRole('button', { name: /Enter a valid TZS amount/i });
+    expect(submit).toBeDisabled();
+
+    // Enter inside the input still submits the form — the handler must guard too.
+    fireEvent.submit(input.closest('form'));
+    await waitFor(() => expect(global.fetch).not.toHaveBeenCalled());
+  });
+
+  it('treats a typed 0 as invalid instead of silently charging the selected tier', async () => {
+    render(
+      <MemoryRouter>
+        <Donate />
+      </MemoryRouter>
+    );
+
+    fireEvent.change(screen.getByLabelText('Or enter custom TZS amount'), {
+      target: { value: '0' },
+    });
+
+    expect(screen.getByRole('alert')).toHaveTextContent(/minimum gift/i);
+    fireEvent.click(screen.getByRole('button', { name: /Enter a valid TZS amount/i }));
+
+    await waitFor(() => expect(global.fetch).not.toHaveBeenCalled());
+  });
+
+  it('sends a valid custom amount converted at the documented rate', async () => {
+    global.fetch.mockResolvedValueOnce({
+      ok: true,
+      json: () => Promise.resolve({ url: 'https://checkout.stripe.com/test' }),
+    });
+
+    render(
+      <MemoryRouter>
+        <Donate />
+      </MemoryRouter>
+    );
+
+    fireEvent.change(screen.getByLabelText('Or enter custom TZS amount'), {
+      target: { value: '150000' },
+    });
+    fireEvent.click(screen.getByRole('button', { name: /Confirm Gift of TZS 150,000/i }));
+
+    await waitFor(() => expect(global.fetch).toHaveBeenCalled());
+
+    const [, options] = global.fetch.mock.calls.at(-1);
+    // TZS 150,000 ÷ 2500 = US$60 = 6000 cents
+    expect(JSON.parse(options.body)).toMatchObject({
+      amount: 6000,
+      tierName: 'Custom Donation',
+      tierDesc: 'Custom amount donation',
+    });
+  });
+
+  it('surfaces a clear error when the API returns non-JSON', async () => {
+    global.fetch.mockResolvedValueOnce({
+      ok: false,
+      json: () => Promise.reject(new Error('Unexpected token < in JSON')),
+    });
+
+    render(
+      <MemoryRouter>
+        <Donate />
+      </MemoryRouter>
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: /Confirm Gift/i }));
+
+    await waitFor(() => {
+      expect(screen.getByText(/Something went wrong/)).toBeInTheDocument();
     });
   });
 });
