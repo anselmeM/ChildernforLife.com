@@ -7,6 +7,18 @@ import GiftAidForm from '../components/GiftAidForm';
 import CryptoGiving from '../components/CryptoGiving';
 import { useI18n } from '../i18n/useI18n';
 import { campaignBySlug } from '../data/campaigns';
+import {
+  donationTiers,
+  donationTierById,
+  tzsToUsdCents,
+  validateCustomTzs,
+  TZS_PER_USD,
+  MIN_DONATION_TZS,
+  MAX_DONATION_TZS,
+} from '../data/donationTiers';
+
+const CUSTOM_AMOUNT_ID = 'custom-tzs-amount';
+const CUSTOM_AMOUNT_ERROR_ID = 'custom-tzs-amount-error';
 
 const Donate = () => {
   const { t } = useI18n();
@@ -14,7 +26,7 @@ const Donate = () => {
   const { tribute, amountUsd } = location.state || {};
   const [selectedTier, setSelectedTier] = useState('core');
   const [customAmount, setCustomAmount] = useState(() =>
-    typeof amountUsd === 'number' && amountUsd > 0 ? String(Math.round(amountUsd * 2500)) : '',
+    typeof amountUsd === 'number' && amountUsd > 0 ? String(Math.round(amountUsd * TZS_PER_USD)) : '',
   );
   const [frequency, setFrequency] = useState(() => (location.state?.frequency || 'monthly'));
   const [isProcessing, setIsProcessing] = useState(false);
@@ -24,64 +36,35 @@ const Donate = () => {
   const campaignSlug = searchParams.get('campaign');
   const campaign = campaignBySlug(campaignSlug);
 
-  const tiers = [
-    {
-      id: 'starter',
-      name: 'Starter Support',
-      tzs: 'TZS 250,000',
-      usd: 'US$100 approx.',
-      value: 250000,
-      focus: 'Hygiene & basic learning needs',
-      desc: 'Hygiene supplies (soap, detergents, sanitary pads), safe water refills/filters (where needed), and basic learning materials (exercise books, pens).'
-    },
-    {
-      id: 'core',
-      name: 'Core Care',
-      tzs: 'TZS 500,000',
-      usd: 'US$200 approx.',
-      value: 500000,
-      focus: 'Food top-up & hygiene & minor fixes',
-      desc: 'Food top-up (staples/proteins), hygiene & cleaning supplies, and minor facility maintenance (locks, lighting, small repairs).'
-    },
-    {
-      id: 'foundation',
-      name: 'Strong Foundation',
-      tzs: 'TZS 1,000,000',
-      usd: 'US$400 approx.',
-      value: 1000000,
-      focus: 'Integrated child wellbeing support',
-      desc: 'Food & hygiene, basic health support (clinic visits/essential items where appropriate), and education support (uniforms, supplies, transport/fees where applicable).'
-    },
-    {
-      id: 'whole',
-      name: 'Whole Home Sponsor',
-      tzs: 'TZS 2,500,000',
-      usd: 'US$600 approx.',
-      value: 2500000,
-      focus: 'Full, tailored home plan',
-      desc: 'A tailored package based on a joint plan across nutrition, health, education, protection & dignity, and basic improvements (water access, sleeping materials, safe spaces).'
-    }
-  ];
+  // An empty field means "no custom amount" — use the selected tier. Any typed
+  // value (including "0") must pass validation before it can be charged.
+  const hasCustomAmount = customAmount.trim() !== '';
+  const customCheck = hasCustomAmount ? validateCustomTzs(customAmount) : null;
+  const customError = customCheck && !customCheck.valid ? customCheck.error : '';
+  const isTierSelected = (tierId) => selectedTier === tierId && !hasCustomAmount;
 
-  const currentTierObj = tiers.find(t => t.id === selectedTier);
-  const displayAmountText = customAmount
-    ? `TZS ${Number(customAmount).toLocaleString()}`
-    : (currentTierObj ? `${currentTierObj.tzs} (${currentTierObj.usd})` : 'TZS 0');
+  const selectedTierObj = donationTierById(selectedTier);
+  const displayAmountText = hasCustomAmount
+    ? (customCheck.valid ? `TZS ${customCheck.tzs.toLocaleString()}` : 'TZS —')
+    : (selectedTierObj ? `${selectedTierObj.tzs} (${selectedTierObj.usd})` : 'TZS 0');
+  const submitDisabled = isProcessing || (hasCustomAmount && !customCheck.valid);
 
   const handleDonation = async (e) => {
     e.preventDefault();
-    setIsProcessing(true);
     setErrorMessage('');
 
-    const selectedTierObj = tiers.find(t => t.id === selectedTier);
-    const amountInTZS = customAmount
-      ? Number(customAmount)
-      : (selectedTierObj ? selectedTierObj.value : 0);
-    // TZS -> USD cents. ~2,500 TZS/USD keeps charges aligned with the
-    // "US$ approx." labels on the tier cards. Update TZS_PER_USD as the
-    // exchange rate drifts.
-    const TZS_PER_USD = 2500;
-    const amountInCents = Math.round(amountInTZS / TZS_PER_USD * 100);
+    if (hasCustomAmount && !customCheck.valid) {
+      document.getElementById(CUSTOM_AMOUNT_ID)?.focus();
+      return;
+    }
+
+    const amountInCents = hasCustomAmount
+      ? customCheck.amountInCents
+      : tzsToUsdCents(selectedTierObj?.value ?? 0);
+    const tierName = hasCustomAmount ? 'Custom Donation' : (selectedTierObj?.name ?? 'Donation');
+    const tierDesc = hasCustomAmount ? 'Custom amount donation' : (selectedTierObj?.focus ?? '');
+
+    setIsProcessing(true);
 
     try {
       const res = await fetch('/api/create-checkout-session', {
@@ -93,12 +76,12 @@ const Donate = () => {
           frequency,
           campaign: campaign ? campaign.slug : '',
           tribute,
-          tierName: customAmount ? 'Custom Donation' : (selectedTierObj ? selectedTierObj.name : 'Donation'),
-          tierDesc: customAmount ? 'Custom amount donation' : (selectedTierObj ? selectedTierObj.focus : ''),
+          tierName,
+          tierDesc,
         }),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
       if (data.url) {
         window.location.href = data.url;
       } else {
@@ -198,7 +181,7 @@ const Donate = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {tiers.map(tier => (
+              {donationTiers.map(tier => (
                 <button
                   type="button"
                   key={tier.id}
@@ -206,9 +189,9 @@ const Donate = () => {
                     setSelectedTier(tier.id);
                     setCustomAmount('');
                   }}
-                  aria-pressed={selectedTier === tier.id && !customAmount}
+                  aria-pressed={isTierSelected(tier.id)}
                   className={`text-left bg-white border rounded-3xl p-6 shadow-sm hover:shadow-md transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between min-h-[210px] h-auto ${
-                    selectedTier === tier.id && !customAmount
+                    isTierSelected(tier.id)
                       ? 'border-2 border-[#f37021] ring-4 ring-[#f37021]/10 bg-orange-50/5'
                       : 'border-gray-200 hover:border-[#005c7a]'
                   }`}
@@ -216,7 +199,7 @@ const Donate = () => {
                   <div className="space-y-2">
                     <div className="flex justify-between items-start">
                       <h4 className="font-black text-gray-900 text-sm">{tier.name}</h4>
-                      {selectedTier === tier.id && !customAmount && (
+                      {isTierSelected(tier.id) && (
                         <span className="w-5 h-5 rounded-full bg-[#f37021] flex items-center justify-center text-white text-[10px]">✓</span>
                       )}
                     </div>
@@ -294,27 +277,44 @@ const Donate = () => {
 
                 {/* Custom Amount input */}
                 <div>
-                  <label htmlFor="custom-tzs-amount" className="block text-[11px] font-black text-gray-400 uppercase tracking-widest mb-1.5">{t('donate.customTzs')}</label>
+                  <label htmlFor={CUSTOM_AMOUNT_ID} className="block text-[11px] font-black text-gray-400 uppercase tracking-widest mb-1.5">{t('donate.customTzs')}</label>
                   <div className="relative">
                     <span className="absolute left-3.5 top-2.5 text-gray-400 font-bold text-xs">TZS</span>
                     <input
-                      id="custom-tzs-amount"
+                      id={CUSTOM_AMOUNT_ID}
                       type="number"
+                      inputMode="numeric"
+                      min={MIN_DONATION_TZS}
+                      max={MAX_DONATION_TZS}
+                      step={1}
                       placeholder="e.g. 150000"
                       value={customAmount}
                       onChange={(e) => setCustomAmount(e.target.value)}
-                      className="w-full border border-gray-200 rounded-xl pl-11 pr-2 py-3 text-xs font-bold focus:outline-none focus:border-[#005c7a]"
+                      aria-invalid={customError ? true : undefined}
+                      aria-describedby={customError ? CUSTOM_AMOUNT_ERROR_ID : undefined}
+                      className={`w-full border rounded-xl pl-11 pr-2 py-3 text-xs font-bold focus:outline-none ${
+                        customError ? 'border-red-300 focus:border-red-500' : 'border-gray-200 focus:border-[#005c7a]'
+                      }`}
                     />
                   </div>
+                  {customError && (
+                    <p id={CUSTOM_AMOUNT_ERROR_ID} role="alert" className="mt-1.5 text-[11px] font-bold text-red-600">
+                      {customError}
+                    </p>
+                  )}
                 </div>
               </div>
 
               <button
                 type="submit"
-                disabled={isProcessing}
+                disabled={submitDisabled}
                 className="w-full bg-[#f37021] text-white font-extrabold text-sm py-4 rounded-xl hover:bg-[#da621a] transition-colors shadow-sm flex items-center justify-center disabled:opacity-70 uppercase tracking-wider"
               >
-                {isProcessing ? t('donate.processing') : `${t('donate.confirmGift')} ${displayAmountText}`}
+                {isProcessing
+                  ? t('donate.processing')
+                  : customError
+                    ? 'Enter a valid TZS amount'
+                    : `${t('donate.confirmGift')} ${displayAmountText}`}
               </button>
             </form>
 
