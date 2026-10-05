@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach, beforeAll } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { CANONICAL_ORIGIN } from '../../../api/lib/origin.js';
+import { resetRateLimitStore } from '../../../api/lib/rateLimit.js';
 
 const { createMock } = vi.hoisted(() => ({ createMock: vi.fn() }));
 
@@ -72,6 +73,10 @@ function apiTierAllowlist() {
 
 describe('POST /api/create-checkout-session', () => {
   beforeEach(() => {
+    // The endpoint is rate-limited (5 per window per IP); every case here comes
+    // from the same test client, so without a reset the later cases would see
+    // 429 instead of the response under test.
+    resetRateLimitStore();
     createMock.mockReset();
     createMock.mockResolvedValue({ url: 'https://checkout.stripe.com/test' });
   });
