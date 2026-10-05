@@ -41,7 +41,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-20">
           
           <div>
-            <h4 className="font-extrabold mb-6 uppercase tracking-wider text-[13.5px] text-[#e0f2fe]">{t('footer.takeAction')}</h4>
+            <h2 className="font-lora font-extrabold mb-6 uppercase tracking-wider text-[13.5px] text-[#e0f2fe]">{t('footer.takeAction')}</h2>
             <ul className="space-y-4 text-[14.5px] font-bold text-blue-50/90">
               <li><button onClick={() => navigate('/volunteer')} className="hover:underline hover:text-white transition-all text-left">{t('footer.becomeVolunteer')}</button></li>
               <li><button onClick={() => navigate('/donate')} className="hover:underline hover:text-white transition-all text-left">{t('footer.donate')}</button></li>
@@ -50,7 +50,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-extrabold mb-6 uppercase tracking-wider text-[13.5px] text-[#e0f2fe]">{t('footer.stayInformed')}</h4>
+            <h2 className="font-lora font-extrabold mb-6 uppercase tracking-wider text-[13.5px] text-[#e0f2fe]">{t('footer.stayInformed')}</h2>
             <ul className="space-y-4 text-[14.5px] font-bold text-blue-50/90">
               <li><button onClick={() => navigate('/programs/strategic')} className="hover:underline hover:text-white transition-all text-left">{t('footer.strategicPlan')}</button></li>
               <li><button onClick={() => navigate('/impact-stories')} className="hover:underline hover:text-white transition-all text-left">{t('footer.stories')}</button></li>
@@ -61,7 +61,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-extrabold mb-6 uppercase tracking-wider text-[13.5px] text-[#e0f2fe]">{t('footer.connect')}</h4>
+            <h2 className="font-lora font-extrabold mb-6 uppercase tracking-wider text-[13.5px] text-[#e0f2fe]">{t('footer.connect')}</h2>
             <ul className="space-y-4 text-[14.5px] font-bold text-blue-50/90 mb-8">
               <li><button onClick={() => navigate('/contact')} className="hover:underline hover:text-white transition-all">{t('footer.contactUs')}</button></li>
               <li><button onClick={() => navigate('/about/team')} className="hover:underline hover:text-white transition-all text-left">{t('footer.meetLeadership')}</button></li>

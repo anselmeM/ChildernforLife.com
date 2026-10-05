@@ -59,11 +59,11 @@ export default function WhoWeAre() {
                 </div>
                 <div className="pl-6 space-y-4">
                   <div>
-                    <h4 className="text-[12.5px] uppercase font-black text-gray-900 tracking-wider mb-1">Diversity and Inclusion</h4>
+                    <h3 className="font-lora text-[12.5px] uppercase font-black text-gray-900 tracking-wider mb-1">Diversity and Inclusion</h3>
                     <p className="text-[12.5px] text-gray-500 font-semibold leading-relaxed">Treats all people with dignity and respect; shows respect and sensitivity towards gender, cultural and religious differences; challenges prejudice, biases and intolerance in the society; encourages diversity.</p>
                   </div>
                   <div>
-                    <h4 className="text-[12.5px] uppercase font-black text-gray-900 tracking-wider mb-1">Integrity</h4>
+                    <h3 className="font-lora text-[12.5px] uppercase font-black text-gray-900 tracking-wider mb-1">Integrity</h3>
                     <p className="text-[12.5px] text-gray-500 font-semibold leading-relaxed">Maintains high ethical standards; takes clear ethical stands; keeps promises; immediately addresses untrustworthy or dishonest behavior; resists pressure in decision-making from internal and external sources; does not abuse power or authority.</p>
                   </div>
                 </div>

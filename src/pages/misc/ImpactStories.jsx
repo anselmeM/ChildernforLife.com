@@ -34,7 +34,7 @@ export default function ImpactStories() {
                 </picture>
                 <div className="p-6">
                   <span className="text-[11px] font-black text-[#005c7a] uppercase tracking-widest bg-[#e1f3f8] px-2.5 py-1 rounded">{story.tag}</span>
-                  <h3 className="text-xl font-black text-gray-900 mt-4 mb-2 group-hover:text-[#005c7a] transition-colors">{story.title}</h3>
+                  <h2 className="text-xl font-black text-gray-900 mt-4 mb-2 group-hover:text-[#005c7a] transition-colors">{story.title}</h2>
                   <p className="text-gray-500 font-semibold text-xs leading-relaxed">{story.excerpt}</p>
                 </div>
               </div>

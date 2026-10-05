@@ -25,7 +25,7 @@ export default function LeaveLegacy() {
         <div className="max-w-3xl mx-auto space-y-8">
           <p className="text-gray-600 text-lg font-medium leading-relaxed">By leaving a bequest in your will to Children for Life, you ensure that future generations of children will continue to benefit from clean water, safe schooling, and skills training.</p>
           <div className="border border-gray-200 bg-gray-50 p-8 rounded-3xl">
-            <h3 className="text-xl font-black text-gray-900 mb-4">Why Planned Giving Matters</h3>
+            <h2 className="text-xl font-black text-gray-900 mb-4">Why Planned Giving Matters</h2>
             <p className="text-gray-500 font-bold text-[14.5px] leading-relaxed mb-4">A legacy gift allows you to make a larger, more significant donation than might be possible during your lifetime, leaving a legacy of hope, opportunity, and safety.</p>
             <p className="text-gray-500 font-bold text-[14.5px] leading-relaxed">We offer several formats including specific bequests, residual bequests, and life insurance policies. Consult your estate planner for guidance.</p>
             <div className="pt-6">

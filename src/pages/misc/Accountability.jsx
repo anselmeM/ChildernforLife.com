@@ -24,11 +24,11 @@ export default function Accountability() {
       <section className="py-12 sm:py-20 lg:py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <p className="text-gray-600 text-lg font-medium leading-relaxed">Children for Life is committed to the highest standards of transparency and integrity. Over 85% of all donor contributions go directly to funding our volunteer placements and community infrastructure programs.</p>
         <div className="bg-gray-50 border border-gray-200 p-8 rounded-3xl space-y-4">
-          <h3 className="text-xl font-black text-gray-900 mb-2">Accreditation & Standards</h3>
+          <h2 className="text-xl font-black text-gray-900 mb-2">Accreditation & Standards</h2>
           <p className="text-gray-500 font-bold text-[14.5px] leading-relaxed">We are a fully accredited organization in accordance with international charity standards, guaranteeing strict governance, transparent fundraising, and direct oversight on all program activities.</p>
         </div>
         <div className="space-y-6">
-          <h3 className="text-2xl font-black text-gray-900">Financial Reports</h3>
+          <h2 className="text-2xl font-black text-gray-900">Financial Reports</h2>
           <p className="text-gray-500 font-bold text-[14.5px] leading-relaxed">View or download our audited financial statements and annual statements below:</p>
           <div className="divide-y divide-gray-200">
             {[

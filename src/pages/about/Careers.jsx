@@ -34,12 +34,12 @@ export default function Careers() {
         <div className="space-y-12">
           <p className="text-gray-600 text-lg font-medium leading-relaxed">Looking for a career with purpose? Join our global team of project managers, logisticians, educators, and engineers working together to support children and families.</p>
           <div className="bg-gray-50 border border-gray-200 rounded-3xl p-8 space-y-6">
-            <h3 className="text-xl font-black text-gray-900 mb-2">Current Open Staff Positions</h3>
+            <h2 className="text-xl font-black text-gray-900 mb-2">Current Open Staff Positions</h2>
             <div className="divide-y divide-gray-200">
               {OPENINGS.map((job) => (
                 <div key={job.title} className="py-4 flex flex-wrap justify-between items-center gap-2 first:pt-0 last:pb-0">
                   <div>
-                    <h4 className="font-bold text-gray-900 text-base">{job.title}</h4>
+                    <h3 className="font-lora font-bold text-gray-900 text-base">{job.title}</h3>
                     <p className="text-gray-500 font-semibold text-xs mt-1">{job.loc} • {job.type}</p>
                   </div>
                   <button

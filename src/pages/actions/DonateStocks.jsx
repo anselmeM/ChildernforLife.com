@@ -25,7 +25,7 @@ export default function DonateStocks() {
         <div className="max-w-3xl mx-auto space-y-8">
           <p className="text-gray-600 text-lg font-medium leading-relaxed">Donating appreciated securities (stocks, bonds, mutual funds) is one of the most tax-efficient ways to support Children for Life. You pay no capital gains tax on the transfer and receive a tax-deductible receipt for the full market value.</p>
           <div className="bg-gray-50 rounded-3xl p-8 border border-gray-200 space-y-4">
-            <h3 className="text-xl font-black text-gray-900 mb-2">How to Complete a Transfer</h3>
+            <h2 className="text-xl font-black text-gray-900 mb-2">How to Complete a Transfer</h2>
             <ol className="list-decimal pl-6 space-y-3 text-gray-500 font-bold text-[14.5px] leading-relaxed">
               <li>Request our Transfer Notification Form.</li>
               <li>Instruct your broker to transfer the shares to Children for Life's brokerage account.</li>

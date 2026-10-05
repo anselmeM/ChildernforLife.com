@@ -36,7 +36,7 @@ export default function Alumni() {
                 </div>
                 <div>
                   <p className="italic text-gray-500 font-semibold text-[14px] leading-relaxed mb-4">"{al.text}"</p>
-                  <h4 className="font-black text-gray-900 text-base">{al.name}</h4>
+                  <h2 className="font-lora font-black text-gray-900 text-base">{al.name}</h2>
                   <p className="text-[#005c7a] font-bold text-xs">{al.role}</p>
                 </div>
               </div>

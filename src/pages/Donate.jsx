@@ -176,7 +176,7 @@ const Donate = () => {
           {/* Tiers List (Left 2 Columns) */}
           <div className="lg:col-span-2 space-y-6">
             <div className="flex justify-between items-center px-2">
-              <h3 className="text-lg font-black text-gray-900">{t('donate.choosePath')}</h3>
+              <h2 className="text-lg font-black text-gray-900">{t('donate.choosePath')}</h2>
               <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('donate.selectTier')}</span>
             </div>
 
@@ -198,7 +198,7 @@ const Donate = () => {
                 >
                   <div className="space-y-2">
                     <div className="flex justify-between items-start">
-                      <h4 className="font-black text-gray-900 text-sm">{tier.name}</h4>
+                      <h3 className="font-lora font-black text-gray-900 text-sm">{tier.name}</h3>
                       {isTierSelected(tier.id) && (
                         <span className="w-5 h-5 rounded-full bg-[#f37021] flex items-center justify-center text-white text-[10px]">✓</span>
                       )}
@@ -218,7 +218,7 @@ const Donate = () => {
 
             {/* What your support funds description */}
             <div className="bg-[#f0f9fc]/85 border border-[#005c7a]/15 rounded-3xl p-6 space-y-3.5">
-              <h4 className="text-[12.5px] uppercase font-black text-[#005c7a] tracking-wider">What your support funds:</h4>
+              <h3 className="font-lora text-[12.5px] uppercase font-black text-[#005c7a] tracking-wider">What your support funds:</h3>
               <p className="text-gray-650 font-semibold text-xs leading-relaxed">
                 Final allocations depend on each home’s priorities. Donations typically support: nutrition, health & wellbeing, education, protection & dignity (including menstrual health), and home readiness (small repairs, lighting, locks, water access). Costs vary by home size and location. CFL confirms needs through a short assessment and agrees on a budget with the home’s leadership before support is delivered.
               </p>
@@ -231,7 +231,7 @@ const Donate = () => {
             {/* Sponsorship Form */}
             <form onSubmit={handleDonation} className="bg-white border border-gray-200 rounded-3xl p-6 md:p-8 shadow-sm space-y-6">
               <div>
-                <h3 className="text-lg font-black text-gray-900 mb-1">{t('donate.donationDetails')}</h3>
+                <h2 className="text-lg font-black text-gray-900 mb-1">{t('donate.donationDetails')}</h2>
                 <p className="text-gray-400 font-semibold text-[11px]">{t('donate.secureCheckout')}</p>
               </div>
 
@@ -320,7 +320,7 @@ const Donate = () => {
 
             {/* Transparency & updates widget */}
             <div className="bg-white border border-gray-200 rounded-3xl p-6 shadow-sm space-y-4">
-              <h4 className="text-[12.5px] uppercase font-black text-[#005c7a] tracking-wider border-b border-gray-100 pb-2">Transparency & Updates</h4>
+              <h3 className="font-lora text-[12.5px] uppercase font-black text-[#005c7a] tracking-wider border-b border-gray-100 pb-2">Transparency & Updates</h3>
               <p className="text-gray-500 font-medium text-[11px] leading-relaxed">
                 Every sponsor receives complete transparency regarding their donation's impact:
               </p>
@@ -342,19 +342,19 @@ const Donate = () => {
 
             {/* Other ways you can support widget */}
             <div className="bg-white border border-gray-200 rounded-3xl p-6 shadow-sm space-y-4">
-              <h4 className="text-[12.5px] uppercase font-black text-[#005c7a] tracking-wider border-b border-gray-100 pb-2">Other Ways You Can Support</h4>
+              <h3 className="font-lora text-[12.5px] uppercase font-black text-[#005c7a] tracking-wider border-b border-gray-100 pb-2">Other Ways You Can Support</h3>
               <div className="space-y-3.5 text-xs font-semibold text-gray-600">
                 <div className="flex items-start space-x-2">
                   <span className="text-[#f37021] mr-1 mt-0.5">•</span>
                   <div>
-                    <h5 className="font-extrabold text-gray-900 mb-0.5">Partner With Us</h5>
+                    <h4 className="font-extrabold text-gray-900 mb-0.5">Partner With Us</h4>
                     <p className="text-gray-500 font-medium leading-relaxed">Collaborate with CFL to deliver specialized community programs or build local alliances.</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-2">
                   <span className="text-[#f37021] mr-1 mt-0.5">•</span>
                   <div>
-                    <h5 className="font-extrabold text-gray-900 mb-0.5">Be a Community Champion</h5>
+                    <h4 className="font-extrabold text-gray-900 mb-0.5">Be a Community Champion</h4>
                     <p className="text-gray-500 font-medium leading-relaxed">Host a local fundraiser, volunteer, or advocate in your region to raise support.</p>
                   </div>
                 </div>

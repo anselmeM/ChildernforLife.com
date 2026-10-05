@@ -33,7 +33,7 @@ export default function StrategicPlan() {
           <div className="space-y-6">
             {pillars.map((p, i) => (
               <div key={i} className="border-b border-gray-200 pb-6">
-                <h3 className="text-xl font-black text-gray-900 mb-2">{p.title}</h3>
+                <h2 className="text-xl font-black text-gray-900 mb-2">{p.title}</h2>
                 <p className="text-gray-500 font-semibold text-[14.5px] leading-relaxed">{p.desc}</p>
               </div>
             ))}

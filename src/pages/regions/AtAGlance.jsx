@@ -32,7 +32,7 @@ export default function AtAGlance() {
             ].map((r, i) => (
               <div key={i} className="bg-gray-50 border border-gray-200 rounded-2xl p-8 shadow-sm flex flex-col justify-between">
                 <div>
-                  <h3 className="text-lg font-black text-gray-900 mb-2">{r.region}</h3>
+                  <h2 className="text-lg font-black text-gray-900 mb-2">{r.region}</h2>
                   <p className="text-[#005c7a] font-bold text-xs mb-4">{r.countries}</p>
                   <p className="text-gray-500 font-bold text-xs leading-relaxed">{r.desc}</p>
                 </div>
