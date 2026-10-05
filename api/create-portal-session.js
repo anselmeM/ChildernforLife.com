@@ -1,5 +1,6 @@
 import Stripe from 'stripe';
 import { resolveOrigin } from './lib/origin.js';
+import { rejectIfRateLimited } from './lib/rateLimit.js';
 
 if (!process.env.STRIPE_SECRET_KEY) {
   throw new Error('Missing required environment variable: STRIPE_SECRET_KEY');
@@ -7,10 +8,17 @@ if (!process.env.STRIPE_SECRET_KEY) {
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+// This endpoint is reached on every thank-you page load (the read-only probe)
+// and again when the donor opens the portal, so it gets a larger budget than
+// the one-shot forms.
+const SUCCESS_PAGE_RATE_LIMIT = { max: 20 };
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
+
+  if (rejectIfRateLimited(req, res, SUCCESS_PAGE_RATE_LIMIT)) return;
 
   try {
     const { session_id, intent } = req.body || {};

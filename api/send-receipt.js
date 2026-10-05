@@ -1,5 +1,6 @@
 import Stripe from 'stripe';
 import { Resend } from 'resend';
+import { rejectIfRateLimited } from './lib/rateLimit.js';
 
 const missing = ['STRIPE_SECRET_KEY', 'RESEND_API_KEY'].filter((v) => !process.env[v]);
 if (missing.length) {
@@ -9,6 +10,10 @@ if (missing.length) {
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const resend = new Resend(process.env.RESEND_API_KEY);
 const FROM_EMAIL = 'Children for Life <donations@childrenforlife.com>';
+
+// The thank-you page re-checks on every load and refreshing is normal donor
+// behaviour, so this endpoint gets a larger budget than the one-shot forms.
+const SUCCESS_PAGE_RATE_LIMIT = { max: 20 };
 
 // Idempotency guard: the session_id lives in the success-page URL, so it can be
 // replayed (history/referrer logs). Track recently-receipted sessions to prevent
@@ -50,6 +55,8 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
+
+  if (rejectIfRateLimited(req, res, SUCCESS_PAGE_RATE_LIMIT)) return;
 
   try {
     const { session_id } = req.body || {};

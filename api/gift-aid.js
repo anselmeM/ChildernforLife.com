@@ -1,5 +1,5 @@
 import { Resend } from 'resend';
-import { isRateLimited } from './lib/rateLimit.js';
+import { rejectIfRateLimited } from './lib/rateLimit.js';
 
 if (!process.env.RESEND_API_KEY) {
   throw new Error('Missing required environment variable: RESEND_API_KEY');
@@ -24,9 +24,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  if (isRateLimited(req)) {
-    return res.status(429).json({ error: 'Too many attempts. Please try again later.' });
-  }
+  if (rejectIfRateLimited(req, res)) return;
 
   try {
     const { fullName, email, amount, consent } = req.body || {};

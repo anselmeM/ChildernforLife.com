@@ -1,5 +1,6 @@
 import Stripe from 'stripe';
 import { resolveOrigin } from './lib/origin.js';
+import { rejectIfRateLimited } from './lib/rateLimit.js';
 
 const requiredVars = ['STRIPE_SECRET_KEY'];
 const missing = requiredVars.filter(v => !process.env[v]);
@@ -26,6 +27,8 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
+
+  if (rejectIfRateLimited(req, res)) return;
 
   try {
     const { amount, currency, frequency, tierName, tierDesc, campaign, tribute } = req.body;
