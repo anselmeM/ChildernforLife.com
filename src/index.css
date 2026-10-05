@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Cause:wght@100..900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+/* The font stylesheet is linked from index.html (with preconnect) so the
+   browser fetches it in parallel with this bundle. As a CSS @import here it
+   could only be discovered after this whole 47 kB file had downloaded and been
+   parsed, which put two extra round-trips in front of first paint. */
 
 @tailwind base;
 @tailwind components;
