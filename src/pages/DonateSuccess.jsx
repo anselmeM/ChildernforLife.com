@@ -5,13 +5,43 @@ import PageSEO from '../components/PageSEO';
 
 const SESSION_ID_RE = /^cs_(test|live)_[A-Za-z0-9]+$/;
 
+// The server is the only thing that can confirm a payment, so the copy follows
+// what it tells us:
+//   checking    — the receipt request is in flight
+//   verified    — /api/send-receipt accepted the session as paid (it reads the
+//                 amount and email straight from Stripe, never from the client)
+//   unverified  — Stripe says it is not paid yet (delayed method, or a stale link)
+//   unconfirmed — we could not reach the server; say so instead of claiming success
+const COPY = {
+  checking: {
+    heading: 'Thank You!',
+    body: 'We’re confirming your donation with Stripe — this takes a moment.',
+    tone: 'green',
+  },
+  verified: {
+    heading: 'Thank You!',
+    body: 'Your donation is confirmed. A receipt has been sent to your email.',
+    tone: 'green',
+  },
+  unconfirmed: {
+    heading: 'Thank You!',
+    body: 'We couldn’t confirm your donation automatically just now. If you completed a gift, we’ll email your receipt shortly — contact us if you need it sooner.',
+    tone: 'yellow',
+  },
+  unverified: {
+    heading: 'Confirming Your Gift',
+    body: 'We haven’t received confirmation of this payment yet. Delayed payment methods, such as bank transfers, can take a few days to clear — we’ll email your receipt as soon as it does.',
+    tone: 'yellow',
+  },
+};
+
 export default function DonateSuccess() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const sessionId = searchParams.get('session_id');
 
-  const [receiptStatus, setReceiptStatus] = useState('idle'); // idle | sending | sent | error
-  const [portal, setPortal] = useState({ state: 'idle', url: null, showManage: false }); // idle | loading | error
+  const [verification, setVerification] = useState('checking');
+  const [portal, setPortal] = useState({ state: 'idle', showManage: false });
 
   useEffect(() => {
     if (!sessionId) return;
@@ -21,35 +51,39 @@ export default function DonateSuccess() {
 
     let cancelled = false;
 
-    // Request the receipt email; never block the thank-you page on it.
+    // Asking for the receipt is also the payment check: it succeeds only for a
+    // paid session. Never block the thank-you page on it.
     (async () => {
-      setReceiptStatus('sending');
       try {
         const res = await fetch('/api/send-receipt', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ session_id: sessionId }),
         });
-        if (!cancelled) setReceiptStatus(res.ok ? 'sent' : 'error');
+        if (cancelled) return;
+        if (res.ok) setVerification('verified');
+        else if (res.status === 400) setVerification('unverified');
+        else setVerification('unconfirmed');
       } catch {
-        if (!cancelled) setReceiptStatus('error');
+        if (!cancelled) setVerification('unconfirmed');
       }
     })();
 
-    // Check whether this donor has an active subscription (for the portal button).
+    // Read-only probe: no billing-portal session is created until the donor
+    // asks for one, so opening (or forwarding) this URL costs nothing.
     (async () => {
       try {
         const res = await fetch('/api/create-portal-session', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ session_id: sessionId }),
+          body: JSON.stringify({ session_id: sessionId, intent: 'check' }),
         });
-        const data = await res.json();
+        const data = await res.json().catch(() => ({}));
         if (!cancelled && res.ok && data.hasActiveSubscription) {
-          setPortal({ state: 'idle', url: data.url, showManage: true });
+          setPortal((p) => ({ ...p, showManage: true }));
         }
       } catch {
-        // Non-fatal: portal button just stays hidden.
+        // Non-fatal: the portal button just stays hidden.
       }
     })();
 
@@ -61,18 +95,15 @@ export default function DonateSuccess() {
   const openPortal = async () => {
     setPortal((p) => ({ ...p, state: 'loading' }));
     try {
-      if (!portal.url) {
-        const res = await fetch('/api/create-portal-session', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ session_id: sessionId }),
-        });
-        const data = await res.json();
-        if (!res.ok || !data.url) throw new Error('portal unavailable');
-        window.location.assign(data.url);
-        return;
-      }
-      window.location.assign(portal.url);
+      // Mint the portal session on demand — they are short-lived.
+      const res = await fetch('/api/create-portal-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: sessionId }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.url) throw new Error('portal unavailable');
+      window.location.assign(data.url);
     } catch {
       setPortal((p) => ({ ...p, state: 'error' }));
     }
@@ -96,22 +127,21 @@ export default function DonateSuccess() {
     );
   }
 
+  const copy = COPY[verification];
+  const isConfirmed = copy.tone === 'green';
+
   return (
     <div className="min-h-[80vh] flex items-center justify-center bg-gray-50 px-4">
       <PageSEO title="Donation Confirmation" description="" path="/donate/success" />
       <div className="max-w-md w-full bg-white p-10 rounded-3xl shadow-lg text-center border border-gray-100">
-        <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6 border border-green-100">
-          <ShieldCheck className="text-green-600 w-10 h-10" />
+        <div className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 border ${
+          isConfirmed ? 'bg-green-50 border-green-100' : 'bg-yellow-50 border-yellow-100'
+        }`}>
+          <ShieldCheck className={`w-10 h-10 ${isConfirmed ? 'text-green-600' : 'text-yellow-600'}`} />
         </div>
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-4">Thank You!</h2>
-        <p className="text-gray-600 mb-4 leading-relaxed font-bold">
-          Your donation has been processed successfully.
-        </p>
-        <p className="text-gray-400 text-xs font-semibold mb-8" role="status" aria-live="polite">
-          {receiptStatus === 'sending' && 'Preparing your receipt…'}
-          {receiptStatus === 'sent' && 'A receipt has been sent to your email.'}
-          {receiptStatus === 'error' && "We couldn't send your receipt automatically. Please contact us and we'll email it to you."}
-          {receiptStatus === 'idle' && 'A receipt will be sent to your email.'}
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-4">{copy.heading}</h2>
+        <p className="text-gray-600 mb-8 leading-relaxed font-bold" role="status" aria-live="polite">
+          {copy.body}
         </p>
         {portal.showManage && (
           <button
