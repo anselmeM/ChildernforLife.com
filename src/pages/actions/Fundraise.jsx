@@ -31,7 +31,7 @@ export default function Fundraise() {
               { title: "Community Bakesale", desc: "Organize a local bake sale, concert, or sports tournament with all proceeds donated to our projects." }
             ].map((f, i) => (
               <div key={i} className="border border-gray-200 bg-gray-50 rounded-2xl p-8 hover:shadow-md transition-shadow">
-                <h3 className="text-lg font-black text-gray-900 mb-3">{f.title}</h3>
+                <h2 className="text-lg font-black text-gray-900 mb-3">{f.title}</h2>
                 <p className="text-gray-500 font-bold text-xs leading-relaxed mb-6">{f.desc}</p>
                 <button onClick={() => navigate('/contact')} className="text-[#005c7a] font-black text-xs uppercase hover:underline">Start Campaign →</button>
               </div>

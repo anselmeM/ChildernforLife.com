@@ -26,7 +26,7 @@ export default function GenderEquality() {
           <p className="text-gray-600 text-lg font-medium leading-relaxed">Gender equality is not just a goal, it is a prerequisite for ending poverty. Children for Life works to remove social and economic barriers facing marginalized girls and women, ensuring equal access to education, health, and economic assets.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h3 className="text-2xl font-black text-gray-900">U-GIRLS 2 & Beyond</h3>
+              <h2 className="text-2xl font-black text-gray-900">U-GIRLS 2 & Beyond</h2>
               <p className="text-gray-500 font-bold text-[14.5px] leading-relaxed">Our U-GIRLS 2 program provides scholarships, learning materials, and mentorship to girls in secondary schools, preparing them for university admission and careers in STEM and leadership roles.</p>
               <p className="text-gray-500 font-bold text-[14.5px] leading-relaxed">We also train teachers on gender-responsive pedagogy and work with community leaders to raise awareness against early marriages and gender-based discrimination.</p>
             </div>

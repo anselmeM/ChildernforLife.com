@@ -45,9 +45,9 @@ export default function VolunteerFAQ() {
         <div className="max-w-3xl mx-auto space-y-6">
           {faqs.map((faq, i) => (
             <div key={i} className="border-b border-gray-200 pb-6">
-              <h3 className="text-lg font-black text-gray-900 mb-3 flex items-center">
+              <h2 className="text-lg font-black text-gray-900 mb-3 flex items-center">
                 <span className="text-[#005c7a] mr-2">Q:</span> {faq.q}
-              </h3>
+              </h2>
               <p className="text-gray-500 font-semibold text-[14.5px] leading-relaxed pl-6">{faq.a}</p>
             </div>
           ))}

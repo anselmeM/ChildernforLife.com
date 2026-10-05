@@ -211,6 +211,7 @@ export default function Home() {
                 <button 
                   onClick={handlePrevStory} 
                   disabled={activeStory === 0}
+                  aria-label="Previous story"
                   className={`w-12 h-12 rounded-full text-white flex items-center justify-center shadow-md transition-all duration-300 ${
                     activeStory === 0 ? 'bg-gray-300 cursor-not-allowed opacity-50' : 'bg-[#f37021] hover:bg-[#da621a]'
                   }`}
@@ -220,6 +221,7 @@ export default function Home() {
                 <button 
                   onClick={handleNextStory} 
                   disabled={activeStory === stories.length - 1}
+                  aria-label="Next story"
                   className={`w-12 h-12 rounded-full text-white flex items-center justify-center shadow-md transition-all duration-300 ${
                     activeStory === stories.length - 1 ? 'bg-gray-300 cursor-not-allowed opacity-50' : 'bg-[#f37021] hover:bg-[#da621a]'
                   }`}

@@ -49,7 +49,7 @@ export default function CountryPage() {
                     <div className="w-3 h-3 rounded-full bg-[#ffc72c]"></div>
                   </div>
                 </div>
-                <h3 className="text-center text-xl sm:text-2xl lg:text-3xl font-black text-[#1a365d] mb-6 lg:mb-8 mt-2">The {data.name} Effect</h3>
+                <h2 className="text-center text-xl sm:text-2xl lg:text-3xl font-black text-[#1a365d] mb-6 lg:mb-8 mt-2">The {data.name} Effect</h2>
                 <div className="flex justify-center mb-8 relative z-10">
                   <div className="w-44 h-44 rounded-full overflow-hidden shadow-md border-4 border-white">
                     <img loading="lazy" src={cusoEffectSoap} className="w-full h-full object-cover" alt="Impact" />

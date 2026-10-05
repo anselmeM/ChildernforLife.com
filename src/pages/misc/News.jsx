@@ -102,7 +102,7 @@ export default function News() {
                       <span className="text-[#005c7a] bg-[#e1f3f8] px-2 py-0.5 rounded">{news.tag}</span>
                       <span>{news.date}</span>
                     </div>
-                    <h3 className="text-base font-black text-gray-900 mt-3 leading-snug group-hover:text-[#005c7a] transition-colors">{news.title}</h3>
+                    <h2 className="text-base font-black text-gray-900 mt-3 leading-snug group-hover:text-[#005c7a] transition-colors">{news.title}</h2>
                   </div>
                 </div>
                 <div className="p-6 pt-0">

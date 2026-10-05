@@ -36,7 +36,7 @@ export default function Placements() {
               <div key={i} className="bg-gray-50 border border-gray-200 rounded-2xl p-8 hover:shadow-md transition-shadow flex flex-col justify-between">
                 <div>
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-black text-gray-900">{p.title}</h3>
+                    <h2 className="text-xl font-black text-gray-900">{p.title}</h2>
                     <span className="bg-[#e1f3f8] text-[#005a74] text-[11px] font-black px-2.5 py-1 rounded uppercase tracking-wider">{p.dur}</span>
                   </div>
                   <p className="text-[#005c7a] font-bold text-sm mb-4">{p.loc}</p>

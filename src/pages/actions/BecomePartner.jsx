@@ -26,7 +26,7 @@ export default function BecomePartner() {
           <p className="text-gray-600 text-lg font-medium leading-relaxed text-center max-w-2xl mx-auto">Children for Life partners with corporations, foundations, and community alliances to deliver large-scale education, energy, and WASH projects.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <h3 className="text-2xl font-black text-gray-900">Why Partner With Us?</h3>
+              <h2 className="text-2xl font-black text-gray-900">Why Partner With Us?</h2>
               <ul className="space-y-4 text-gray-500 font-bold text-[14.5px] leading-relaxed">
                 <li className="flex items-start"><span className="text-[#005c7a] mr-2">✔</span><span>Measurable global ESG and community development impacts.</span></li>
                 <li className="flex items-start"><span className="text-[#005c7a] mr-2">✔</span><span>Transparent tracking and accountability of all program expenditures.</span></li>

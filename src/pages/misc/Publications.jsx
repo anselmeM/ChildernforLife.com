@@ -56,7 +56,7 @@ export default function Publications() {
                 <img loading="lazy" src={rep.img} className="w-full h-full object-cover group-hover:scale-105 transition-transform" alt={`Report ${rep.yr}`} />
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
               </div>
-              <h4 className="font-black text-gray-800 text-xs uppercase leading-snug">Annual Report</h4>
+              <h3 className="font-lora font-black text-gray-800 text-xs uppercase leading-snug">Annual Report</h3>
               <p className="text-[#f37021] font-bold text-xs">{rep.yr}</p>
             </div>
           ))}
@@ -76,7 +76,7 @@ export default function Publications() {
               <div className="aspect-[4/3] rounded-xl overflow-hidden mb-4 border border-gray-100">
                 <img loading="lazy" src={news.img} className="w-full h-full object-cover" alt={news.issue} />
               </div>
-              <h4 className="font-black text-gray-900 text-sm">{news.issue}</h4>
+              <h3 className="font-lora font-black text-gray-900 text-sm">{news.issue}</h3>
               <p className="text-gray-500 font-bold text-xs leading-normal mt-1 mb-4">{news.desc}</p>
               <button onClick={() => navigate('/contact')} className="text-[#005c7a] hover:underline font-black text-xs uppercase">Request Issue</button>
             </div>

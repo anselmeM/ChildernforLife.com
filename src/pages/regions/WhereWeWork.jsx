@@ -26,20 +26,20 @@ export default function WhereWeWork() {
           <p className="text-gray-600 text-lg font-medium leading-relaxed">Children for Life works in partnership with communities across Africa. We collaborate with local governments, NGOs, and community-based organizations to design and implement programs that address the unique needs of each region.</p>
           <p className="text-gray-600 text-lg font-medium leading-relaxed">Our work spans East Africa (Tanzania, Ethiopia), West Africa (Benin, Nigeria, Cameroon), and Central Africa (Democratic Republic of the Congo). In each country, we focus on locally-led solutions in education, health, clean energy, WASH, and sustainable livelihoods.</p>
           <div className="bg-gray-50 border border-gray-200 rounded-3xl p-8 space-y-6">
-            <h3 className="text-xl font-black text-gray-900">Our Presence Across Africa</h3>
+            <h2 className="text-xl font-black text-gray-900">Our Presence Across Africa</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
-                <h4 className="font-black text-[#005c7a] text-base mb-2">East Africa</h4>
+                <h3 className="font-lora font-black text-[#005c7a] text-base mb-2">East Africa</h3>
                 <p className="text-gray-500 font-bold text-xs leading-relaxed">Tanzania • Ethiopia</p>
                 <p className="text-gray-500 font-semibold text-xs mt-2">Focus: Girls' education, solar microgrids, WASH infrastructure, agricultural resilience.</p>
               </div>
               <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
-                <h4 className="font-black text-[#005c7a] text-base mb-2">West Africa</h4>
+                <h3 className="font-lora font-black text-[#005c7a] text-base mb-2">West Africa</h3>
                 <p className="text-gray-500 font-bold text-xs leading-relaxed">Benin • Nigeria • Cameroon</p>
                 <p className="text-gray-500 font-semibold text-xs mt-2">Focus: Digital vocational training, gender-responsive pedagogy, women's cooperatives.</p>
               </div>
               <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm">
-                <h4 className="font-black text-[#005c7a] text-base mb-2">Central Africa</h4>
+                <h3 className="font-lora font-black text-[#005c7a] text-base mb-2">Central Africa</h3>
                 <p className="text-gray-500 font-bold text-xs leading-relaxed">Democratic Republic of the Congo</p>
                 <p className="text-gray-500 font-semibold text-xs mt-2">Focus: Emergency WASH, solar-powered maternity clinics, community water committees.</p>
               </div>

@@ -41,7 +41,7 @@ export default function Competencies() {
                   <div className="space-y-3">
                     <div className="flex items-center space-x-3.5">
                       <span className="text-[#f37021] text-[11px] font-black tracking-widest uppercase bg-[#f37021]/15 px-3 py-1 rounded-full">Goal {goal.num}</span>
-                      <h3 className="text-lg font-black text-gray-900">{goal.title}</h3>
+                      <h2 className="text-lg font-black text-gray-900">{goal.title}</h2>
                     </div>
                     <p className="text-gray-500 font-bold text-xs leading-relaxed max-w-xl">{goal.desc}</p>
                   </div>

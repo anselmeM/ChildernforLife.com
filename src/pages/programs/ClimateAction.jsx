@@ -30,7 +30,7 @@ export default function ClimateAction() {
               <img loading="lazy" src={cleanEnergy} alt="Clean Energy Clinic" className="rounded-2xl shadow-md w-full h-auto" />
             </div>
             <div className="space-y-6">
-              <h3 className="text-2xl font-black text-gray-900">Green Health & Clean Water</h3>
+              <h2 className="text-2xl font-black text-gray-900">Green Health & Clean Water</h2>
               <p className="text-gray-500 font-bold text-[14.5px] leading-relaxed">By powering rural health centers with solar microgrids, we prevent vaccine wastage and guarantee constant power for child deliveries.</p>
               <p className="text-gray-500 font-bold text-[14.5px] leading-relaxed">In addition, our school sanitation projects construct safe latrines and install solar-powered water filtration pumps, giving children constant access to safe, clean drinking water.</p>
             </div>
